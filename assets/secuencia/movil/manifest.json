@@ -1,0 +1,24 @@
+{
+ "frames": 160,
+ "formato": "webp",
+ "patron": "frame_{n}.webp",
+ "cifras": 4,
+ "ancho": 1080,
+ "alto": 1920,
+ "transparente": false,
+ "poster": "poster.webp",
+ "variantes": [
+  {
+   "ancho": 1080,
+   "alto": 1920,
+   "carpeta": "1080",
+   "peso": 3608640
+  },
+  {
+   "ancho": 720,
+   "alto": 1280,
+   "carpeta": "720",
+   "peso": 2043476
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+﻿{
+  "descripcion": "Recorrido de cámara por una casa minimalista: exterior, entrada e interior (salón, cocina, dormitorio), avanzando con el scroll",
+  "pagina": "Landing page de una diseñadora de interiores (la web la hace el usuario; aquí solo imágenes)",
+  "tecnica": "secuencia",
+  "origen": "codigo",
+  "estilo": "3d",
+  "pantallas": "ordenador y movil",
+  "fotogramas": 160,
+  "formato": "webp",
+  "textos": "sin texto (los pondrá el usuario en HTML)",
+  "revision": "guiada",
+  "entrega": "solo imágenes, sin página demo"
+}

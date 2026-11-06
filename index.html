@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Claudia · Diseño de interiores</title>
+  <meta name="description" content="Estudio de diseño de interiores. Espacios serenos, cálidos y pensados para vivirlos.">
+  <meta name="theme-color" content="#f4efe8">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/assets/img/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/img/favicon/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Claudia · Diseño de interiores">
+  <meta property="og:description" content="Espacios serenos, cálidos y pensados para vivirlos.">
+  <meta property="og:image" content="/assets/secuencia/escritorio/poster.webp">
+  <meta property="og:type" content="website">
+
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="preload" as="image" href="/assets/secuencia/escritorio/poster.webp">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+
+  <!-- ============ CABECERA ============ -->
+  <header class="cabecera" id="cabecera">
+    <a href="#inicio" class="marca" aria-label="Claudia, inicio">Claudia<span>interiores</span></a>
+    <button class="menu-boton" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
+      <span></span><span></span>
+    </button>
+    <nav class="menu" id="menu">
+      <a href="#estudio">Estudio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#contacto" class="boton boton--pequeno">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============ HERO · recorrido con scroll ============ -->
+    <section class="hero" id="inicio" aria-label="Recorrido por una casa">
+      <div class="hero__fijo">
+        <canvas class="hero__lienzo" id="lienzo" aria-hidden="true"></canvas>
+        <div class="hero__velo" aria-hidden="true"></div>
+
+        <div class="hero__texto" data-desde="0" data-hasta="0.2">
+          <p class="etiqueta">Diseño de interiores</p>
+          <h1>Espacios que se sienten como casa</h1>
+          <p class="hero__bajada">Desliza para entrar.</p>
+        </div>
+        <div class="hero__texto hero__texto--lado" data-desde="0.26" data-hasta="0.48">
+          <p class="etiqueta">Salón</p>
+          <h2>Luz natural, materiales nobles y calma</h2>
+        </div>
+        <div class="hero__texto hero__texto--lado" data-desde="0.52" data-hasta="0.7">
+          <p class="etiqueta">Cocina</p>
+          <h2>Cada metro pensado para el día a día</h2>
+        </div>
+        <div class="hero__texto" data-desde="0.8" data-hasta="1.01">
+          <p class="etiqueta">Dormitorio</p>
+          <h2>Diseñamos el lugar donde descansas</h2>
+          <a href="#contacto" class="boton">Agenda una cita</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ESTUDIO ============ -->
+    <section class="seccion estudio" id="estudio">
+      <div class="contenedor dos-columnas">
+        <div>
+          <p class="etiqueta">El estudio</p>
+          <h2>Hola, soy Claudia</h2>
+        </div>
+        <div class="texto-largo">
+          <p>Texto de ejemplo: diseñadora de interiores con X años de experiencia creando hogares y espacios comerciales serenos, funcionales y con carácter.</p>
+          <p>Trabajo cada proyecto desde la forma en que vives: la luz, los recorridos y los materiales que te hacen sentir en casa.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SERVICIOS ============ -->
+    <section class="seccion servicios" id="servicios">
+      <div class="contenedor">
+        <p class="etiqueta">Servicios</p>
+        <h2>Cómo puedo ayudarte</h2>
+        <ul class="tarjetas">
+          <li class="tarjeta">
+            <span class="tarjeta__numero">01</span>
+            <h3>Proyecto integral</h3>
+            <p>Del concepto a la obra terminada: distribución, materiales, mobiliario y dirección.</p>
+          </li>
+          <li class="tarjeta">
+            <span class="tarjeta__numero">02</span>
+            <h3>Asesoría</h3>
+            <p>Sesiones puntuales para decidir colores, acabados o la distribución de una estancia.</p>
+          </li>
+          <li class="tarjeta">
+            <span class="tarjeta__numero">03</span>
+            <h3>Interiorismo comercial</h3>
+            <p>Locales, oficinas y espacios de hostelería que cuentan la historia de tu marca.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ PROYECTOS ============ -->
+    <section class="seccion proyectos" id="proyectos">
+      <div class="contenedor">
+        <p class="etiqueta">Proyectos</p>
+        <h2>Trabajos recientes</h2>
+        <div class="galeria">
+          <figure class="galeria__item galeria__item--grande">
+            <img src="/assets/secuencia/escritorio/960/frame_0052.webp" alt="Salón con sofá de lino y mesa de roble" loading="lazy" width="960" height="540">
+            <figcaption>Casa Roble · Salón</figcaption>
+          </figure>
+          <figure class="galeria__item">
+            <img src="/assets/secuencia/escritorio/960/frame_0090.webp" alt="Cocina con isla blanca y taburetes de madera" loading="lazy" width="960" height="540">
+            <figcaption>Casa Roble · Cocina</figcaption>
+          </figure>
+          <figure class="galeria__item">
+            <img src="/assets/secuencia/escritorio/960/frame_0128.webp" alt="Dormitorio con ventanal al jardín" loading="lazy" width="960" height="540">
+            <figcaption>Casa Roble · Dormitorio</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROCESO ============ -->
+    <section class="seccion proceso" id="proceso">
+      <div class="contenedor">
+        <p class="etiqueta">Proceso</p>
+        <h2>Así trabajamos juntas</h2>
+        <ol class="pasos">
+          <li><h3>Conversación</h3><p>Conocemos el espacio, tus necesidades y tu presupuesto.</p></li>
+          <li><h3>Concepto</h3><p>Propuesta de estilo, paleta de materiales y distribución.</p></li>
+          <li><h3>Proyecto</h3><p>Planos, renders y selección de mobiliario.</p></li>
+          <li><h3>Ejecución</h3><p>Coordinación con proveedores hasta la entrega final.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ CONTACTO ============ -->
+    <section class="seccion contacto" id="contacto">
+      <div class="contenedor dos-columnas">
+        <div>
+          <p class="etiqueta">Contacto</p>
+          <h2>Hablemos de tu espacio</h2>
+          <p>Cuéntame tu proyecto y te respondo en menos de 48 horas.</p>
+          <ul class="contacto__datos">
+            <li><a href="mailto:hola@ejemplo.com">hola@ejemplo.com</a></li>
+            <li><a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a></li>
+          </ul>
+        </div>
+        <form class="formulario" id="formulario">
+          <label>Nombre<input type="text" name="nombre" required autocomplete="name"></label>
+          <label>Correo<input type="email" name="correo" required autocomplete="email"></label>
+          <label>Cuéntame tu proyecto<textarea name="mensaje" rows="4" required></textarea></label>
+          <button type="submit" class="boton">Enviar mensaje</button>
+          <p class="formulario__aviso" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor pie__fila">
+      <span>© <span id="anio">2026</span> Claudia · Diseño de interiores</span>
+      <a href="#inicio">Volver arriba ↑</a>
+    </div>
+  </footer>
+
+  <script src="/assets/secuencia/escritorio/manifest.js"></script>
+  <script src="/assets/secuencia/movil/manifest.js"></script>
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>
