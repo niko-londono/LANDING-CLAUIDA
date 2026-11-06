@@ -2,10 +2,11 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Claudia · Diseño de interiores</title>
   <meta name="description" content="Estudio de diseño de interiores. Espacios serenos, cálidos y pensados para vivirlos.">
   <meta name="theme-color" content="#f4efe8">
+  <meta name="color-scheme" content="light">
 
   <!-- Favicon -->
   <link rel="icon" href="/assets/img/favicon/favicon.svg" type="image/svg+xml">
@@ -26,6 +27,8 @@
 
   <link rel="preload" as="image" href="/assets/secuencia/escritorio/poster.webp">
   <link rel="stylesheet" href="/assets/css/styles.css">
+  <!-- Marca que hay JS antes de pintar, para ocultar lo que se revelará con el scroll -->
+  <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
 
@@ -37,9 +40,9 @@
     </button>
     <nav class="menu" id="menu">
       <a href="#estudio">Estudio</a>
+      <a href="#espacios">Espacios</a>
       <a href="#servicios">Servicios</a>
       <a href="#proyectos">Proyectos</a>
-      <a href="#proceso">Proceso</a>
       <a href="#contacto" class="boton boton--pequeno">Contacto</a>
     </nav>
   </header>
@@ -75,35 +78,100 @@
 
     <!-- ============ ESTUDIO ============ -->
     <section class="seccion estudio" id="estudio">
-      <div class="contenedor dos-columnas">
-        <div>
-          <p class="etiqueta">El estudio</p>
-          <h2>Hola, soy Claudia</h2>
+      <div class="contenedor estudio__rejilla">
+        <div class="estudio__texto">
+          <p class="etiqueta aparecer">El estudio</p>
+          <h2 class="aparecer">Hola, soy Claudia</h2>
+          <div class="texto-largo">
+            <p class="aparecer">Texto de ejemplo: diseñadora de interiores con X años de experiencia creando hogares y espacios comerciales serenos, funcionales y con carácter.</p>
+            <p class="aparecer">Trabajo cada proyecto desde la forma en que vives: la luz, los recorridos y los materiales que te hacen sentir en casa.</p>
+          </div>
         </div>
-        <div class="texto-largo">
-          <p>Texto de ejemplo: diseñadora de interiores con X años de experiencia creando hogares y espacios comerciales serenos, funcionales y con carácter.</p>
-          <p>Trabajo cada proyecto desde la forma en que vives: la luz, los recorridos y los materiales que te hacen sentir en casa.</p>
-        </div>
+        <figure class="foto foto--retrato estudio__foto revelar">
+          <picture>
+            <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/secuencia/movil/720/frame_0022.webp 720w, /assets/secuencia/movil/1080/frame_0022.webp 1080w">
+            <img class="paralaje" sizes="(min-width: 860px) 45vw, 100vw" srcset="/assets/secuencia/escritorio/960/frame_0022.webp 960w, /assets/secuencia/escritorio/1920/frame_0022.webp 1920w" src="/assets/secuencia/escritorio/960/frame_0022.webp" width="1920" height="1080" alt="Puerta alta de roble abierta hacia un interior cálido" loading="lazy" decoding="async">
+          </picture>
+        </figure>
       </div>
     </section>
+
+    <!-- ============ ESPACIOS · capítulos a pantalla completa ============ -->
+    <div id="espacios">
+      <section class="capitulo" aria-labelledby="cap-salon">
+        <figure class="capitulo__fondo">
+          <picture>
+            <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/secuencia/movil/720/frame_0052.webp 720w, /assets/secuencia/movil/1080/frame_0052.webp 1080w">
+            <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/secuencia/escritorio/960/frame_0052.webp 960w, /assets/secuencia/escritorio/1920/frame_0052.webp 1920w" src="/assets/secuencia/escritorio/960/frame_0052.webp" width="1920" height="1080" alt="Salón con sofá de lino, mesa redonda de roble y estantería empotrada" loading="lazy" decoding="async">
+          </picture>
+        </figure>
+        <div class="capitulo__tarjeta aparecer">
+          <p class="etiqueta">01 · Salón</p>
+          <h2 id="cap-salon">Un lugar para bajar el ritmo</h2>
+          <p>Lino, roble claro y luz de tarde. Piezas bajas que dejan respirar el espacio y una estantería que guarda lo que importa.</p>
+        </div>
+      </section>
+
+      <section class="capitulo capitulo--derecha" aria-labelledby="cap-comedor">
+        <figure class="capitulo__fondo">
+          <picture>
+            <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/secuencia/movil/720/frame_0073.webp 720w, /assets/secuencia/movil/1080/frame_0073.webp 1080w">
+            <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/secuencia/escritorio/960/frame_0073.webp 960w, /assets/secuencia/escritorio/1920/frame_0073.webp 1920w" src="/assets/secuencia/escritorio/960/frame_0073.webp" width="1920" height="1080" alt="Comedor de madera con aparador bajo y cuadro en tonos arena" loading="lazy" decoding="async">
+          </picture>
+        </figure>
+        <div class="capitulo__tarjeta aparecer">
+          <p class="etiqueta">02 · Comedor</p>
+          <h2 id="cap-comedor">La mesa donde pasa todo</h2>
+          <p>Proporciones pensadas para reunir: sillas cómodas, luz cálida sobre la mesa y almacenaje que no se ve.</p>
+        </div>
+      </section>
+
+      <section class="capitulo" aria-labelledby="cap-cocina">
+        <figure class="capitulo__fondo">
+          <picture>
+            <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/secuencia/movil/720/frame_0090.webp 720w, /assets/secuencia/movil/1080/frame_0090.webp 1080w">
+            <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/secuencia/escritorio/960/frame_0090.webp 960w, /assets/secuencia/escritorio/1920/frame_0090.webp 1920w" src="/assets/secuencia/escritorio/960/frame_0090.webp" width="1920" height="1080" alt="Cocina con isla blanca, taburetes de madera y ventanal al jardín" loading="lazy" decoding="async">
+          </picture>
+        </figure>
+        <div class="capitulo__tarjeta aparecer">
+          <p class="etiqueta">03 · Cocina</p>
+          <h2 id="cap-cocina">Cada metro, pensado para el día a día</h2>
+          <p>Una isla que ordena el espacio, superficies fáciles de cuidar y el jardín siempre a la vista.</p>
+        </div>
+      </section>
+
+      <section class="capitulo capitulo--derecha" aria-labelledby="cap-dormitorio">
+        <figure class="capitulo__fondo">
+          <picture>
+            <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/secuencia/movil/720/frame_0128.webp 720w, /assets/secuencia/movil/1080/frame_0128.webp 1080w">
+            <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/secuencia/escritorio/960/frame_0128.webp 960w, /assets/secuencia/escritorio/1920/frame_0128.webp 1920w" src="/assets/secuencia/escritorio/960/frame_0128.webp" width="1920" height="1080" alt="Dormitorio con cama baja de lino y ventanal a los árboles" loading="lazy" decoding="async">
+          </picture>
+        </figure>
+        <div class="capitulo__tarjeta aparecer">
+          <p class="etiqueta">04 · Dormitorio</p>
+          <h2 id="cap-dormitorio">Diseñamos el lugar donde descansas</h2>
+          <p>Texturas suaves, luz regulable y el ventanal como cabecero natural.</p>
+        </div>
+      </section>
+    </div>
 
     <!-- ============ SERVICIOS ============ -->
     <section class="seccion servicios" id="servicios">
       <div class="contenedor">
-        <p class="etiqueta">Servicios</p>
-        <h2>Cómo puedo ayudarte</h2>
+        <p class="etiqueta aparecer">Servicios</p>
+        <h2 class="aparecer">Cómo puedo ayudarte</h2>
         <ul class="tarjetas">
-          <li class="tarjeta">
+          <li class="tarjeta aparecer">
             <span class="tarjeta__numero">01</span>
             <h3>Proyecto integral</h3>
             <p>Del concepto a la obra terminada: distribución, materiales, mobiliario y dirección.</p>
           </li>
-          <li class="tarjeta">
+          <li class="tarjeta aparecer">
             <span class="tarjeta__numero">02</span>
             <h3>Asesoría</h3>
             <p>Sesiones puntuales para decidir colores, acabados o la distribución de una estancia.</p>
           </li>
-          <li class="tarjeta">
+          <li class="tarjeta aparecer">
             <span class="tarjeta__numero">03</span>
             <h3>Interiorismo comercial</h3>
             <p>Locales, oficinas y espacios de hostelería que cuentan la historia de tu marca.</p>
@@ -112,23 +180,42 @@
       </div>
     </section>
 
-    <!-- ============ PROYECTOS ============ -->
+    <!-- ============ PROYECTOS · mosaico con profundidad ============ -->
     <section class="seccion proyectos" id="proyectos">
       <div class="contenedor">
-        <p class="etiqueta">Proyectos</p>
-        <h2>Trabajos recientes</h2>
-        <div class="galeria">
-          <figure class="galeria__item galeria__item--grande">
-            <img src="/assets/secuencia/escritorio/960/frame_0052.webp" alt="Salón con sofá de lino y mesa de roble" loading="lazy" width="960" height="540">
-            <figcaption>Casa Roble · Salón</figcaption>
+        <p class="etiqueta aparecer">Proyectos</p>
+        <h2 class="aparecer">Casa Roble</h2>
+        <p class="texto-largo aparecer">Una vivienda de una planta abierta al jardín: volúmenes blancos, roble claro y una luz que cambia con la tarde.</p>
+
+        <div class="mosaico">
+          <figure class="mosaico__item mosaico__item--a flota-lenta">
+            <div class="foto revelar">
+              <picture>
+                <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/secuencia/movil/720/frame_0033.webp 720w, /assets/secuencia/movil/1080/frame_0033.webp 1080w">
+                <img class="paralaje" sizes="(min-width: 860px) 60vw, 100vw" srcset="/assets/secuencia/escritorio/960/frame_0033.webp 960w, /assets/secuencia/escritorio/1920/frame_0033.webp 1920w" src="/assets/secuencia/escritorio/960/frame_0033.webp" width="1920" height="1080" alt="Vista general del salón y el comedor desde la entrada" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption>Salón · primera vista</figcaption>
           </figure>
-          <figure class="galeria__item">
-            <img src="/assets/secuencia/escritorio/960/frame_0090.webp" alt="Cocina con isla blanca y taburetes de madera" loading="lazy" width="960" height="540">
-            <figcaption>Casa Roble · Cocina</figcaption>
+
+          <figure class="mosaico__item mosaico__item--b flota-rapida">
+            <div class="foto revelar">
+              <picture>
+                <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/secuencia/movil/720/frame_0106.webp 720w, /assets/secuencia/movil/1080/frame_0106.webp 1080w">
+                <img class="paralaje" sizes="(min-width: 860px) 35vw, 100vw" srcset="/assets/secuencia/escritorio/960/frame_0106.webp 960w, /assets/secuencia/escritorio/1920/frame_0106.webp 1920w" src="/assets/secuencia/escritorio/960/frame_0106.webp" width="1920" height="1080" alt="Isla de cocina blanca con estantes de roble y lámparas de globo" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption>Cocina · detalle de la isla</figcaption>
           </figure>
-          <figure class="galeria__item">
-            <img src="/assets/secuencia/escritorio/960/frame_0128.webp" alt="Dormitorio con ventanal al jardín" loading="lazy" width="960" height="540">
-            <figcaption>Casa Roble · Dormitorio</figcaption>
+
+          <figure class="mosaico__item mosaico__item--c flota-media">
+            <div class="foto revelar">
+              <picture>
+                <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/secuencia/movil/720/frame_0001.webp 720w, /assets/secuencia/movil/1080/frame_0001.webp 1080w">
+                <img class="paralaje" sizes="(min-width: 860px) 40vw, 100vw" srcset="/assets/secuencia/escritorio/960/frame_0001.webp 960w, /assets/secuencia/escritorio/1920/frame_0001.webp 1920w" src="/assets/secuencia/escritorio/960/frame_0001.webp" width="1920" height="1080" alt="Fachada blanca con revestimiento de madera y camino de losas en el jardín" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption>Exterior · llegada desde el jardín</figcaption>
           </figure>
         </div>
       </div>
@@ -137,34 +224,40 @@
     <!-- ============ PROCESO ============ -->
     <section class="seccion proceso" id="proceso">
       <div class="contenedor">
-        <p class="etiqueta">Proceso</p>
-        <h2>Así trabajamos juntas</h2>
+        <p class="etiqueta aparecer">Proceso</p>
+        <h2 class="aparecer">Así trabajamos juntas</h2>
         <ol class="pasos">
-          <li><h3>Conversación</h3><p>Conocemos el espacio, tus necesidades y tu presupuesto.</p></li>
-          <li><h3>Concepto</h3><p>Propuesta de estilo, paleta de materiales y distribución.</p></li>
-          <li><h3>Proyecto</h3><p>Planos, renders y selección de mobiliario.</p></li>
-          <li><h3>Ejecución</h3><p>Coordinación con proveedores hasta la entrega final.</p></li>
+          <li class="aparecer"><h3>Conversación</h3><p>Conocemos el espacio, tus necesidades y tu presupuesto.</p></li>
+          <li class="aparecer"><h3>Concepto</h3><p>Propuesta de estilo, paleta de materiales y distribución.</p></li>
+          <li class="aparecer"><h3>Proyecto</h3><p>Planos, renders y selección de mobiliario.</p></li>
+          <li class="aparecer"><h3>Ejecución</h3><p>Coordinación con proveedores hasta la entrega final.</p></li>
         </ol>
       </div>
     </section>
 
-    <!-- ============ CONTACTO ============ -->
+    <!-- ============ CONTACTO · sobre el ventanal final ============ -->
     <section class="seccion contacto" id="contacto">
-      <div class="contenedor dos-columnas">
+      <figure class="contacto__fondo" aria-hidden="true">
+        <picture>
+          <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/secuencia/movil/720/frame_0160.webp 720w, /assets/secuencia/movil/1080/frame_0160.webp 1080w">
+          <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/secuencia/escritorio/960/frame_0160.webp 960w, /assets/secuencia/escritorio/1920/frame_0160.webp 1920w" src="/assets/secuencia/escritorio/960/frame_0160.webp" width="1920" height="1080" alt="" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <div class="contenedor dos-columnas contacto__contenido">
         <div>
-          <p class="etiqueta">Contacto</p>
-          <h2>Hablemos de tu espacio</h2>
-          <p>Cuéntame tu proyecto y te respondo en menos de 48 horas.</p>
-          <ul class="contacto__datos">
+          <p class="etiqueta aparecer">Contacto</p>
+          <h2 class="aparecer">Hablemos de tu espacio</h2>
+          <p class="aparecer">Cuéntame tu proyecto y te respondo en menos de 48 horas.</p>
+          <ul class="contacto__datos aparecer">
             <li><a href="mailto:hola@ejemplo.com">hola@ejemplo.com</a></li>
             <li><a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a></li>
           </ul>
         </div>
-        <form class="formulario" id="formulario">
+        <form class="formulario aparecer" id="formulario">
           <label>Nombre<input type="text" name="nombre" required autocomplete="name"></label>
           <label>Correo<input type="email" name="correo" required autocomplete="email"></label>
           <label>Cuéntame tu proyecto<textarea name="mensaje" rows="4" required></textarea></label>
-          <button type="submit" class="boton">Enviar mensaje</button>
+          <button type="submit" class="boton" enterkeyhint="send">Enviar mensaje</button>
           <p class="formulario__aviso" role="status" aria-live="polite"></p>
         </form>
       </div>

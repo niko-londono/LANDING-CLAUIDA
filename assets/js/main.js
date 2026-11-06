@@ -3,7 +3,9 @@
    1. Cabecera con fondo al hacer scroll
    2. Menú móvil
    3. Recorrido 3D: secuencia de fotogramas ligada al scroll
-   4. Formulario (de momento solo de ejemplo)
+   4. Revelados al entrar en pantalla
+   5. Paralaje de respaldo (si no hay animation-timeline)
+   6. Formulario (de momento solo de ejemplo)
    ========================================================= */
 
 (() => {
@@ -122,7 +124,89 @@
     textos[0]?.classList.add("visible");
   }
 
-  /* ---------- 4. Formulario ---------- */
+  /* ---------- 4. Revelados al entrar en pantalla ---------- */
+  // Se disparan una sola vez. Los que entran juntos se escalonan 60 ms.
+  const porRevelar = document.querySelectorAll(".revelar, .aparecer");
+  if ("IntersectionObserver" in window) {
+    // Las fotos empiezan recortadas al 100 % con clip-path, y Chrome descuenta
+    // ese recorte de la intersección: se observa su contenedor, que no lo está.
+    const objetivo = new Map();
+    porRevelar.forEach((el) => {
+      objetivo.set(el.classList.contains("revelar") ? el.parentElement : el, el);
+    });
+    const observador = new IntersectionObserver((entradas) => {
+      entradas
+        .filter((e) => e.isIntersecting)
+        .map((e) => e.target)
+        .sort((a, b) => (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1))
+        .forEach((vigilado, i) => {
+          const el = objetivo.get(vigilado);
+          el.style.setProperty("--retraso", `${Math.min(i, 4) * 60}ms`);
+          el.classList.add("visible");
+          observador.unobserve(vigilado);
+        });
+    }, { rootMargin: "0px 0px -12% 0px", threshold: 0.12 });
+    objetivo.forEach((_, vigilado) => observador.observe(vigilado));
+  } else {
+    porRevelar.forEach((el) => el.classList.add("visible"));
+  }
+
+  /* ---------- 5. Paralaje de respaldo ---------- */
+  // Si el navegador soporta animation-timeline, el CSS hace todo fuera del hilo
+  // principal. Si no, un único rAF escribe transform solo en lo que está visible.
+  const paralajeCSS = window.CSS && CSS.supports("animation-timeline: view()");
+  if (!paralajeCSS && !reducirMovimiento && "IntersectionObserver" in window) {
+    const capas = [
+      ...[...document.querySelectorAll(".paralaje")].map((el) => ({
+        el,
+        marco: el.closest(".foto, .capitulo__fondo, .contacto__fondo"),
+        viaje: el.classList.contains("paralaje--fuerte") ? 14 : 9.5,
+        unidad: "%",
+        propiedad: "transform",
+      })),
+      ...[...document.querySelectorAll(".flota-lenta, .flota-media, .flota-rapida")].map((el) => ({
+        el,
+        marco: el,
+        viaje: el.classList.contains("flota-rapida") ? 96 : el.classList.contains("flota-media") ? 56 : 24,
+        unidad: "px",
+        propiedad: "translate",
+        invertir: true,
+      })),
+    ];
+
+    const visibles = new Set();
+    const vigia = new IntersectionObserver((entradas) => {
+      entradas.forEach((e) => {
+        capas.filter((c) => c.marco === e.target).forEach((c) => {
+          e.isIntersecting ? visibles.add(c) : visibles.delete(c);
+        });
+      });
+      pedirParalaje();
+    }, { rootMargin: "10% 0px" });
+    new Set(capas.map((c) => c.marco)).forEach((m) => vigia.observe(m));
+
+    let pendienteParalaje = false;
+    const moverCapas = () => {
+      pendienteParalaje = false;
+      const alto = window.innerHeight;
+      visibles.forEach((c) => {
+        const r = c.marco.getBoundingClientRect();
+        // 0 cuando el marco asoma por abajo, 1 cuando sale por arriba
+        const p = Math.min(1, Math.max(0, (alto - r.top) / (alto + r.height)));
+        let v = (p * 2 - 1) * c.viaje;
+        if (c.invertir) v = -v;
+        if (c.propiedad === "translate") c.el.style.translate = `0 ${v.toFixed(2)}${c.unidad}`;
+        else c.el.style.transform = `translate3d(0, ${v.toFixed(2)}${c.unidad}, 0)`;
+      });
+    };
+    const pedirParalaje = () => {
+      if (!pendienteParalaje) { pendienteParalaje = true; requestAnimationFrame(moverCapas); }
+    };
+    window.addEventListener("scroll", pedirParalaje, { passive: true });
+    window.addEventListener("resize", pedirParalaje);
+  }
+
+  /* ---------- 6. Formulario ---------- */
   // Base sin envío real: se conectará a un servicio (Formspree, Resend, etc.) más adelante.
   const formulario = document.getElementById("formulario");
   formulario?.addEventListener("submit", (e) => {
