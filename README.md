@@ -3,22 +3,27 @@ Landing page de diseño de interiores. Sitio estático (HTML, CSS y JS sin depen
 
 ## Estructura
 ```
-index.html              Página principal
+index.html              Landing del estudio (portada, estudio, servicios, portafolio, proceso, contacto)
+proyectos/<nombre>/index.html   Página de cada proyecto, con su recorrido con scroll (/proyectos/<nombre>)
 site.webmanifest        Manifiesto (iconos, colores)
 favicon.ico             Favicon de respaldo
 vercel.json             Configuración de Vercel (caché de assets)
 assets/
-  css/styles.css        Estilos y variables de diseño (paleta, tipografía)
-  js/main.js            Menú, cabecera y recorrido 3D con scroll
+  css/styles.css        Estilos compartidos por la landing y los proyectos
+  js/main.js            Menú, cabecera, revelados y recorrido con scroll (si la página tiene canvas)
   img/favicon/          Favicon SVG y PNG (32, 180, 192, 512)
-  img/proyectos/        Fotos de proyectos (pendiente)
-  img/iconos/           Iconos (pendiente)
-  fonts/                Tipografías propias (pendiente)
-  secuencia/escritorio/ Recorrido 3D 16:9 (160 fotogramas, 960 y 1920 px)
-  secuencia/movil/      Recorrido 3D 9:16 (160 fotogramas, 720 y 1080 px)
+  proyectos/<nombre>/escritorio/  Secuencia 16:9 del proyecto (fotogramas, manifiesto y póster)
+  proyectos/<nombre>/movil/       Secuencia 9:16 del proyecto
 docs/                   Notas de diseño y contenido
 2026-11-05 · casa minimalista/  Material fuente del recorrido 3D (no se publica)
 ```
+
+## Añadir un proyecto al portafolio
+1. Exporta su secuencia con la skill parallax-con-claude a `assets/proyectos/<nombre>/escritorio` y `/movil`.
+2. Copia `proyectos/casa-roble/index.html` a `proyectos/<nombre>/index.html` y cambia textos, rutas,
+   `data-base` del canvas, `--poster` / `--poster-movil` de la sección hero y los `data-desde` de las paradas.
+3. Añade un `<li class="proyecto">` en la sección Portafolio de `index.html`. El primero lleva
+   `proyecto--destacado` (ocupa toda la fila); el resto forma una rejilla.
 
 ## Desarrollo local
 Abre `index.html` con cualquier servidor estático, por ejemplo:

@@ -17,7 +17,7 @@
   ],
   "headers": [
     {
-      "source": "/assets/(img|secuencia|fonts)/(.*)",
+      "source": "/assets/(img|proyectos|fonts)/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     },
     {

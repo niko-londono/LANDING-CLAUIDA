@@ -76,3 +76,11 @@ Las 9 claves del recorrido (`trabajo/claves`) ya existen en WebP dentro de la se
 | Enlaces del menú móvil de golpe | Entrada escalonada 40 ms | Cascada natural sin bloquear |
 | Menú móvil encerrado en la cabecera tras hacer scroll | Sin `backdrop-filter` ni `transform` mientras está abierto | Ambos crean un bloque contenedor para elementos `fixed` |
 | Logo oculto con el menú móvil abierto | `z-index` sobre el menú | El usuario sigue sabiendo dónde está |
+
+## Landing + portafolio (2026-11-08)
+
+- La portada pasa a ser una landing normal del estudio: portada con foto y paralaje suave, estudio, servicios, **portafolio**, proceso y contacto.
+- El recorrido con scroll deja de ser la portada y se convierte en la página del proyecto **Casa Roble** (`/proyectos/casa-roble`): hero con la secuencia, capítulos por estancia, galería y cierre con llamada a contacto.
+- Cada proyecto guarda su secuencia en `assets/proyectos/<nombre>/`; el canvas indica su carpeta con `data-base` y la sección hero su póster con `--poster` / `--poster-movil`. `main.js` y `styles.css` son compartidos.
+- Portafolio: lista de tarjetas enlazadas. El primer proyecto va destacado (foto grande + texto al lado); los siguientes forman rejilla automática.
+- Skills: impeccable (estructura, extensión del sistema visual actual) y emil-design-eng (hover solo con ratón, flecha que avanza 4 px, `:active` en la tarjeta).

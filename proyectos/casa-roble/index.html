@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Casa Roble · Claudia, diseño de interiores</title>
+  <meta name="description" content="Casa Roble: recorrido con scroll por una vivienda de una planta abierta al jardín. Proyecto de Claudia, diseño de interiores.">
+  <meta name="theme-color" content="#f4efe8">
+  <meta name="color-scheme" content="light">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/assets/img/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/img/favicon/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Casa Roble · Claudia, diseño de interiores">
+  <meta property="og:description" content="Recorre la casa estancia por estancia.">
+  <meta property="og:image" content="/assets/proyectos/casa-roble/escritorio/poster.webp">
+  <meta property="og:type" content="website">
+
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="preload" as="image" href="/assets/proyectos/casa-roble/escritorio/poster.webp">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20261108">
+  <!-- Marca que hay JS antes de pintar, para ocultar lo que se revelará con el scroll -->
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+
+  <!-- ============ CABECERA ============ -->
+  <header class="cabecera" id="cabecera">
+    <a href="/" class="marca" aria-label="Claudia, inicio">Claudia<span>interiores</span></a>
+    <button class="menu-boton" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
+      <span></span><span></span>
+    </button>
+    <nav class="menu" id="menu" aria-label="Principal">
+      <a href="/#portafolio" style="--i: 0">Portafolio</a>
+      <a href="#espacios" style="--i: 1">Espacios</a>
+      <a href="#galeria" style="--i: 2">Galería</a>
+      <a href="/#contacto" class="boton boton--pequeno" style="--i: 3">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============ HERO · recorrido con scroll ============ -->
+    <section class="hero" id="inicio" aria-label="Recorrido por Casa Roble" style="--poster: url(/assets/proyectos/casa-roble/escritorio/poster.webp); --poster-movil: url(/assets/proyectos/casa-roble/movil/poster.webp)">
+      <div class="hero__fijo">
+        <canvas class="hero__lienzo" id="lienzo" data-base="/assets/proyectos/casa-roble" aria-hidden="true"></canvas>
+        <div class="hero__velo" aria-hidden="true"></div>
+
+        <div class="hero__texto hero__texto--portada" data-desde="0" data-hasta="0.2">
+          <p class="etiqueta">Proyecto · Vivienda</p>
+          <h1 class="titular" aria-label="Casa Roble"><span class="palabra" aria-hidden="true"><span>Casa</span></span> <span class="palabra" aria-hidden="true"><span>Roble</span></span></h1>
+          <p class="hero__bajada">Una planta abierta al jardín. Desliza para recorrerla.</p>
+        </div>
+
+        <!-- Riel del recorrido: dónde estás y cuánto queda -->
+        <div class="recorrido" aria-hidden="true">
+          <div class="recorrido__riel"><span class="recorrido__relleno"></span></div>
+          <ol class="recorrido__paradas">
+            <li style="--en: 0" data-desde="0">Exterior</li>
+            <li style="--en: 0.26" data-desde="0.26">Salón</li>
+            <li style="--en: 0.52" data-desde="0.52">Cocina</li>
+            <li style="--en: 0.8" data-desde="0.8">Dormitorio</li>
+          </ol>
+        </div>
+        <div class="hero__texto hero__texto--lado" data-desde="0.26" data-hasta="0.48">
+          <p class="etiqueta">Salón</p>
+          <h2>Luz natural, materiales nobles y calma</h2>
+        </div>
+        <div class="hero__texto hero__texto--lado" data-desde="0.52" data-hasta="0.7">
+          <p class="etiqueta">Cocina</p>
+          <h2>Cada metro pensado para el día a día</h2>
+        </div>
+        <div class="hero__texto" data-desde="0.8" data-hasta="1.01">
+          <p class="etiqueta">Dormitorio</p>
+          <h2>Diseñamos el lugar donde descansas</h2>
+          <a href="/#contacto" class="boton">Agenda una cita</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ESPACIOS · capítulos a pantalla completa ============ -->
+    <div id="espacios">
+      <section class="capitulo" aria-labelledby="cap-salon">
+        <figure class="capitulo__fondo">
+          <picture>
+            <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/casa-roble/movil/720/frame_0052.webp 720w, /assets/proyectos/casa-roble/movil/1080/frame_0052.webp 1080w">
+            <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/proyectos/casa-roble/escritorio/960/frame_0052.webp 960w, /assets/proyectos/casa-roble/escritorio/1920/frame_0052.webp 1920w" src="/assets/proyectos/casa-roble/escritorio/960/frame_0052.webp" width="1920" height="1080" alt="Salón con sofá de lino, mesa redonda de roble y estantería empotrada" loading="lazy" decoding="async">
+          </picture>
+        </figure>
+        <div class="capitulo__tarjeta aparecer">
+          <p class="etiqueta">01 · Salón</p>
+          <h2 id="cap-salon">Un lugar para bajar el ritmo</h2>
+          <p>Lino, roble claro y luz de tarde. Piezas bajas que dejan respirar el espacio y una estantería que guarda lo que importa.</p>
+        </div>
+      </section>
+
+      <section class="capitulo capitulo--derecha" aria-labelledby="cap-comedor">
+        <figure class="capitulo__fondo">
+          <picture>
+            <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/casa-roble/movil/720/frame_0073.webp 720w, /assets/proyectos/casa-roble/movil/1080/frame_0073.webp 1080w">
+            <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/proyectos/casa-roble/escritorio/960/frame_0073.webp 960w, /assets/proyectos/casa-roble/escritorio/1920/frame_0073.webp 1920w" src="/assets/proyectos/casa-roble/escritorio/960/frame_0073.webp" width="1920" height="1080" alt="Comedor de madera con aparador bajo y cuadro en tonos arena" loading="lazy" decoding="async">
+          </picture>
+        </figure>
+        <div class="capitulo__tarjeta aparecer">
+          <p class="etiqueta">02 · Comedor</p>
+          <h2 id="cap-comedor">La mesa donde pasa todo</h2>
+          <p>Proporciones pensadas para reunir: sillas cómodas, luz cálida sobre la mesa y almacenaje que no se ve.</p>
+        </div>
+      </section>
+
+      <section class="capitulo" aria-labelledby="cap-cocina">
+        <figure class="capitulo__fondo">
+          <picture>
+            <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/casa-roble/movil/720/frame_0090.webp 720w, /assets/proyectos/casa-roble/movil/1080/frame_0090.webp 1080w">
+            <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/proyectos/casa-roble/escritorio/960/frame_0090.webp 960w, /assets/proyectos/casa-roble/escritorio/1920/frame_0090.webp 1920w" src="/assets/proyectos/casa-roble/escritorio/960/frame_0090.webp" width="1920" height="1080" alt="Cocina con isla blanca, taburetes de madera y ventanal al jardín" loading="lazy" decoding="async">
+          </picture>
+        </figure>
+        <div class="capitulo__tarjeta aparecer">
+          <p class="etiqueta">03 · Cocina</p>
+          <h2 id="cap-cocina">Cada metro, pensado para el día a día</h2>
+          <p>Una isla que ordena el espacio, superficies fáciles de cuidar y el jardín siempre a la vista.</p>
+        </div>
+      </section>
+
+      <section class="capitulo capitulo--derecha" aria-labelledby="cap-dormitorio">
+        <figure class="capitulo__fondo">
+          <picture>
+            <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/casa-roble/movil/720/frame_0128.webp 720w, /assets/proyectos/casa-roble/movil/1080/frame_0128.webp 1080w">
+            <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/proyectos/casa-roble/escritorio/960/frame_0128.webp 960w, /assets/proyectos/casa-roble/escritorio/1920/frame_0128.webp 1920w" src="/assets/proyectos/casa-roble/escritorio/960/frame_0128.webp" width="1920" height="1080" alt="Dormitorio con cama baja de lino y ventanal a los árboles" loading="lazy" decoding="async">
+          </picture>
+        </figure>
+        <div class="capitulo__tarjeta aparecer">
+          <p class="etiqueta">04 · Dormitorio</p>
+          <h2 id="cap-dormitorio">Diseñamos el lugar donde descansas</h2>
+          <p>Texturas suaves, luz regulable y el ventanal como cabecero natural.</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============ PROYECTOS · mosaico con profundidad ============ -->
+    <section class="seccion proyectos" id="galeria">
+      <div class="contenedor">
+        <p class="etiqueta aparecer">Galería</p>
+        <h2 class="aparecer">Casa Roble, en detalle</h2>
+        <p class="texto-largo aparecer">Una vivienda de una planta abierta al jardín: volúmenes blancos, roble claro y una luz que cambia con la tarde.</p>
+
+        <div class="mosaico">
+          <figure class="mosaico__item mosaico__item--a flota-lenta">
+            <div class="foto revelar">
+              <picture>
+                <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/casa-roble/movil/720/frame_0033.webp 720w, /assets/proyectos/casa-roble/movil/1080/frame_0033.webp 1080w">
+                <img class="paralaje" sizes="(min-width: 860px) 60vw, 100vw" srcset="/assets/proyectos/casa-roble/escritorio/960/frame_0033.webp 960w, /assets/proyectos/casa-roble/escritorio/1920/frame_0033.webp 1920w" src="/assets/proyectos/casa-roble/escritorio/960/frame_0033.webp" width="1920" height="1080" alt="Vista general del salón y el comedor desde la entrada" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption>Salón · primera vista</figcaption>
+          </figure>
+
+          <figure class="mosaico__item mosaico__item--b flota-rapida">
+            <div class="foto revelar">
+              <picture>
+                <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/casa-roble/movil/720/frame_0106.webp 720w, /assets/proyectos/casa-roble/movil/1080/frame_0106.webp 1080w">
+                <img class="paralaje" sizes="(min-width: 860px) 35vw, 100vw" srcset="/assets/proyectos/casa-roble/escritorio/960/frame_0106.webp 960w, /assets/proyectos/casa-roble/escritorio/1920/frame_0106.webp 1920w" src="/assets/proyectos/casa-roble/escritorio/960/frame_0106.webp" width="1920" height="1080" alt="Isla de cocina blanca con estantes de roble y lámparas de globo" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption>Cocina · detalle de la isla</figcaption>
+          </figure>
+
+          <figure class="mosaico__item mosaico__item--c flota-media">
+            <div class="foto revelar">
+              <picture>
+                <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/casa-roble/movil/720/frame_0001.webp 720w, /assets/proyectos/casa-roble/movil/1080/frame_0001.webp 1080w">
+                <img class="paralaje" sizes="(min-width: 860px) 40vw, 100vw" srcset="/assets/proyectos/casa-roble/escritorio/960/frame_0001.webp 960w, /assets/proyectos/casa-roble/escritorio/1920/frame_0001.webp 1920w" src="/assets/proyectos/casa-roble/escritorio/960/frame_0001.webp" width="1920" height="1080" alt="Fachada blanca con revestimiento de madera y camino de losas en el jardín" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption>Exterior · llegada desde el jardín</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CIERRE · siguiente paso ============ -->
+    <section class="seccion contacto cierre" id="cierre">
+      <figure class="contacto__fondo" aria-hidden="true">
+        <picture>
+          <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/casa-roble/movil/720/frame_0160.webp 720w, /assets/proyectos/casa-roble/movil/1080/frame_0160.webp 1080w">
+          <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/proyectos/casa-roble/escritorio/960/frame_0160.webp 960w, /assets/proyectos/casa-roble/escritorio/1920/frame_0160.webp 1920w" src="/assets/proyectos/casa-roble/escritorio/960/frame_0160.webp" width="1920" height="1080" alt="" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <div class="contenedor cierre__contenido">
+        <h2 class="aparecer">¿Imaginas tu casa así?</h2>
+        <p class="aparecer">Cuéntame cómo vives y diseñamos un espacio a tu medida.</p>
+        <div class="cierre__acciones aparecer">
+          <a href="/#contacto" class="boton">Hablemos de tu espacio</a>
+          <a href="/#portafolio" class="enlace-flecha">Ver más proyectos <svg class="flecha" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor pie__fila">
+      <span>© <span id="anio">2026</span> Claudia · Diseño de interiores</span>
+      <a href="/#portafolio">Ver más proyectos</a>
+    </div>
+  </footer>
+
+  <script src="/assets/proyectos/casa-roble/escritorio/manifest.js"></script>
+  <script src="/assets/proyectos/casa-roble/movil/manifest.js"></script>
+  <script src="/assets/js/main.js?v=20261108" defer></script>
+</body>
+</html>

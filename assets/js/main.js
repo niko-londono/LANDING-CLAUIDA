@@ -2,7 +2,8 @@
    Claudia · Diseño de interiores — comportamiento base
    1. Cabecera: fondo al bajar, se oculta al seguir bajando
    2. Menú móvil
-   3. Recorrido 3D: secuencia de fotogramas y riel ligados al scroll
+   3. Recorrido 3D (páginas de proyecto): secuencia y riel ligados al scroll
+   3b. Portada de la landing: entrada del titular
    4. Revelados al entrar en pantalla
    5. Paralaje de respaldo (si no hay animation-timeline)
    6. Sección actual en el menú
@@ -56,7 +57,9 @@
   const relleno = document.querySelector(".recorrido__relleno");
   const paradas = [...document.querySelectorAll(".recorrido__paradas li")];
 
-  if (!reducirMovimiento && lienzo && window.SECUENCIAS) {
+  if (!reducirMovimiento && lienzo && hero && window.SECUENCIAS) {
+    // Carpeta de la secuencia del proyecto (data-base en el canvas)
+    const raiz = lienzo.dataset.base || "/assets/proyectos/casa-roble";
     const ctx = lienzo.getContext("2d");
     const esVertical = () => window.innerWidth / window.innerHeight < 0.75;
 
@@ -73,7 +76,7 @@
       const anchoNecesario = window.innerWidth * Math.min(window.devicePixelRatio || 1, 2);
       const variantes = [...secuencia.variantes].sort((a, b) => a.ancho - b.ancho);
       const variante = variantes.find((v) => v.ancho >= anchoNecesario) || variantes[variantes.length - 1];
-      base = `/assets/secuencia/${vertical ? "movil" : "escritorio"}/${variante.carpeta}/`;
+      base = `${raiz}/${vertical ? "movil" : "escritorio"}/${variante.carpeta}/`;
 
       imagenes = Array.from({ length: secuencia.frames }, (_, i) => {
         const img = new Image();
@@ -157,6 +160,10 @@
     textos[0]?.classList.add("visible");
   }
 
+  /* ---------- 3b. Portada de la landing ---------- */
+  const portada = document.querySelector(".portada");
+  if (portada) requestAnimationFrame(() => requestAnimationFrame(() => portada.classList.add("lista")));
+
   /* ---------- 4. Revelados al entrar en pantalla ---------- */
   // Se disparan una sola vez. Los que entran juntos se escalonan 60 ms.
   const porRevelar = document.querySelectorAll(".revelar, .aparecer");
@@ -192,7 +199,7 @@
     const capas = [
       ...[...document.querySelectorAll(".paralaje")].map((el) => ({
         el,
-        marco: el.closest(".foto, .capitulo__fondo, .contacto__fondo"),
+        marco: el.closest(".foto, .capitulo__fondo, .contacto__fondo, .portada__fondo"),
         viaje: el.classList.contains("paralaje--fuerte") ? 14 : 9.5,
         unidad: "%",
         propiedad: "transform",
