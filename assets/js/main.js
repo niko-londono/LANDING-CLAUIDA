@@ -212,6 +212,25 @@
         propiedad: "translate",
         invertir: true,
       })),
+      // Landing: muestras, portada de proyecto y arco de contacto (--v en px)
+      ...[...document.querySelectorAll(".deriva")].map((el) => ({
+        el,
+        marco: el,
+        viaje: parseFloat(el.style.getPropertyValue("--v")) || 0,
+        unidad: "px",
+        propiedad: "translate",
+        invertir: true,
+      })),
+      // Landing: capas de la portada, ligadas a la primera pantalla de scroll
+      ...[...document.querySelectorAll(".capa")].map((el) => ({
+        el,
+        marco: el.closest(".portada"),
+        viaje: parseFloat(el.style.getPropertyValue("--v")) || 0,
+        tipo: "portada",
+      })),
+      // Landing: el plano se dibuja y el riel del proceso se rellena
+      ...[...document.querySelectorAll(".plano")].map((el) => ({ el, marco: el, tipo: "plano" })),
+      ...[...document.querySelectorAll(".proceso__relleno")].map((el) => ({ el, marco: el.parentElement, tipo: "relleno" })),
     ];
 
     const visibles = new Set();
@@ -233,6 +252,19 @@
         const r = c.marco.getBoundingClientRect();
         // 0 cuando el marco asoma por abajo, 1 cuando sale por arriba
         const p = Math.min(1, Math.max(0, (alto - r.top) / (alto + r.height)));
+        const limitar = (x) => Math.min(1, Math.max(0, x));
+        if (c.tipo === "portada") {
+          c.el.style.translate = `0 ${(limitar(window.scrollY / alto) * c.viaje).toFixed(2)}px`;
+          return;
+        }
+        if (c.tipo === "plano") {
+          c.el.style.strokeDashoffset = (1 - limitar((p - 0.08) / 0.42)).toFixed(4);
+          return;
+        }
+        if (c.tipo === "relleno") {
+          c.el.style.transform = `scaleX(${limitar((p - 0.05) / 0.45).toFixed(4)})`;
+          return;
+        }
         let v = (p * 2 - 1) * c.viaje;
         if (c.invertir) v = -v;
         if (c.propiedad === "translate") c.el.style.translate = `0 ${v.toFixed(2)}${c.unidad}`;
@@ -244,6 +276,43 @@
     };
     window.addEventListener("scroll", pedirParalaje, { passive: true });
     window.addEventListener("resize", pedirParalaje);
+  }
+
+  /* ---------- 5b. Portada: profundidad con el ratón ---------- */
+  // Cada capa se desplaza según su profundidad --p. El valor sigue al puntero
+  // con un suavizado (lerp) para que el movimiento sea fluido, y el bucle se
+  // detiene en cuanto las capas llegan a su sitio.
+  const escena = document.querySelector(".escena");
+  const conRaton = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  if (escena && portada && conRaton && !reducirMovimiento) {
+    const capasRaton = [...escena.querySelectorAll(".capa")].map((el) => ({
+      el,
+      p: parseFloat(el.style.getPropertyValue("--p")) || 0,
+    }));
+    const objetivo = { x: 0, y: 0 };
+    const actual = { x: 0, y: 0 };
+    let animando = false;
+
+    const paso = () => {
+      actual.x += (objetivo.x - actual.x) * 0.08;
+      actual.y += (objetivo.y - actual.y) * 0.08;
+      capasRaton.forEach(({ el, p }) => {
+        el.style.transform = `translate3d(${(actual.x * p * 16).toFixed(2)}px, ${(actual.y * p * 10).toFixed(2)}px, 0)`;
+      });
+      if (Math.abs(objetivo.x - actual.x) > 0.001 || Math.abs(objetivo.y - actual.y) > 0.001) {
+        requestAnimationFrame(paso);
+      } else {
+        animando = false;
+      }
+    };
+    const mover = () => { if (!animando) { animando = true; requestAnimationFrame(paso); } };
+
+    portada.addEventListener("pointermove", (e) => {
+      objetivo.x = (e.clientX / window.innerWidth) * 2 - 1;
+      objetivo.y = (e.clientY / window.innerHeight) * 2 - 1;
+      mover();
+    });
+    portada.addEventListener("pointerleave", () => { objetivo.x = 0; objetivo.y = 0; mover(); });
   }
 
   /* ---------- 6. Sección actual en el menú ---------- */

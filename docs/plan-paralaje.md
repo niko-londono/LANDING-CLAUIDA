@@ -84,3 +84,11 @@ Las 9 claves del recorrido (`trabajo/claves`) ya existen en WebP dentro de la se
 - Cada proyecto guarda su secuencia en `assets/proyectos/<nombre>/`; el canvas indica su carpeta con `data-base` y la sección hero su póster con `--poster` / `--poster-movil`. `main.js` y `styles.css` son compartidos.
 - Portafolio: lista de tarjetas enlazadas. El primer proyecto va destacado (foto grande + texto al lado); los siguientes forman rejilla automática.
 - Skills: impeccable (estructura, extensión del sistema visual actual) y emil-design-eng (hover solo con ratón, flecha que avanza 4 px, `:active` en la tarjeta).
+
+## Landing sin fotos, paleta nueva y paralaje SVG (2026-11-08)
+
+- La landing ya no usa imágenes ni fotogramas de los proyectos. Todo es SVG o CSS: escena de arcos por capas en la portada, plano que se dibuja en el manifiesto, muestrario de materiales en el estudio, iconos de línea en servicios, portada abstracta en la tarjeta del portafolio y arcos en contacto.
+- Paleta «barro y oliva» (tokens en styles.css): hueso #f2ece3, lino, arena, tinta #1e1b18, terracota #a9502b como acento (4,6:1 sobre hueso), oliva #2f3a2e para contacto, ocre, roble y salvia en ilustraciones. Fuentes: Instrument Serif (títulos) y Hanken Grotesk (texto). Se aplican también a la página del proyecto.
+- Paralaje: CSS scroll-driven (`scroll(root)` en las capas de la portada, `view()` en `.deriva`, el plano y el riel del proceso) que corre fuera del hilo principal; respaldo con un solo rAF en main.js. En la portada, además, profundidad con el ratón suavizada (lerp), solo con puntero fino y sin movimiento reducido.
+- La escena se recorta por abajo: el borde inferior hace de suelo y las capas lejanas se hunden tras él.
+- Skills: impeccable, ui-ux-pro-max (paleta y fuentes; su propuesta negro + dorado se descartó por fría), animate (capas, curvas, movimiento reducido).

@@ -1,0 +1,369 @@
+/* =========================================================
+   Claudia · Diseño de interiores — landing del estudio
+   Usa los tokens de styles.css. Sin fotos: las composiciones
+   son SVG (arcos, sol, plano) y se mueven por capas.
+
+   Paralaje:
+   · .capa (portada): recorre --v px durante la primera pantalla
+     (scroll(root) 0 → 100vh). Positivo = se queda atrás (lejos).
+   · .deriva (resto): va de +--v a −--v px mientras cruza la
+     pantalla (view()). Positivo = sube más rápido que la página.
+   · .plano: el trazo se dibuja con stroke-dashoffset.
+   Todo con translate/transform; el respaldo JS está en main.js.
+   ========================================================= */
+
+/* ---------- Portada ---------- */
+.portada {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-block: calc(6.5rem + env(safe-area-inset-top, 0px)) 5rem;
+  overflow: clip;
+}
+.portada__rejilla {
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .portada__rejilla { grid-template-columns: 1.05fr 0.95fr; gap: 3rem; }
+}
+.portada .titular { max-width: 11ch; margin-bottom: 1.75rem; }
+.portada .titular em { color: var(--terracota); }
+.portada__bajada {
+  font-size: 1.125rem;
+  color: var(--color-texto-suave);
+  max-width: 30rem;
+  margin-bottom: 2.25rem;
+}
+.portada__acciones { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+/* Entrada: titular por palabras (styles.css), luego bajada y botones */
+.js .portada__bajada,
+.js .portada__acciones {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 700ms var(--ease-out) 450ms, transform 700ms var(--ease-out) 450ms;
+}
+.js .portada.lista .portada__bajada,
+.js .portada.lista .portada__acciones { opacity: 1; transform: none; }
+
+/* Escena por capas */
+.escena {
+  position: relative;
+  width: min(100%, 34rem);
+  aspect-ratio: 600 / 720;
+  justify-self: center;
+  /* El suelo es el borde inferior: lo que se hunde con el scroll desaparece
+     tras él; arriba y a los lados se deja margen para el movimiento */
+  clip-path: inset(-30% -30% 0 -30%);
+}
+.capa {
+  position: absolute;
+  inset: 0;
+  will-change: transform, translate;
+}
+.capa > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+/* Cada capa sube desde la máscara inferior de la escena, escalonada */
+.js .capa > svg {
+  opacity: 0;
+  transform: translateY(48px);
+  transition: opacity 900ms var(--ease-out), transform 1100ms var(--ease-out);
+  transition-delay: calc(var(--i) * 90ms + 150ms);
+}
+.js .portada.lista .capa > svg { opacity: 1; transform: none; }
+
+/* Invitación a bajar */
+.desliza {
+  position: absolute;
+  left: 50%;
+  bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  translate: -50% 0;
+  display: grid;
+  justify-items: center;
+  gap: 0.6rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-texto-suave);
+}
+.desliza__linea {
+  width: 1px;
+  height: 2.5rem;
+  background: currentColor;
+  transform-origin: top;
+  animation: desliza 2.4s var(--ease-in-out) infinite;
+}
+@keyframes desliza {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  45%  { transform: scaleY(1); transform-origin: top; }
+  55%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+@media (max-width: 899px) {
+  .desliza { display: none; }
+  .escena { width: min(100%, 24rem); }
+}
+
+/* ---------- Manifiesto ---------- */
+.manifiesto {
+  padding-block: clamp(4rem, 10vw, 8rem);
+  border-top: 1px solid var(--color-linea);
+}
+.manifiesto__rejilla { display: grid; gap: 3rem; align-items: center; }
+@media (min-width: 900px) {
+  .manifiesto__rejilla { grid-template-columns: 1fr 1fr; gap: 5rem; }
+}
+.manifiesto__frase {
+  font-family: var(--fuente-titulo);
+  font-size: clamp(2rem, 4.2vw, 3.4rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  margin: 0;
+}
+.manifiesto__frase em { color: var(--terracota); }
+.plano {
+  width: 100%;
+  height: auto;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+/* ---------- Estudio ---------- */
+.estudio__rejilla { display: grid; gap: 3rem; align-items: center; }
+@media (min-width: 900px) {
+  .estudio__rejilla { grid-template-columns: 1fr 1fr; gap: 5rem; }
+}
+.muestrario {
+  position: relative;
+  aspect-ratio: 5 / 5.4;
+  width: min(100%, 32rem);
+  justify-self: center;
+}
+.muestra {
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+  padding: 0.85rem 1rem;
+  border-radius: 6px;
+  box-shadow: 0 18px 40px -24px rgba(30, 27, 24, 0.45);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tinta);
+}
+.muestra--lino   { left: 4%;  top: 6%;  width: 46%; height: 50%; background: var(--lino); }
+.muestra--roble  { left: 40%; top: 0;   width: 40%; height: 38%; background: var(--roble); }
+.muestra--barro  { left: 58%; top: 30%; width: 38%; height: 42%; background: var(--terracota); color: var(--hueso-claro); align-items: flex-start; }
+.muestra--piedra { left: 12%; top: 50%; width: 38%; height: 34%; background: var(--piedra); }
+.muestra--salvia { left: 40%; top: 62%; width: 30%; height: 32%; background: var(--salvia); }
+.muestra--laton  { left: 76%; top: 74%; width: 18%; height: 18%; border-radius: 50%; background: var(--ocre); padding: 0; justify-content: center; align-items: center; }
+.muestra--laton span { font-size: 0.68rem; }
+
+/* ---------- Servicios ---------- */
+.servicios { background: var(--color-fondo-alt); }
+.servicios__lista {
+  list-style: none;
+  margin: 3rem 0 0;
+  padding: 0;
+  border-bottom: 1px solid var(--color-linea);
+}
+.servicio {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 0.25rem 1.5rem;
+  padding-block: 2rem;
+  border-top: 1px solid var(--color-linea);
+}
+.servicio h3 { margin: 0; font-size: clamp(1.6rem, 2.6vw, 2.1rem); }
+.servicio p { grid-column: 2; margin: 0; color: var(--color-texto-suave); max-width: 34rem; }
+.servicio__icono {
+  grid-row: span 2;
+  width: 3rem; height: 3rem;
+  fill: none;
+  stroke: var(--terracota);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 300ms var(--ease-out);
+}
+@media (min-width: 900px) {
+  .servicio { grid-template-columns: 3rem 1fr 1.1fr; align-items: center; gap: 2.5rem; padding-block: 2.25rem; }
+  .servicio__icono { grid-row: auto; }
+  .servicio p { grid-column: auto; }
+}
+
+/* ---------- Portafolio ---------- */
+.portafolio__cabeza { display: grid; gap: 0.5rem; }
+@media (min-width: 900px) {
+  .portafolio__cabeza { grid-template-columns: 1fr 1fr; align-items: end; gap: 5rem; }
+  .portafolio__cabeza .texto-largo { margin: 0 0 1rem; }
+}
+.proyectos-lista {
+  list-style: none;
+  margin: 3.5rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 4rem 2.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+}
+.proyecto__enlace {
+  display: grid;
+  gap: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+}
+.proyecto__portada {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: 6px;
+  background: var(--c1, var(--oliva));
+  transition: transform 160ms var(--ease-out);
+}
+.proyecto__portada > svg { display: block; width: 100%; height: 100%; }
+.proyecto__portada > svg > g { transition: scale 900ms var(--ease-out); transform-origin: 50% 100%; }
+.proyecto__enlace:active .proyecto__portada { transform: scale(0.99); }
+.proyecto__sello {
+  position: absolute;
+  left: 1rem; top: 1rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  background: var(--hueso-claro);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+}
+.proyecto__titulo { font-size: clamp(2rem, 3.6vw, 3rem); margin-bottom: 0.4rem; }
+.proyecto__tipo { font-size: 0.875rem; color: var(--color-texto-suave); margin-bottom: 1rem; }
+.proyecto__resumen { color: var(--color-texto-suave); max-width: 32rem; margin-bottom: 1.5rem; }
+.proyecto--destacado { grid-column: 1 / -1; }
+@media (min-width: 900px) {
+  .proyecto--destacado .proyecto__enlace { grid-template-columns: 7fr 5fr; align-items: center; gap: 4rem; }
+  .proyecto--destacado .proyecto__portada { aspect-ratio: 16 / 11; }
+}
+
+/* ---------- Proceso ---------- */
+.proceso__riel {
+  position: relative;
+  height: 1px;
+  margin-top: 3rem;
+  background: var(--color-linea);
+}
+.proceso__relleno {
+  position: absolute;
+  inset: 0;
+  background: var(--terracota);
+  transform-origin: left;
+  transform: scaleX(1);
+}
+.pasos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  counter-reset: paso;
+}
+.pasos li { counter-increment: paso; padding-top: 1.75rem; position: relative; }
+.pasos li::before {
+  content: "";
+  position: absolute;
+  top: -4.5px; left: 0;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--color-fondo);
+  box-shadow: 0 0 0 1px var(--terracota);
+}
+.pasos h3 { margin-bottom: 0.5rem; }
+.pasos h3::before {
+  content: counter(paso) ". ";
+  color: var(--terracota);
+}
+.pasos p { color: var(--color-texto-suave); margin: 0; }
+@media (max-width: 899px) {
+  .proceso__riel { display: none; }
+  .pasos li { border-top: 1px solid var(--color-linea); }
+}
+
+/* ---------- Contacto ---------- */
+.contacto--landing {
+  background: var(--oliva);
+  overflow: clip;
+}
+.contacto__arco {
+  position: absolute;
+  right: -14%;
+  bottom: -22%;
+  width: min(44rem, 70vw);
+  height: auto;
+  color: rgba(242, 236, 227, 0.1);
+  z-index: -1;
+  pointer-events: none;
+}
+.contacto--landing .boton:hover { color: var(--oliva); }
+.contacto--landing .etiqueta,
+.contacto--landing p { color: rgba(242, 236, 227, 0.78); }
+
+/* ---------- Hover (solo ratón) ---------- */
+@media (hover: hover) and (pointer: fine) {
+  .proyecto__enlace:hover .proyecto__portada > svg > g { scale: 1.04; }
+  .proyecto__enlace:hover .flecha { transform: translateX(4px); }
+  .proyecto__enlace:hover .enlace-flecha { text-decoration-thickness: 2px; }
+  .servicio:hover .servicio__icono { transform: translateY(-3px); }
+}
+
+/* =========================================================
+   PARALAJE · navegadores con scroll-driven animations
+   ========================================================= */
+@keyframes capa-portada { to { translate: 0 calc(var(--v) * 1px); } }
+@keyframes deriva {
+  from { translate: 0 calc(var(--v) * 1px); }
+  to   { translate: 0 calc(var(--v) * -1px); }
+}
+@keyframes dibuja { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes rellena { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .capa {
+      animation: capa-portada linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 100vh;
+    }
+    .deriva {
+      animation: deriva linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+    .plano {
+      animation: dibuja linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 55%;
+    }
+    .proceso__relleno {
+      animation: rellena linear both;
+      animation-timeline: view();
+      animation-range: entry 100% cover 60%;
+    }
+  }
+}
+
+/* ---------- Movimiento reducido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .js .capa > svg { transform: none; transition: opacity 400ms ease; }
+  .js .portada__bajada, .js .portada__acciones { transform: none; }
+  .desliza__linea { animation: none; }
+  .capa, .deriva { translate: none !important; transform: none !important; }
+  .plano { stroke-dashoffset: 0 !important; }
+}

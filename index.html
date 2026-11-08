@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Claudia · Diseño de interiores</title>
   <meta name="description" content="Estudio de diseño de interiores. Espacios serenos, cálidos y pensados para vivirlos.">
-  <meta name="theme-color" content="#f4efe8">
+  <meta name="theme-color" content="#f2ece3">
   <meta name="color-scheme" content="light">
 
   <!-- Favicon -->
@@ -17,19 +17,19 @@
   <!-- Open Graph -->
   <meta property="og:title" content="Claudia · Diseño de interiores">
   <meta property="og:description" content="Espacios serenos, cálidos y pensados para vivirlos.">
-  <meta property="og:image" content="/assets/proyectos/casa-roble/escritorio/poster.webp">
   <meta property="og:type" content="website">
 
   <!-- Tipografías -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20261108">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20261108b">
+  <link rel="stylesheet" href="/assets/css/landing.css?v=20261108b">
   <!-- Marca que hay JS antes de pintar, para ocultar lo que se revelará con el scroll -->
   <script>document.documentElement.classList.add("js");</script>
 </head>
-<body>
+<body class="landing">
 
   <!-- ============ CABECERA ============ -->
   <header class="cabecera" id="cabecera">
@@ -48,21 +48,72 @@
 
   <main>
 
-    <!-- ============ PORTADA ============ -->
+    <!-- ============ PORTADA ============
+         La escena son capas SVG apiladas. Cada capa se desplaza con el scroll
+         (--v: px que recorre durante la primera pantalla; positivo = se queda
+         atrás, lejos) y con el ratón (--p: profundidad). -->
     <section class="portada" id="inicio">
-      <figure class="portada__fondo" aria-hidden="true">
-        <picture>
-          <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/casa-roble/movil/720/frame_0128.webp 720w, /assets/proyectos/casa-roble/movil/1080/frame_0128.webp 1080w">
-          <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/proyectos/casa-roble/escritorio/960/frame_0128.webp 960w, /assets/proyectos/casa-roble/escritorio/1920/frame_0128.webp 1920w" src="/assets/proyectos/casa-roble/escritorio/1920/frame_0128.webp" width="1920" height="1080" alt="" fetchpriority="high" decoding="async">
-        </picture>
-      </figure>
-      <div class="contenedor portada__contenido">
-        <h1 class="titular" aria-label="Espacios que se sienten como casa"><span class="palabra" aria-hidden="true"><span>Espacios</span></span> <span class="palabra" aria-hidden="true"><span>que</span></span> <span class="palabra" aria-hidden="true"><span>se</span></span> <span class="palabra" aria-hidden="true"><span>sienten</span></span> <span class="palabra" aria-hidden="true"><span>como</span></span> <span class="palabra" aria-hidden="true"><span>casa</span></span></h1>
-        <p class="portada__bajada">Diseño de interiores sereno, cálido y pensado para vivirlo. Proyectos integrales y asesorías para hogares y negocios.</p>
-        <div class="portada__acciones">
-          <a href="#portafolio" class="boton boton--lleno">Ver portafolio</a>
-          <a href="#contacto" class="boton">Agenda una cita</a>
+      <div class="contenedor portada__rejilla">
+        <div class="portada__texto">
+          <h1 class="titular" aria-label="Espacios que se sienten como casa"><span class="palabra" aria-hidden="true"><span>Espacios</span></span> <span class="palabra" aria-hidden="true"><span>que</span></span> <span class="palabra" aria-hidden="true"><span>se</span></span> <span class="palabra" aria-hidden="true"><span>sienten</span></span> <span class="palabra" aria-hidden="true"><span><em>como</em></span></span> <span class="palabra" aria-hidden="true"><span><em>casa</em></span></span></h1>
+          <p class="portada__bajada">Diseño de interiores sereno, cálido y pensado para vivirlo. Proyectos integrales y asesorías para hogares y negocios.</p>
+          <div class="portada__acciones">
+            <a href="#portafolio" class="boton boton--acento">Ver portafolio</a>
+            <a href="#contacto" class="boton">Agenda una cita</a>
+          </div>
         </div>
+
+        <div class="escena" aria-hidden="true">
+          <div class="capa" style="--v: 150; --p: 0.25; --i: 0">
+            <svg viewBox="0 0 600 720" preserveAspectRatio="xMidYMax meet"><path d="M40 720V320a260 260 0 0 1 520 0v400z" fill="var(--lino)"/></svg>
+          </div>
+          <div class="capa" style="--v: 230; --p: 0.5; --i: 1">
+            <svg viewBox="0 0 600 720" preserveAspectRatio="xMidYMax meet"><circle cx="408" cy="226" r="64" fill="var(--terracota)"/></svg>
+          </div>
+          <div class="capa" style="--v: 90; --p: 0.7; --i: 2">
+            <svg viewBox="0 0 600 720" preserveAspectRatio="xMidYMax meet"><path d="M130 720V410a170 170 0 0 1 340 0v310z" fill="var(--arena)"/></svg>
+          </div>
+          <div class="capa" style="--v: 45; --p: 0.9; --i: 3">
+            <svg viewBox="0 0 600 720" preserveAspectRatio="xMidYMax meet"><path d="M226 720V488a74 74 0 0 1 148 0v232z" fill="var(--oliva)"/></svg>
+          </div>
+          <div class="capa" style="--v: 60; --p: 1.1; --i: 4">
+            <svg viewBox="0 0 600 720" preserveAspectRatio="xMidYMax meet" fill="none" stroke="var(--color-texto)" stroke-width="1.2">
+              <path d="M40 720V320a260 260 0 0 1 520 0v400"/>
+              <path d="M84 720V328a216 216 0 0 1 432 0v392" stroke-dasharray="2 6"/>
+              <path d="M300 60v80M120 160l52 40M480 160l-52 40"/>
+            </svg>
+          </div>
+          <div class="capa" style="--v: 0; --p: 1.6; --i: 5">
+            <svg viewBox="0 0 600 720" preserveAspectRatio="xMidYMax meet">
+              <path d="M0 719.4h600" stroke="var(--color-texto)" stroke-width="1.2"/>
+              <rect x="44" y="652" width="232" height="66" rx="4" fill="var(--roble)"/>
+              <rect x="128" y="574" width="46" height="78" rx="23" fill="var(--ocre)"/>
+              <path d="M151 576c-6-40 10-74 46-98M151 576c-14-30-36-46-66-52M151 576c10-22 30-34 58-36" fill="none" stroke="var(--color-texto)" stroke-width="1.2" stroke-linecap="round"/>
+              <circle cx="486" cy="668" r="50" fill="var(--hueso-claro)" stroke="var(--color-texto)" stroke-width="1.2"/>
+              <path d="M486 618V560" stroke="var(--color-texto)" stroke-width="1.2"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <a href="#manifiesto" class="desliza"><span class="desliza__linea" aria-hidden="true"></span>Desliza</a>
+    </section>
+
+    <!-- ============ MANIFIESTO · el plano se dibuja con el scroll ============ -->
+    <section class="manifiesto" id="manifiesto">
+      <div class="contenedor manifiesto__rejilla">
+        <p class="manifiesto__frase aparecer">Diseño desde la luz, los recorridos y los materiales: <em>lo que hace que un lugar se sienta tuyo.</em></p>
+        <svg class="plano" viewBox="0 0 800 520" aria-hidden="true" fill="none" stroke="var(--color-texto)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path pathLength="1" d="M40 40H760V480H40Z"/>
+          <path pathLength="1" d="M360 40V250M360 320V480M360 250H560M630 250H760"/>
+          <path pathLength="1" d="M360 320H424M424 320A64 64 0 0 0 360 256"/>
+          <path pathLength="1" d="M560 250V186M560 186A64 64 0 0 1 624 250"/>
+          <path pathLength="1" d="M110 40H290M470 480H690M40 140V300" stroke-width="5"/>
+          <path pathLength="1" d="M80 340H300V420H80ZM96 340V420M284 340V420"/>
+          <path pathLength="1" d="M250 160A54 54 0 1 1 142 160A54 54 0 1 1 250 160Z"/>
+          <path pathLength="1" d="M440 70H610V220H440ZM440 104H610M470 70V104M580 70V104"/>
+          <path pathLength="1" d="M560 300H740V340H560ZM610 380H740V430H610Z"/>
+          <path pathLength="1" d="M680 70A30 30 0 1 1 680 130A30 30 0 1 1 680 70Z"/>
+        </svg>
       </div>
     </section>
 
@@ -70,40 +121,41 @@
     <section class="seccion estudio" id="estudio">
       <div class="contenedor estudio__rejilla">
         <div class="estudio__texto">
-          <p class="etiqueta aparecer">El estudio</p>
           <h2 class="aparecer">Hola, soy Claudia</h2>
           <div class="texto-largo">
             <p class="aparecer">Texto de ejemplo: diseñadora de interiores con X años de experiencia creando hogares y espacios comerciales serenos, funcionales y con carácter.</p>
             <p class="aparecer">Trabajo cada proyecto desde la forma en que vives: la luz, los recorridos y los materiales que te hacen sentir en casa.</p>
           </div>
         </div>
-        <figure class="foto foto--retrato estudio__foto revelar">
-          <picture>
-            <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/casa-roble/movil/720/frame_0022.webp 720w, /assets/proyectos/casa-roble/movil/1080/frame_0022.webp 1080w">
-            <img class="paralaje" sizes="(min-width: 860px) 45vw, 100vw" srcset="/assets/proyectos/casa-roble/escritorio/960/frame_0022.webp 960w, /assets/proyectos/casa-roble/escritorio/1920/frame_0022.webp 1920w" src="/assets/proyectos/casa-roble/escritorio/960/frame_0022.webp" width="1920" height="1080" alt="Puerta alta de roble abierta hacia un interior cálido" loading="lazy" decoding="async">
-          </picture>
-        </figure>
+        <!-- Muestrario de materiales: cada muestra flota a su ritmo -->
+        <div class="muestrario" aria-hidden="true">
+          <div class="muestra muestra--lino deriva" style="--v: 30"><span>Lino</span></div>
+          <div class="muestra muestra--roble deriva" style="--v: 70"><span>Roble</span></div>
+          <div class="muestra muestra--barro deriva" style="--v: 120"><span>Barro</span></div>
+          <div class="muestra muestra--piedra deriva" style="--v: 50"><span>Piedra</span></div>
+          <div class="muestra muestra--salvia deriva" style="--v: 95"><span>Salvia</span></div>
+          <div class="muestra muestra--laton deriva" style="--v: 150"><span>Latón</span></div>
+        </div>
       </div>
     </section>
 
     <!-- ============ SERVICIOS ============ -->
     <section class="seccion servicios" id="servicios">
       <div class="contenedor">
-        <p class="etiqueta aparecer">Servicios</p>
         <h2 class="aparecer">Cómo puedo ayudarte</h2>
-        <ul class="tarjetas">
-          <li class="tarjeta aparecer">
-            <span class="tarjeta__numero">01</span>
+        <ul class="servicios__lista">
+          <li class="servicio aparecer">
+            <svg class="servicio__icono" viewBox="0 0 48 48" aria-hidden="true"><path d="M6 6h36v36H6zM22 6v16h20M22 30v12M22 22v2"/><path d="M22 30a8 8 0 0 1 8-8"/></svg>
             <h3>Proyecto integral</h3>
             <p>Del concepto a la obra terminada: distribución, materiales, mobiliario y dirección.</p>
           </li>
-          <li class="tarjeta aparecer">
-            <span class="tarjeta__numero">02</span>
+          <li class="servicio aparecer">
+            <svg class="servicio__icono" viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="10" width="14" height="30" rx="2"/><rect x="18" y="8" width="14" height="30" rx="2" transform="rotate(14 25 23)"/><rect x="28" y="8" width="14" height="30" rx="2" transform="rotate(28 35 23)"/></svg>
             <h3>Asesoría</h3>
             <p>Sesiones puntuales para decidir colores, acabados o la distribución de una estancia.</p>
           </li>
-          <li class="tarjeta aparecer">
-            <span class="tarjeta__numero">03</span>
+          <li class="servicio aparecer">
+            <svg class="servicio__icono" viewBox="0 0 48 48" aria-hidden="true"><path d="M6 16l4-10h28l4 10M6 16h36M6 16c0 4 3 6 6 6s6-2 6-6c0 4 3 6 6 6s6-2 6-6c0 4 3 6 6 6s6-2 6-6M9 22v20h30V22M20 42V30h8v12"/></svg>
             <h3>Interiorismo comercial</h3>
             <p>Locales, oficinas y espacios de hostelería que cuentan la historia de tu marca.</p>
           </li>
@@ -113,7 +165,8 @@
 
     <!-- ============ PORTAFOLIO ============
          Cada proyecto es un <li class="proyecto"> que enlaza a su página
-         /proyectos/<nombre>, con su propio recorrido con scroll. -->
+         /proyectos/<nombre>. La portada es una composición SVG abstracta;
+         sus colores se cambian con --c1, --c2 y --c3. -->
     <section class="seccion portafolio" id="portafolio">
       <div class="contenedor">
         <div class="portafolio__cabeza">
@@ -122,13 +175,15 @@
         </div>
 
         <ul class="proyectos-lista">
-          <li class="proyecto proyecto--destacado">
+          <li class="proyecto proyecto--destacado" style="--c1: var(--oliva); --c2: var(--ocre); --c3: var(--arena)">
             <a class="proyecto__enlace" href="/proyectos/casa-roble">
-              <div class="foto proyecto__foto revelar">
-                <picture>
-                  <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/casa-roble/movil/720/frame_0001.webp 720w, /assets/proyectos/casa-roble/movil/1080/frame_0001.webp 1080w">
-                  <img class="paralaje" sizes="(min-width: 860px) 62vw, 100vw" srcset="/assets/proyectos/casa-roble/escritorio/960/frame_0001.webp 960w, /assets/proyectos/casa-roble/escritorio/1920/frame_0001.webp 1920w" src="/assets/proyectos/casa-roble/escritorio/960/frame_0001.webp" width="1920" height="1080" alt="Fachada blanca de Casa Roble con revestimiento de madera y jardín" loading="lazy" decoding="async">
-                </picture>
+              <div class="proyecto__portada">
+                <svg viewBox="0 0 800 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                  <rect width="800" height="560" fill="var(--c1)"/>
+                  <g class="deriva" style="--v: 40"><circle cx="560" cy="210" r="92" fill="var(--c2)"/></g>
+                  <g class="deriva" style="--v: 18"><path d="M150 560V330a170 170 0 0 1 340 0v230z" fill="var(--c3)"/></g>
+                  <g class="deriva" style="--v: -10"><path d="M0 470h800M0 500h800M0 530h800" stroke="var(--hueso)" stroke-opacity="0.35" stroke-width="1.2"/></g>
+                </svg>
                 <span class="proyecto__sello">Recorrido con scroll</span>
               </div>
               <div class="proyecto__texto">
@@ -146,8 +201,8 @@
     <!-- ============ PROCESO ============ -->
     <section class="seccion proceso" id="proceso">
       <div class="contenedor">
-        <p class="etiqueta aparecer">Proceso</p>
         <h2 class="aparecer">Así trabajamos juntas</h2>
+        <div class="proceso__riel" aria-hidden="true"><span class="proceso__relleno"></span></div>
         <ol class="pasos">
           <li class="aparecer"><h3>Conversación</h3><p>Conocemos el espacio, tus necesidades y tu presupuesto.</p></li>
           <li class="aparecer"><h3>Concepto</h3><p>Propuesta de estilo, paleta de materiales y distribución.</p></li>
@@ -158,16 +213,14 @@
     </section>
 
     <!-- ============ CONTACTO ============ -->
-    <section class="seccion contacto" id="contacto">
-      <figure class="contacto__fondo" aria-hidden="true">
-        <picture>
-          <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/casa-roble/movil/720/frame_0160.webp 720w, /assets/proyectos/casa-roble/movil/1080/frame_0160.webp 1080w">
-          <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/proyectos/casa-roble/escritorio/960/frame_0160.webp 960w, /assets/proyectos/casa-roble/escritorio/1920/frame_0160.webp 1920w" src="/assets/proyectos/casa-roble/escritorio/960/frame_0160.webp" width="1920" height="1080" alt="" loading="lazy" decoding="async">
-        </picture>
-      </figure>
+    <section class="seccion contacto contacto--landing" id="contacto">
+      <svg class="contacto__arco deriva" style="--v: 90" viewBox="0 0 600 720" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2">
+        <path d="M40 720V320a260 260 0 0 1 520 0v400"/>
+        <path d="M110 720V330a190 190 0 0 1 380 0v390"/>
+        <path d="M180 720V340a120 120 0 0 1 240 0v380"/>
+      </svg>
       <div class="contenedor dos-columnas contacto__contenido">
         <div>
-          <p class="etiqueta aparecer">Contacto</p>
           <h2 class="aparecer">Hablemos de tu espacio</h2>
           <p class="aparecer">Cuéntame tu proyecto y te respondo en menos de 48 horas.</p>
           <ul class="contacto__datos aparecer">
@@ -194,6 +247,6 @@
     </div>
   </footer>
 
-  <script src="/assets/js/main.js?v=20261108" defer></script>
+  <script src="/assets/js/main.js?v=20261108b" defer></script>
 </body>
 </html>

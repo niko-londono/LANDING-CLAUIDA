@@ -10,6 +10,7 @@ favicon.ico             Favicon de respaldo
 vercel.json             Configuración de Vercel (caché de assets)
 assets/
   css/styles.css        Estilos compartidos por la landing y los proyectos
+  css/landing.css       Solo la landing: composiciones SVG y paralaje por capas (sin fotos de proyectos)
   js/main.js            Menú, cabecera, revelados y recorrido con scroll (si la página tiene canvas)
   img/favicon/          Favicon SVG y PNG (32, 180, 192, 512)
   proyectos/<nombre>/escritorio/  Secuencia 16:9 del proyecto (fotogramas, manifiesto y póster)
@@ -24,6 +25,8 @@ docs/                   Notas de diseño y contenido
    `data-base` del canvas, `--poster` / `--poster-movil` de la sección hero y los `data-desde` de las paradas.
 3. Añade un `<li class="proyecto">` en la sección Portafolio de `index.html`. El primero lleva
    `proyecto--destacado` (ocupa toda la fila); el resto forma una rejilla.
+   La landing no usa fotos de los proyectos: la portada de la tarjeta es un SVG abstracto
+   cuyos colores se eligen con `--c1`, `--c2` y `--c3` en el `<li>`.
 
 ## Desarrollo local
 Abre `index.html` con cualquier servidor estático, por ejemplo:
