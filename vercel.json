@@ -3,6 +3,12 @@
   "cleanUrls": true,
   "redirects": [
     {
+      "source": "/",
+      "has": [{ "type": "host", "value": "landing-clauida.vercel.app" }],
+      "destination": "https://landing-claudia.vercel.app/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "landing-clauida.vercel.app" }],
       "destination": "https://landing-claudia.vercel.app/:path*",
