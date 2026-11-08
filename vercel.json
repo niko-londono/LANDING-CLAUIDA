@@ -4,15 +4,15 @@
   "redirects": [
     {
       "source": "/",
-      "has": [{ "type": "host", "value": "landing-claudia.vercel.app" }],
-      "destination": "https://landing-clauida.vercel.app/",
-      "permanent": true
+      "has": [{ "type": "host", "value": "landing-clauida.vercel.app" }],
+      "destination": "https://landing-claudia.vercel.app/",
+      "permanent": false
     },
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "landing-claudia.vercel.app" }],
-      "destination": "https://landing-clauida.vercel.app/:path*",
-      "permanent": true
+      "has": [{ "type": "host", "value": "landing-clauida.vercel.app" }],
+      "destination": "https://landing-claudia.vercel.app/:path*",
+      "permanent": false
     }
   ],
   "headers": [
