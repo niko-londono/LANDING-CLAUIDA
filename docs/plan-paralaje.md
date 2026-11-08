@@ -42,3 +42,37 @@ Las 9 claves del recorrido (`trabajo/claves`) ya existen en WebP dentro de la se
 - `prefers-reduced-transparency`: cabecera y tarjetas opacas.
 - `viewport-fit=cover` con `env(safe-area-inset-*)` en la cabecera, `-webkit-tap-highlight-color: transparent`, `touch-action: manipulation` en controles y hover solo con `(hover: hover) and (pointer: fine)`.
 - Comprobar en un móvil real: el escritorio no reproduce la barra de URL ni el tacto.
+
+---
+
+## Segunda pasada · pulido (find-animation-opportunities + emil-design-eng)
+
+### Oportunidades que pasan el filtro
+
+| # | Dónde | Hoy | Propósito | Frecuencia | Movimiento |
+|---|---|---|---|---|---|
+| 1 | Hero `h1` | El título aparece de golpe y se cruza con el tejado | Delight (primera visita) | Rara | Palabras que suben desde una máscara: `translateY(105%)` → 0, 900 ms `--ease-out`, escalonado 50 ms. Velo lateral detrás del texto |
+| 2 | Hero, recorrido | No se sabe cuánto falta ni en qué estancia estás | Indicación de estado | Ocasional | Riel con 4 paradas; relleno con `scaleY(progreso)` escrito en el mismo rAF del canvas, sin transición |
+| 3 | Cabecera | Siempre tapa la parte alta de las fotos | Evitar un cambio brusco | Ocasional | Se oculta al bajar y vuelve al subir: `translateY(-100%)`, 300 ms `--ease-out` |
+| 4 | Menú móvil | Los enlaces aparecen todos a la vez | Consistencia espacial | Ocasional | `opacity` + `translateY(8px)`, 300 ms `--ease-out`, escalonado 40 ms solo al abrir |
+| 5 | Menú escritorio | No marca la sección actual | Indicación de estado | Ocasional | Subrayado `scaleX(0→1)` desde la izquierda, 200 ms `--ease-out` |
+| 6 | Aviso del formulario | El mensaje aparece de golpe | Evitar un cambio brusco | Rara | `opacity` + `translateY(4px)`, 250 ms `--ease-out` |
+
+### Descartadas
+
+- **Paralaje en los textos:** es contenido que se lee; moverlo por estilo estorba (función).
+- **Inclinación 3D de tarjetas al pasar el ratón:** decorativo en algo que se ve decenas de veces (frecuencia).
+- **Cursor personalizado:** decoración que entorpece la navegación (función).
+- **Indicador de scroll que rebota en bucle:** bucle lento cerca de 0,2 Hz, mal para el sistema vestibular (apple-design §14); lo sustituye el riel del recorrido.
+
+### Antes / después
+
+| Antes | Después | Por qué |
+|---|---|---|
+| `h1` aparece entero con un fundido | Palabras que suben desde una máscara | La entrada se lee como diseño editorial y solo ocurre una vez |
+| Texto del hero sobre el tejado | Velo degradado bajo el texto | Legibilidad sin tapar la casa |
+| Cabecera fija siempre visible | Se oculta al bajar, vuelve al subir | Las fotos a pantalla completa respiran |
+| Menú sin estado activo | Subrayado en la sección actual | El usuario sabe dónde está |
+| Enlaces del menú móvil de golpe | Entrada escalonada 40 ms | Cascada natural sin bloquear |
+| Menú móvil encerrado en la cabecera tras hacer scroll | Sin `backdrop-filter` ni `transform` mientras está abierto | Ambos crean un bloque contenedor para elementos `fixed` |
+| Logo oculto con el menú móvil abierto | `z-index` sobre el menú | El usuario sigue sabiendo dónde está |

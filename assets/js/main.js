@@ -1,20 +1,37 @@
 /* =========================================================
    Claudia · Diseño de interiores — comportamiento base
-   1. Cabecera con fondo al hacer scroll
+   1. Cabecera: fondo al bajar, se oculta al seguir bajando
    2. Menú móvil
-   3. Recorrido 3D: secuencia de fotogramas ligada al scroll
+   3. Recorrido 3D: secuencia de fotogramas y riel ligados al scroll
    4. Revelados al entrar en pantalla
    5. Paralaje de respaldo (si no hay animation-timeline)
-   6. Formulario (de momento solo de ejemplo)
+   6. Sección actual en el menú
+   7. Formulario (de momento solo de ejemplo)
    ========================================================= */
 
 (() => {
   const reducirMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------- 1. Cabecera ---------- */
+  // Fondo translúcido al bajar; se oculta al seguir bajando y vuelve al subir.
   const cabecera = document.getElementById("cabecera");
-  const actualizarCabecera = () => cabecera.classList.toggle("con-fondo", window.scrollY > 40);
+  let ultimoY = window.scrollY;
+  const actualizarCabecera = () => {
+    const y = window.scrollY;
+    const delta = y - ultimoY;
+    cabecera.classList.toggle("con-fondo", y > 40);
+    const menuAbierto = document.getElementById("menu")?.classList.contains("abierto");
+    if (y < 80 || menuAbierto || cabecera.contains(document.activeElement)) {
+      cabecera.classList.remove("oculta");
+    } else if (delta > 6 && y > window.innerHeight * 0.5) {
+      cabecera.classList.add("oculta");
+    } else if (delta < -6) {
+      cabecera.classList.remove("oculta");
+    }
+    if (Math.abs(delta) > 6) ultimoY = y;
+  };
   window.addEventListener("scroll", actualizarCabecera, { passive: true });
+  cabecera.addEventListener("focusin", () => cabecera.classList.remove("oculta"));
   actualizarCabecera();
 
   /* ---------- 2. Menú móvil ---------- */
@@ -22,6 +39,9 @@
   const menu = document.getElementById("menu");
   const alternarMenu = (abrir) => {
     menu.classList.toggle("abierto", abrir);
+    // El backdrop-filter de la cabecera encierra al menú fijo: se retira mientras está abierto
+    cabecera.classList.toggle("menu-abierto", abrir);
+    if (abrir) cabecera.classList.remove("oculta");
     menuBoton.setAttribute("aria-expanded", String(abrir));
     menuBoton.setAttribute("aria-label", abrir ? "Cerrar menú" : "Abrir menú");
     document.body.style.overflow = abrir ? "hidden" : "";
@@ -33,6 +53,8 @@
   const hero = document.querySelector(".hero");
   const lienzo = document.getElementById("lienzo");
   const textos = [...document.querySelectorAll(".hero__texto")];
+  const relleno = document.querySelector(".recorrido__relleno");
+  const paradas = [...document.querySelectorAll(".recorrido__paradas li")];
 
   if (!reducirMovimiento && lienzo && window.SECUENCIAS) {
     const ctx = lienzo.getContext("2d");
@@ -104,6 +126,13 @@
         const desde = parseFloat(t.dataset.desde), hasta = parseFloat(t.dataset.hasta);
         t.classList.toggle("visible", p >= desde && p < hasta);
       });
+
+      // Riel: relleno ligado al scroll (sin transición) y estancia actual
+      if (relleno) relleno.style.transform = `scaleY(${p.toFixed(4)})`;
+      let actualParada = 0;
+      paradas.forEach((li, i) => { if (p >= parseFloat(li.dataset.desde) - 0.001) actualParada = i; });
+      paradas.forEach((li, i) => li.classList.toggle("actual", i === actualParada));
+      hero.classList.toggle("dentro", p >= 0.2);
     };
 
     const pedirDibujo = () => {
@@ -112,7 +141,11 @@
 
     cargarSecuencia();
     ajustarLienzo();
-    dibujar(true);
+    // Un fotograma de espera para que el titular parta de su estado oculto
+    requestAnimationFrame(() => {
+      dibujar(true);
+      hero.classList.add("listo");
+    });
 
     window.addEventListener("scroll", pedirDibujo, { passive: true });
     window.addEventListener("resize", () => {
@@ -206,13 +239,30 @@
     window.addEventListener("resize", pedirParalaje);
   }
 
-  /* ---------- 6. Formulario ---------- */
+  /* ---------- 6. Sección actual en el menú ---------- */
+  const enlacesMenu = new Map(
+    [...document.querySelectorAll('.menu a[href^="#"]')].map((a) => [a.getAttribute("href").slice(1), a])
+  );
+  if ("IntersectionObserver" in window) {
+    const marcar = (id) => enlacesMenu.forEach((a, clave) => {
+      if (clave === id) a.setAttribute("aria-current", "true");
+      else a.removeAttribute("aria-current");
+    });
+    const secciones = ["inicio", ...enlacesMenu.keys()].map((id) => document.getElementById(id)).filter(Boolean);
+    const vigiaSecciones = new IntersectionObserver((entradas) => {
+      entradas.forEach((e) => { if (e.isIntersecting) marcar(e.target.id); });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    secciones.forEach((s) => vigiaSecciones.observe(s));
+  }
+
+  /* ---------- 7. Formulario ---------- */
   // Base sin envío real: se conectará a un servicio (Formspree, Resend, etc.) más adelante.
   const formulario = document.getElementById("formulario");
   formulario?.addEventListener("submit", (e) => {
     e.preventDefault();
-    formulario.querySelector(".formulario__aviso").textContent =
-      "¡Gracias! Este formulario aún es de ejemplo; pronto estará conectado.";
+    const aviso = formulario.querySelector(".formulario__aviso");
+    aviso.textContent = "¡Gracias! Este formulario aún es de ejemplo; pronto estará conectado.";
+    aviso.classList.add("visible");
     formulario.reset();
   });
 

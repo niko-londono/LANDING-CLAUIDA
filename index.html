@@ -38,12 +38,12 @@
     <button class="menu-boton" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
       <span></span><span></span>
     </button>
-    <nav class="menu" id="menu">
-      <a href="#estudio">Estudio</a>
-      <a href="#espacios">Espacios</a>
-      <a href="#servicios">Servicios</a>
-      <a href="#proyectos">Proyectos</a>
-      <a href="#contacto" class="boton boton--pequeno">Contacto</a>
+    <nav class="menu" id="menu" aria-label="Principal">
+      <a href="#estudio" style="--i: 0">Estudio</a>
+      <a href="#espacios" style="--i: 1">Espacios</a>
+      <a href="#servicios" style="--i: 2">Servicios</a>
+      <a href="#proyectos" style="--i: 3">Proyectos</a>
+      <a href="#contacto" class="boton boton--pequeno" style="--i: 4">Contacto</a>
     </nav>
   </header>
 
@@ -55,10 +55,21 @@
         <canvas class="hero__lienzo" id="lienzo" aria-hidden="true"></canvas>
         <div class="hero__velo" aria-hidden="true"></div>
 
-        <div class="hero__texto" data-desde="0" data-hasta="0.2">
+        <div class="hero__texto hero__texto--portada" data-desde="0" data-hasta="0.2">
           <p class="etiqueta">Diseño de interiores</p>
-          <h1>Espacios que se sienten como casa</h1>
+          <h1 class="titular" aria-label="Espacios que se sienten como casa"><span class="palabra" aria-hidden="true"><span>Espacios</span></span> <span class="palabra" aria-hidden="true"><span>que</span></span> <span class="palabra" aria-hidden="true"><span>se</span></span> <span class="palabra" aria-hidden="true"><span>sienten</span></span> <span class="palabra" aria-hidden="true"><span>como</span></span> <span class="palabra" aria-hidden="true"><span>casa</span></span></h1>
           <p class="hero__bajada">Desliza para entrar.</p>
+        </div>
+
+        <!-- Riel del recorrido: dónde estás y cuánto queda -->
+        <div class="recorrido" aria-hidden="true">
+          <div class="recorrido__riel"><span class="recorrido__relleno"></span></div>
+          <ol class="recorrido__paradas">
+            <li style="--en: 0" data-desde="0">Exterior</li>
+            <li style="--en: 0.26" data-desde="0.26">Salón</li>
+            <li style="--en: 0.52" data-desde="0.52">Cocina</li>
+            <li style="--en: 0.8" data-desde="0.8">Dormitorio</li>
+          </ol>
         </div>
         <div class="hero__texto hero__texto--lado" data-desde="0.26" data-hasta="0.48">
           <p class="etiqueta">Salón</p>
