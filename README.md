@@ -25,8 +25,8 @@ docs/                   Notas de diseño y contenido
    `data-base` del canvas, `--poster` / `--poster-movil` de la sección hero y los `data-desde` de las paradas.
 3. Añade un `<li class="proyecto">` en la sección Portafolio de `index.html`. El primero lleva
    `proyecto--destacado` (ocupa toda la fila); el resto forma una rejilla.
-   La landing no usa fotos de los proyectos: la portada de la tarjeta es un SVG abstracto
-   cuyos colores se eligen con `--c1`, `--c2` y `--c3` en el `<li>`.
+   La portada de la tarjeta es un fotograma del propio proyecto (la única foto de proyecto
+   en la landing); el resto de la landing es SVG.
 
 ## Desarrollo local
 Abre `index.html` con cualquier servidor estático, por ejemplo:

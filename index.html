@@ -24,8 +24,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20261108b">
-  <link rel="stylesheet" href="/assets/css/landing.css?v=20261108b">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20261108c">
+  <link rel="stylesheet" href="/assets/css/landing.css?v=20261108c">
   <!-- Marca que hay JS antes de pintar, para ocultar lo que se revelará con el scroll -->
   <script>document.documentElement.classList.add("js");</script>
 </head>
@@ -165,8 +165,8 @@
 
     <!-- ============ PORTAFOLIO ============
          Cada proyecto es un <li class="proyecto"> que enlaza a su página
-         /proyectos/<nombre>. La portada es una composición SVG abstracta;
-         sus colores se cambian con --c1, --c2 y --c3. -->
+         /proyectos/<nombre>. La portada es un fotograma del propio
+         proyecto (assets/proyectos/<nombre>/), con paralaje suave. -->
     <section class="seccion portafolio" id="portafolio">
       <div class="contenedor">
         <div class="portafolio__cabeza">
@@ -175,15 +175,13 @@
         </div>
 
         <ul class="proyectos-lista">
-          <li class="proyecto proyecto--destacado" style="--c1: var(--oliva); --c2: var(--ocre); --c3: var(--arena)">
+          <li class="proyecto proyecto--destacado">
             <a class="proyecto__enlace" href="/proyectos/casa-roble">
-              <div class="proyecto__portada">
-                <svg viewBox="0 0 800 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-                  <rect width="800" height="560" fill="var(--c1)"/>
-                  <g class="deriva" style="--v: 40"><circle cx="560" cy="210" r="92" fill="var(--c2)"/></g>
-                  <g class="deriva" style="--v: 18"><path d="M150 560V330a170 170 0 0 1 340 0v230z" fill="var(--c3)"/></g>
-                  <g class="deriva" style="--v: -10"><path d="M0 470h800M0 500h800M0 530h800" stroke="var(--hueso)" stroke-opacity="0.35" stroke-width="1.2"/></g>
-                </svg>
+              <div class="proyecto__portada revelar">
+                <picture>
+                  <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/casa-roble/movil/720/frame_0001.webp 720w, /assets/proyectos/casa-roble/movil/1080/frame_0001.webp 1080w">
+                  <img class="paralaje" sizes="(min-width: 900px) 58vw, 100vw" srcset="/assets/proyectos/casa-roble/escritorio/960/frame_0001.webp 960w, /assets/proyectos/casa-roble/escritorio/1920/frame_0001.webp 1920w" src="/assets/proyectos/casa-roble/escritorio/960/frame_0001.webp" width="1920" height="1080" alt="Fachada de Casa Roble: volúmenes blancos, puerta de roble y jardín" loading="lazy" decoding="async">
+                </picture>
                 <span class="proyecto__sello">Recorrido con scroll</span>
               </div>
               <div class="proyecto__texto">
@@ -247,6 +245,6 @@
     </div>
   </footer>
 
-  <script src="/assets/js/main.js?v=20261108b" defer></script>
+  <script src="/assets/js/main.js?v=20261108c" defer></script>
 </body>
 </html>

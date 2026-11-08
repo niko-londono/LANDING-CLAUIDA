@@ -199,7 +199,7 @@
     const capas = [
       ...[...document.querySelectorAll(".paralaje")].map((el) => ({
         el,
-        marco: el.closest(".foto, .capitulo__fondo, .contacto__fondo, .portada__fondo"),
+        marco: el.closest(".foto, .capitulo__fondo, .contacto__fondo, .proyecto__portada"),
         viaje: el.classList.contains("paralaje--fuerte") ? 14 : 9.5,
         unidad: "%",
         propiedad: "transform",
