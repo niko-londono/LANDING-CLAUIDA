@@ -11,6 +11,7 @@
 
 - Página estática: `index.html`, `assets/css/styles.css`, `assets/js/main.js`. No hay build ni framework.
 - `index.html` es la landing del estudio. Cada proyecto del portafolio vive en `proyectos/<nombre>/index.html` con su recorrido con scroll; sus fotogramas en `assets/proyectos/<nombre>/`. Pasos para añadir uno: README.md.
+- `quien-soy/index.html` es la presentación personal de Claudia (recorrido de la casa de roble); no es un proyecto del portafolio.
 - Vista previa local: configuración `landing` en `.claude/launch.json` (python http.server, puerto 4173).
 - Producción: Vercel despliega cada push a `main`. El dominio principal es https://landing-claudia.vercel.app; landing-clauida redirige ahí.
 - Publicar (commit + push) solo cuando el usuario lo apruebe ("Yes, publish").

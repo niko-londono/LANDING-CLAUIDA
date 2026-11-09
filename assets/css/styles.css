@@ -741,6 +741,46 @@ button, .boton, .menu a, .marca {
 .capitulo__tarjeta h2 { font-size: clamp(1.9rem, 3.4vw, 2.75rem); }
 .capitulo__tarjeta p:last-child { margin: 0; color: var(--color-texto-suave); }
 .capitulo__tarjeta .etiqueta { margin-bottom: 0.9rem; }
+/* Listas dentro de la tarjeta (página Quién soy) */
+.tarjeta-lista { list-style: none; margin: 0; padding: 0; }
+.tarjeta-lista li {
+  padding-block: 0.7rem;
+  border-top: 1px solid var(--color-linea);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-texto-suave);
+}
+.tarjeta-lista li:last-child { padding-bottom: 0; }
+.tarjeta-lista strong { display: block; font-weight: 500; color: var(--color-texto); }
+
+/* ---------- Trayectoria (página Quién soy) ---------- */
+.trayectoria__lista {
+  list-style: none;
+  margin: 3.5rem 0 0;
+  padding: 0;
+  border-bottom: 1px solid var(--color-linea);
+}
+.trayectoria__lista li {
+  display: grid;
+  gap: 0.5rem;
+  padding-block: 2rem;
+  border-top: 1px solid var(--color-linea);
+}
+.trayectoria__fecha {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--color-acento);
+  font-variant-numeric: tabular-nums;
+}
+.trayectoria__lista h3 { margin: 0 0 0.35rem; font-size: clamp(1.6rem, 2.6vw, 2.1rem); }
+.trayectoria__lista h3 a { text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+.trayectoria__rol { font-size: 0.875rem; color: var(--color-texto-suave); margin-bottom: 0.6rem; }
+.trayectoria__lista p:last-child { margin: 0; color: var(--color-texto-suave); max-width: 40rem; }
+@media (min-width: 860px) {
+  .trayectoria__lista li { grid-template-columns: 11rem 1fr; gap: 3rem; padding-block: 2.5rem; }
+  .trayectoria__fecha { padding-top: 0.6rem; }
+}
+.trayectoria__nota { margin: 2.5rem 0 0; max-width: 40rem; color: var(--color-texto-suave); }
 
 /* ---------- Proyectos · mosaico ---------- */
 .mosaico {

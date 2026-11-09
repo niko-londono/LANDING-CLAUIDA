@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Quién soy · Claudia Hernández, diseño de interiores</title>
+  <meta name="description" content="Conoce a Claudia Hernández, diseñadora de interiores: su enfoque, formación, herramientas y proyectos, en un recorrido con scroll por una casa.">
+  <meta name="theme-color" content="#f2ece3">
+  <meta name="color-scheme" content="light">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/assets/img/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/img/favicon/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Quién soy · Claudia Hernández, diseño de interiores">
+  <meta property="og:description" content="Recorre una casa mientras te cuento quién soy y lo que puedo hacer por tu espacio.">
+  <meta property="og:image" content="/assets/proyectos/casa-roble/escritorio/poster.webp">
+  <meta property="og:type" content="profile">
+
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="preload" as="image" href="/assets/proyectos/casa-roble/escritorio/poster.webp">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20261109">
+  <!-- Marca que hay JS antes de pintar, para ocultar lo que se revelará con el scroll -->
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+
+  <!-- Presentación personal de Claudia (datos de su CV). El recorrido usa la
+       secuencia de la casa de roble (assets/proyectos/casa-roble) como escenario.
+       Antes vivía en /proyectos/casa-roble; vercel.json redirige esa ruta aquí. -->
+
+  <!-- ============ CABECERA ============ -->
+  <header class="cabecera" id="cabecera">
+    <a href="/" class="marca" aria-label="Claudia, inicio">Claudia<span>interiores</span></a>
+    <button class="menu-boton" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
+      <span></span><span></span>
+    </button>
+    <nav class="menu" id="menu" aria-label="Principal">
+      <a href="#historia" style="--i: 0">Mi historia</a>
+      <a href="#trayectoria" style="--i: 1">Trayectoria</a>
+      <a href="/#portafolio" style="--i: 2">Portafolio</a>
+      <a href="/#contacto" class="boton boton--pequeno" style="--i: 3">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============ HERO · recorrido con scroll ============ -->
+    <section class="hero" id="inicio" aria-label="Presentación de Claudia Hernández" style="--poster: url(/assets/proyectos/casa-roble/escritorio/poster.webp); --poster-movil: url(/assets/proyectos/casa-roble/movil/poster.webp)">
+      <div class="hero__fijo">
+        <canvas class="hero__lienzo" id="lienzo" data-base="/assets/proyectos/casa-roble" aria-hidden="true"></canvas>
+        <div class="hero__velo" aria-hidden="true"></div>
+
+        <div class="hero__texto hero__texto--portada" data-desde="0" data-hasta="0.2">
+          <p class="etiqueta">Diseñadora de interiores</p>
+          <h1 class="titular" aria-label="Hola, soy Claudia"><span class="palabra" aria-hidden="true"><span>Hola,</span></span> <span class="palabra" aria-hidden="true"><span>soy</span></span> <span class="palabra" aria-hidden="true"><span><em>Claudia</em></span></span></h1>
+          <p class="hero__bajada">Pasa. Mientras recorres esta casa te cuento quién soy y lo que puedo hacer por tu espacio.</p>
+        </div>
+
+        <!-- Riel del recorrido: dónde estás y cuánto queda -->
+        <div class="recorrido" aria-hidden="true">
+          <div class="recorrido__riel"><span class="recorrido__relleno"></span></div>
+          <ol class="recorrido__paradas">
+            <li style="--en: 0" data-desde="0">Hola</li>
+            <li style="--en: 0.26" data-desde="0.26">Enfoque</li>
+            <li style="--en: 0.52" data-desde="0.52">Lo que hago</li>
+            <li style="--en: 0.8" data-desde="0.8">Hablemos</li>
+          </ol>
+        </div>
+        <div class="hero__texto hero__texto--lado" data-desde="0.26" data-hasta="0.48">
+          <p class="etiqueta">Mi enfoque</p>
+          <h2>Empatía, pensamiento crítico y espacios que unen función y estética</h2>
+        </div>
+        <div class="hero__texto hero__texto--lado" data-desde="0.52" data-hasta="0.7">
+          <p class="etiqueta">Lo que hago</p>
+          <h2>Del moodboard al render y a los planos técnicos</h2>
+        </div>
+        <div class="hero__texto" data-desde="0.8" data-hasta="1.01">
+          <p class="etiqueta">¿Empezamos?</p>
+          <h2>Diseñemos tu próximo espacio</h2>
+          <a href="/#contacto" class="boton">Agenda una cita</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MI HISTORIA · capítulos a pantalla completa ============ -->
+    <div id="historia">
+      <section class="capitulo" aria-labelledby="cap-quien">
+        <figure class="capitulo__fondo">
+          <picture>
+            <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/casa-roble/movil/720/frame_0052.webp 720w, /assets/proyectos/casa-roble/movil/1080/frame_0052.webp 1080w">
+            <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/proyectos/casa-roble/escritorio/960/frame_0052.webp 960w, /assets/proyectos/casa-roble/escritorio/1920/frame_0052.webp 1920w" src="/assets/proyectos/casa-roble/escritorio/960/frame_0052.webp" width="1920" height="1080" alt="Salón con sofá de lino, mesa redonda de roble y estantería empotrada" loading="lazy" decoding="async">
+          </picture>
+        </figure>
+        <div class="capitulo__tarjeta aparecer">
+          <p class="etiqueta">Quién soy</p>
+          <h2 id="cap-quien">Claudia Lorena Hernández</h2>
+          <p>Diseñadora de interiores con experiencia en proyectos residenciales y comerciales: diseño interior y exterior, remodelaciones y visualización 3D. Creo espacios que fusionan funcionalidad y estética, adaptándome a los cambios y a lo que cada cliente necesita.</p>
+        </div>
+      </section>
+
+      <section class="capitulo capitulo--derecha" aria-labelledby="cap-formacion">
+        <figure class="capitulo__fondo">
+          <picture>
+            <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/casa-roble/movil/720/frame_0073.webp 720w, /assets/proyectos/casa-roble/movil/1080/frame_0073.webp 1080w">
+            <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/proyectos/casa-roble/escritorio/960/frame_0073.webp 960w, /assets/proyectos/casa-roble/escritorio/1920/frame_0073.webp 1920w" src="/assets/proyectos/casa-roble/escritorio/960/frame_0073.webp" width="1920" height="1080" alt="Comedor de madera con aparador bajo y cuadro en tonos arena" loading="lazy" decoding="async">
+          </picture>
+        </figure>
+        <div class="capitulo__tarjeta aparecer">
+          <p class="etiqueta">Formación</p>
+          <h2 id="cap-formacion">Summa Cum Laude en Diseño e Interiorismo</h2>
+          <ul class="tarjeta-lista">
+            <li><strong>Licenciatura en Diseño e Interiorismo</strong>Pontificia Universidad Católica Madre y Maestra · Santo Domingo, 2022</li>
+            <li><strong>Curso intensivo de decoración interior y diseño de espacios comerciales</strong>Santo Domingo, 2010</li>
+            <li><strong>Tecnología en Administración de Empresas</strong>Universidad Industrial de Santander · Colombia, 2001</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="capitulo" aria-labelledby="cap-hago">
+        <figure class="capitulo__fondo">
+          <picture>
+            <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/casa-roble/movil/720/frame_0090.webp 720w, /assets/proyectos/casa-roble/movil/1080/frame_0090.webp 1080w">
+            <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/proyectos/casa-roble/escritorio/960/frame_0090.webp 960w, /assets/proyectos/casa-roble/escritorio/1920/frame_0090.webp 1920w" src="/assets/proyectos/casa-roble/escritorio/960/frame_0090.webp" width="1920" height="1080" alt="Cocina con isla blanca, taburetes de madera y ventanal al jardín" loading="lazy" decoding="async">
+          </picture>
+        </figure>
+        <div class="capitulo__tarjeta aparecer">
+          <p class="etiqueta">Lo que hago</p>
+          <h2 id="cap-hago">Ves tu espacio antes de construirlo</h2>
+          <ul class="tarjeta-lista">
+            <li><strong>Moodboard y concepto</strong>Estilo, materiales y la idea que guía el espacio.</li>
+            <li><strong>Modelado 3D y renders</strong>Imágenes realistas de cada estancia, interior y exterior.</li>
+            <li><strong>Planos y especificaciones técnicas</strong>Todo lo necesario para llevarlo a obra con precisión.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="capitulo capitulo--derecha" aria-labelledby="cap-herramientas">
+        <figure class="capitulo__fondo">
+          <picture>
+            <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/casa-roble/movil/720/frame_0128.webp 720w, /assets/proyectos/casa-roble/movil/1080/frame_0128.webp 1080w">
+            <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/proyectos/casa-roble/escritorio/960/frame_0128.webp 960w, /assets/proyectos/casa-roble/escritorio/1920/frame_0128.webp 1920w" src="/assets/proyectos/casa-roble/escritorio/960/frame_0128.webp" width="1920" height="1080" alt="Dormitorio con cama baja de lino y ventanal a los árboles" loading="lazy" decoding="async">
+          </picture>
+        </figure>
+        <div class="capitulo__tarjeta aparecer">
+          <p class="etiqueta">Herramientas</p>
+          <h2 id="cap-herramientas">Oficio y tecnología</h2>
+          <ul class="tarjeta-lista">
+            <li><strong>Diseño y visualización</strong>SketchUp + V-Ray, Twinmotion, AutoCAD, Photoshop y herramientas de IA.</li>
+            <li><strong>Idiomas</strong>Español e inglés.</li>
+            <li><strong>Cómo soy</strong>Confiable, organizada, buena gestora del tiempo y de trabajo en equipo.</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============ TRAYECTORIA ============ -->
+    <section class="seccion trayectoria" id="trayectoria">
+      <div class="contenedor">
+        <h2 class="aparecer">Trayectoria</h2>
+        <p class="texto-largo aparecer">Proyectos residenciales y comerciales en República Dominicana, con entregas completas: concepto, modelado 3D, renders, planos y especificaciones.</p>
+
+        <ol class="trayectoria__lista">
+          <li class="aparecer">
+            <p class="trayectoria__fecha">2024</p>
+            <div>
+              <h3>Casa campestre familiar</h3>
+              <p class="trayectoria__rol">Diseño interior y exterior</p>
+              <p>Remodelación de baños, habitaciones, cocina y lavandería; en el exterior, piscina y área de BBQ. Moodboard, concepto, modelado 3D, renders, planos detallados y especificaciones técnicas.</p>
+            </div>
+          </li>
+          <li class="aparecer">
+            <p class="trayectoria__fecha">2022</p>
+            <div>
+              <h3>Oficina para una firma de ingenieros</h3>
+              <p class="trayectoria__rol">Consorcio Tecnológico &amp; Ambiental (CETECAM) · Diseñadora de interiores, consultora</p>
+              <p>Diseño, distribución y división de un local comercial con SketchUp, V-Ray y AutoCAD: un entorno moderno y eficiente, alineado con la identidad de la empresa y con un cliente muy satisfecho.</p>
+            </div>
+          </li>
+          <li class="aparecer">
+            <p class="trayectoria__fecha">2021 – 2024</p>
+            <div>
+              <h3>Dos casas familiares y una casa campestre</h3>
+              <p class="trayectoria__rol">Constructora HEGSA · Diseñadora de interiores, consultora</p>
+              <p>Diseño interior y exterior de dos viviendas en construcción y remodelación del exterior de una casa campestre: piscina y área de BBQ pensadas para disfrutar en familia.</p>
+            </div>
+          </li>
+          <li class="aparecer">
+            <p class="trayectoria__fecha">Proyecto de grado</p>
+            <div>
+              <h3><a href="/proyectos/cafeteria-sostenible">Cafetería Sostenible</a></h3>
+              <p class="trayectoria__rol">Pontificia Universidad Católica Madre y Maestra</p>
+              <p>Una cafetería universitaria con techo de bambú, suelos de palets recuperados y árboles solares. Se puede recorrer con scroll.</p>
+            </div>
+          </li>
+        </ol>
+        <p class="trayectoria__nota aparecer">Además, desde 2009 formo parte de la Escuela de Ingeniería Civil y Ambiental de la PUCMM, y antes fui administradora e instructora de sistemas en Colombia. De ahí vienen mi organización y mi trato con equipos técnicos.</p>
+      </div>
+    </section>
+
+    <!-- ============ CIERRE · siguiente paso ============ -->
+    <section class="seccion contacto cierre" id="cierre">
+      <figure class="contacto__fondo" aria-hidden="true">
+        <picture>
+          <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/casa-roble/movil/720/frame_0160.webp 720w, /assets/proyectos/casa-roble/movil/1080/frame_0160.webp 1080w">
+          <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/proyectos/casa-roble/escritorio/960/frame_0160.webp 960w, /assets/proyectos/casa-roble/escritorio/1920/frame_0160.webp 1920w" src="/assets/proyectos/casa-roble/escritorio/960/frame_0160.webp" width="1920" height="1080" alt="" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <div class="contenedor cierre__contenido">
+        <h2 class="aparecer">¿Hablamos de tu espacio?</h2>
+        <p class="aparecer">Cuéntame cómo lo vives y lo diseñamos a tu medida.</p>
+        <div class="cierre__acciones aparecer">
+          <a href="/#contacto" class="boton">Escríbeme</a>
+          <a href="/#portafolio" class="enlace-flecha">Ver el portafolio <svg class="flecha" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor pie__fila">
+      <span>© <span id="anio">2026</span> Claudia Hernández · Diseño de interiores</span>
+      <a href="/">Volver al inicio</a>
+    </div>
+  </footer>
+
+  <script src="/assets/proyectos/casa-roble/escritorio/manifest.js"></script>
+  <script src="/assets/proyectos/casa-roble/movil/manifest.js"></script>
+  <script src="/assets/js/main.js?v=20261109" defer></script>
+</body>
+</html>

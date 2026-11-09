@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Claudia · Diseño de interiores</title>
-  <meta name="description" content="Estudio de diseño de interiores. Espacios serenos, cálidos y pensados para vivirlos.">
+  <title>Claudia Hernández · Diseño de interiores</title>
+  <meta name="description" content="Claudia Hernández, diseñadora de interiores en Santo Domingo. Diseño interior y exterior, remodelaciones y visualización 3D para hogares y negocios.">
   <meta name="theme-color" content="#f2ece3">
   <meta name="color-scheme" content="light">
 
@@ -15,8 +15,8 @@
   <link rel="manifest" href="/site.webmanifest">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Claudia · Diseño de interiores">
-  <meta property="og:description" content="Espacios serenos, cálidos y pensados para vivirlos.">
+  <meta property="og:title" content="Claudia Hernández · Diseño de interiores">
+  <meta property="og:description" content="Diseño interior y exterior, remodelaciones y visualización 3D para hogares y negocios.">
   <meta property="og:type" content="website">
 
   <!-- Tipografías -->
@@ -24,8 +24,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20261108g">
-  <link rel="stylesheet" href="/assets/css/landing.css?v=20261108d">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20261109">
+  <link rel="stylesheet" href="/assets/css/landing.css?v=20261109">
   <!-- Marca que hay JS antes de pintar, para ocultar lo que se revelará con el scroll -->
   <script>document.documentElement.classList.add("js");</script>
 </head>
@@ -38,7 +38,7 @@
       <span></span><span></span>
     </button>
     <nav class="menu" id="menu" aria-label="Principal">
-      <a href="#estudio" style="--i: 0">Estudio</a>
+      <a href="#quien-soy" style="--i: 0">Quién soy</a>
       <a href="#servicios" style="--i: 1">Servicios</a>
       <a href="#portafolio" style="--i: 2">Portafolio</a>
       <a href="#proceso" style="--i: 3">Proceso</a>
@@ -56,7 +56,7 @@
       <div class="contenedor portada__rejilla">
         <div class="portada__texto">
           <h1 class="titular" aria-label="Espacios que se sienten como casa"><span class="palabra" aria-hidden="true"><span>Espacios</span></span> <span class="palabra" aria-hidden="true"><span>que</span></span> <span class="palabra" aria-hidden="true"><span>se</span></span> <span class="palabra" aria-hidden="true"><span>sienten</span></span> <span class="palabra" aria-hidden="true"><span><em>como</em></span></span> <span class="palabra" aria-hidden="true"><span><em>casa</em></span></span></h1>
-          <p class="portada__bajada">Diseño de interiores sereno, cálido y pensado para vivirlo. Proyectos integrales y asesorías para hogares y negocios.</p>
+          <p class="portada__bajada">Diseño interior y exterior, remodelaciones y visualización 3D para hogares y negocios. Espacios que unen función y estética, pensados para vivirlos.</p>
           <div class="portada__acciones">
             <a href="#portafolio" class="boton boton--acento">Ver portafolio</a>
             <a href="#contacto" class="boton">Agenda una cita</a>
@@ -117,15 +117,22 @@
       </div>
     </section>
 
-    <!-- ============ ESTUDIO ============ -->
-    <section class="seccion estudio" id="estudio">
+    <!-- ============ QUIÉN SOY ============
+         Presentación de Claudia (datos de su CV) y entrada a su
+         recorrido personal /quien-soy, separado del portafolio. -->
+    <section class="seccion estudio" id="quien-soy">
       <div class="contenedor estudio__rejilla">
         <div class="estudio__texto">
           <h2 class="aparecer">Hola, soy Claudia</h2>
           <div class="texto-largo">
-            <p class="aparecer">Texto de ejemplo: diseñadora de interiores con X años de experiencia creando hogares y espacios comerciales serenos, funcionales y con carácter.</p>
-            <p class="aparecer">Trabajo cada proyecto desde la forma en que vives: la luz, los recorridos y los materiales que te hacen sentir en casa.</p>
+            <p class="aparecer">Soy diseñadora de interiores, licenciada en Diseño e Interiorismo por la PUCMM con <em>Summa Cum Laude</em>. Diseño proyectos residenciales y comerciales: interiores, exteriores, remodelaciones y visualización 3D.</p>
+            <p class="aparecer">Trabajo desde la empatía, el pensamiento crítico y la escucha. Me adapto a los cambios y a lo que cada cliente necesita, y cuido la precisión de cada entrega, del moodboard a los planos.</p>
           </div>
+          <dl class="datos aparecer">
+            <div><dt>Formación</dt><dd>Lic. en Diseño e Interiorismo, PUCMM, 2022</dd></div>
+            <div><dt>Herramientas</dt><dd>SketchUp + V-Ray, Twinmotion, AutoCAD, Photoshop e IA</dd></div>
+            <div><dt>Idiomas</dt><dd>Español e inglés</dd></div>
+          </dl>
         </div>
         <!-- Muestrario de materiales: cada muestra flota a su ritmo -->
         <div class="muestrario" aria-hidden="true">
@@ -137,6 +144,27 @@
           <div class="muestra muestra--laton deriva" style="--v: 150"><span>Latón</span></div>
         </div>
       </div>
+
+      <!-- Entrada al recorrido personal: misma forma que una tarjeta del
+           portafolio, pero vive aquí porque es una presentación, no un proyecto -->
+      <div class="contenedor presentacion">
+        <div class="proyecto proyecto--destacado">
+          <a class="proyecto__enlace" href="/quien-soy">
+            <div class="proyecto__portada revelar">
+              <picture>
+                <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/casa-roble/movil/720/frame_0052.webp 720w, /assets/proyectos/casa-roble/movil/1080/frame_0052.webp 1080w">
+                <img class="paralaje" sizes="(min-width: 900px) 58vw, 100vw" srcset="/assets/proyectos/casa-roble/escritorio/960/frame_0052.webp 960w, /assets/proyectos/casa-roble/escritorio/1920/frame_0052.webp 1920w" src="/assets/proyectos/casa-roble/escritorio/960/frame_0052.webp" width="1920" height="1080" alt="Salón luminoso con sofá de lino y mesa de roble, escenario del recorrido de presentación" loading="lazy" decoding="async">
+              </picture>
+              <span class="proyecto__sello">Recorrido con scroll</span>
+            </div>
+            <div class="proyecto__texto">
+              <h3 class="proyecto__titulo">Conóceme recorriendo una casa</h3>
+              <p class="proyecto__resumen">Estancia por estancia te cuento quién soy, cómo trabajo, qué herramientas domino y los proyectos que he diseñado.</p>
+              <span class="enlace-flecha">Empezar el recorrido <svg class="flecha" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span>
+            </div>
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- ============ SERVICIOS ============ -->
@@ -146,18 +174,18 @@
         <ul class="servicios__lista">
           <li class="servicio aparecer">
             <svg class="servicio__icono" viewBox="0 0 48 48" aria-hidden="true"><path d="M6 6h36v36H6zM22 6v16h20M22 30v12M22 22v2"/><path d="M22 30a8 8 0 0 1 8-8"/></svg>
-            <h3>Proyecto integral</h3>
-            <p>Del concepto a la obra terminada: distribución, materiales, mobiliario y dirección.</p>
+            <h3>Diseño interior y exterior</h3>
+            <p>Casas nuevas y remodelaciones: baños, habitaciones, cocina, lavandería, piscina y área de BBQ.</p>
           </li>
           <li class="servicio aparecer">
-            <svg class="servicio__icono" viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="10" width="14" height="30" rx="2"/><rect x="18" y="8" width="14" height="30" rx="2" transform="rotate(14 25 23)"/><rect x="28" y="8" width="14" height="30" rx="2" transform="rotate(28 35 23)"/></svg>
-            <h3>Asesoría</h3>
-            <p>Sesiones puntuales para decidir colores, acabados o la distribución de una estancia.</p>
+            <svg class="servicio__icono" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 5l17 9.5v19L24 43 7 33.5v-19zM7 14.5L24 24l17-9.5M24 24v19"/></svg>
+            <h3>Visualización 3D</h3>
+            <p>Moodboard, concepto, modelado 3D y renders realistas con SketchUp, V-Ray y Twinmotion para ver el espacio antes de construirlo.</p>
           </li>
           <li class="servicio aparecer">
             <svg class="servicio__icono" viewBox="0 0 48 48" aria-hidden="true"><path d="M6 16l4-10h28l4 10M6 16h36M6 16c0 4 3 6 6 6s6-2 6-6c0 4 3 6 6 6s6-2 6-6c0 4 3 6 6 6s6-2 6-6M9 22v20h30V22M20 42V30h8v12"/></svg>
             <h3>Interiorismo comercial</h3>
-            <p>Locales, oficinas y espacios de hostelería que cuentan la historia de tu marca.</p>
+            <p>Locales y oficinas distribuidos para trabajar mejor y alineados con la identidad de tu empresa.</p>
           </li>
         </ul>
       </div>
@@ -175,23 +203,6 @@
         </div>
 
         <ul class="proyectos-lista">
-          <li class="proyecto proyecto--destacado">
-            <a class="proyecto__enlace" href="/proyectos/casa-roble">
-              <div class="proyecto__portada revelar">
-                <picture>
-                  <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/casa-roble/movil/720/frame_0001.webp 720w, /assets/proyectos/casa-roble/movil/1080/frame_0001.webp 1080w">
-                  <img class="paralaje" sizes="(min-width: 900px) 58vw, 100vw" srcset="/assets/proyectos/casa-roble/escritorio/960/frame_0001.webp 960w, /assets/proyectos/casa-roble/escritorio/1920/frame_0001.webp 1920w" src="/assets/proyectos/casa-roble/escritorio/960/frame_0001.webp" width="1920" height="1080" alt="Fachada de Casa Roble: volúmenes blancos, puerta de roble y jardín" loading="lazy" decoding="async">
-                </picture>
-                <span class="proyecto__sello">Recorrido con scroll</span>
-              </div>
-              <div class="proyecto__texto">
-                <h3 class="proyecto__titulo">Casa Roble</h3>
-                <p class="proyecto__tipo">Vivienda · Exterior, salón, cocina y dormitorio</p>
-                <p class="proyecto__resumen">Una vivienda de una planta abierta al jardín: volúmenes blancos, roble claro y una luz que cambia con la tarde.</p>
-                <span class="enlace-flecha">Recorrer el proyecto <svg class="flecha" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span>
-              </div>
-            </a>
-          </li>
           <li class="proyecto proyecto--destacado proyecto--invertido">
             <a class="proyecto__enlace" href="/proyectos/cafeteria-sostenible">
               <div class="proyecto__portada revelar">
@@ -219,10 +230,10 @@
         <h2 class="aparecer">Así trabajamos juntas</h2>
         <div class="proceso__riel" aria-hidden="true"><span class="proceso__relleno"></span></div>
         <ol class="pasos">
-          <li class="aparecer"><h3>Conversación</h3><p>Conocemos el espacio, tus necesidades y tu presupuesto.</p></li>
-          <li class="aparecer"><h3>Concepto</h3><p>Propuesta de estilo, paleta de materiales y distribución.</p></li>
-          <li class="aparecer"><h3>Proyecto</h3><p>Planos, renders y selección de mobiliario.</p></li>
-          <li class="aparecer"><h3>Ejecución</h3><p>Coordinación con proveedores hasta la entrega final.</p></li>
+          <li class="aparecer"><h3>Conversación</h3><p>Conocemos el espacio, cómo lo usas, tus necesidades y tu presupuesto.</p></li>
+          <li class="aparecer"><h3>Moodboard y concepto</h3><p>Propuesta de estilo, paleta de materiales y distribución.</p></li>
+          <li class="aparecer"><h3>Modelado 3D</h3><p>Renders realistas para ver y ajustar cada espacio antes de construir.</p></li>
+          <li class="aparecer"><h3>Planos</h3><p>Planos detallados y especificaciones técnicas listos para la obra.</p></li>
         </ol>
       </div>
     </section>
@@ -239,11 +250,12 @@
           <h2 class="aparecer">Hablemos de tu espacio</h2>
           <p class="aparecer">Cuéntame tu proyecto y te respondo en menos de 48 horas.</p>
           <ul class="contacto__datos aparecer">
-            <li><a href="mailto:hola@ejemplo.com">hola@ejemplo.com</a></li>
-            <li><a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="mailto:claudialorena.hernandezp@gmail.com">claudialorena.hernandezp@gmail.com</a></li>
+            <li><a href="tel:+18098015805">809-801-5805</a></li>
+            <li>Santo Domingo, República Dominicana</li>
           </ul>
         </div>
-        <form class="formulario aparecer" id="formulario">
+        <form class="formulario aparecer" id="formulario" data-correo="claudialorena.hernandezp@gmail.com">
           <label>Nombre<input type="text" name="nombre" required autocomplete="name"></label>
           <label>Correo<input type="email" name="correo" required autocomplete="email"></label>
           <label>Cuéntame tu proyecto<textarea name="mensaje" rows="4" required></textarea></label>
@@ -257,11 +269,11 @@
 
   <footer class="pie">
     <div class="contenedor pie__fila">
-      <span>© <span id="anio">2026</span> Claudia · Diseño de interiores</span>
+      <span>© <span id="anio">2026</span> Claudia Hernández · Diseño de interiores</span>
       <a href="#inicio">Volver arriba</a>
     </div>
   </footer>
 
-  <script src="/assets/js/main.js?v=20261108c" defer></script>
+  <script src="/assets/js/main.js?v=20261109" defer></script>
 </body>
 </html>

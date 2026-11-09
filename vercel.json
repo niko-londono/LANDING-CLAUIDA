@@ -3,6 +3,11 @@
   "cleanUrls": true,
   "redirects": [
     {
+      "source": "/proyectos/casa-roble",
+      "destination": "/quien-soy",
+      "permanent": true
+    },
+    {
       "source": "/",
       "has": [{ "type": "host", "value": "landing-clauida.vercel.app" }],
       "destination": "https://landing-claudia.vercel.app/",

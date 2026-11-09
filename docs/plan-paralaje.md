@@ -118,3 +118,11 @@ Las 9 claves del recorrido (`trabajo/claves`) ya existen en WebP dentro de la se
 - Los tirones venían de descomprimir cada WebP en el hilo principal al pintarlo: 10,7 ms de mediana y hasta 20 ms por fotograma nuevo (medido a 1280 px), dos por cuadro con el fundido. Ahora los fotogramas se descargan como Blob y solo los cercanos a la vista (14 por delante, 6 por detrás) se descomprimen con `createImageBitmap`, fuera del hilo principal: pintar cuesta 2,9 ms. Los lejanos se liberan (`close()`).
 - Descarga: inicio de cada zona y 1 de cada 8 primero; después siempre el fotograma pendiente más cercano a la vista, con 6 descargas a la vez.
 - Si un fotograma aún no está listo se pinta el listo más cercano, nunca se espera.
+
+## CV de Claudia y «Quién soy» (2026-11-09)
+
+- Textos de la landing reescritos con el CV real: bio (Lic. en Diseño e Interiorismo, PUCMM, Summa Cum Laude 2022), herramientas, idiomas, servicios (diseño interior y exterior, visualización 3D, interiorismo comercial), proceso (conversación, moodboard y concepto, modelado 3D, planos) y contacto (correo y teléfono). No se publican la dirección ni las referencias del CV.
+- El recorrido de la casa de roble deja de ser un proyecto: pasa a `/quien-soy` como presentación personal (quién soy, formación, lo que hago, herramientas y trayectoria). `/proyectos/casa-roble` redirige ahí (vercel.json). Los fotogramas siguen en `assets/proyectos/casa-roble/`.
+- En la landing, «Estudio» pasa a «Quién soy» con una ficha de datos y una tarjeta que lleva al recorrido; el portafolio queda solo con la Cafetería Sostenible.
+- El formulario abre el correo de quien escribe con el mensaje listo para la dirección de Claudia (no hay servidor).
+- Skills: ui-ux-pro-max:brand (textos), impeccable (estructura de la sección).

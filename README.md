@@ -3,7 +3,8 @@ Landing page de diseño de interiores. Sitio estático (HTML, CSS y JS sin depen
 
 ## Estructura
 ```
-index.html              Landing del estudio (portada, estudio, servicios, portafolio, proceso, contacto)
+index.html              Landing (portada, quién soy, servicios, portafolio, proceso, contacto)
+quien-soy/index.html    Presentación personal de Claudia: recorrido con scroll por la casa de roble (/quien-soy)
 proyectos/<nombre>/index.html   Página de cada proyecto, con su recorrido con scroll (/proyectos/<nombre>)
 site.webmanifest        Manifiesto (iconos, colores)
 favicon.ico             Favicon de respaldo
@@ -24,7 +25,7 @@ docs/                   Notas de diseño y contenido
    Si después rehaces los fotogramas, ponlos en una carpeta nueva (`assets/proyectos/<nombre>/v2/`, `v3/`…)
    y cambia las rutas: Vercel guarda `assets/proyectos/` en caché un año como inmutable, y con los
    mismos nombres quien ya visitó la página seguiría viendo los fotogramas viejos.
-2. Copia `proyectos/casa-roble/index.html` a `proyectos/<nombre>/index.html` y cambia textos, rutas,
+2. Copia `proyectos/cafeteria-sostenible/index.html` (o `quien-soy/index.html` como base de scroll libre) a `proyectos/<nombre>/index.html` y cambia textos, rutas,
    `data-base` del canvas, `--poster` / `--poster-movil` de la sección hero y los `data-desde` de las paradas.
 3. Añade un `<li class="proyecto">` en la sección Portafolio de `index.html`. El primero lleva
    `proyecto--destacado` (ocupa toda la fila); el resto forma una rejilla.

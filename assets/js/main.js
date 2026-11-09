@@ -332,14 +332,18 @@
   }
 
   /* ---------- 7. Formulario ---------- */
-  // Base sin envío real: se conectará a un servicio (Formspree, Resend, etc.) más adelante.
+  // Sin servidor: abre el correo de quien escribe con el mensaje ya redactado
+  // para la dirección de data-correo.
   const formulario = document.getElementById("formulario");
   formulario?.addEventListener("submit", (e) => {
     e.preventDefault();
+    const datos = new FormData(formulario);
+    const asunto = `Proyecto de ${datos.get("nombre")}`;
+    const cuerpo = `${datos.get("mensaje")}\n\n${datos.get("nombre")} · ${datos.get("correo")}`;
+    window.location.href = `mailto:${formulario.dataset.correo}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
     const aviso = formulario.querySelector(".formulario__aviso");
-    aviso.textContent = "¡Gracias! Este formulario aún es de ejemplo; pronto estará conectado.";
+    aviso.textContent = "Se abrió tu correo con el mensaje listo. Solo falta enviarlo.";
     aviso.classList.add("visible");
-    formulario.reset();
   });
 
   /* ---------- Año del pie ---------- */

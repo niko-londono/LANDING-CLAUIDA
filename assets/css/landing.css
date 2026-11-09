@@ -370,3 +370,23 @@
   .capa, .deriva { translate: none !important; transform: none !important; }
   .plano { stroke-dashoffset: 0 !important; }
 }
+
+/* ---------- Quién soy · datos del CV y entrada al recorrido ---------- */
+.datos {
+  margin: 2.25rem 0 0;
+  border-top: 1px solid var(--color-linea);
+  max-width: 38rem;
+}
+.datos div {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  gap: 1rem;
+  padding-block: 0.85rem;
+  border-bottom: 1px solid var(--color-linea);
+}
+.datos dt { font-size: 0.875rem; color: var(--color-texto-suave); }
+.datos dd { margin: 0; }
+@media (max-width: 480px) {
+  .datos div { grid-template-columns: 1fr; gap: 0.15rem; }
+}
+.presentacion { margin-top: clamp(4rem, 9vw, 7rem); }
