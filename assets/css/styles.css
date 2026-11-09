@@ -426,13 +426,12 @@ button, .boton, .menu a, .marca {
 .hero__bajada { color: var(--color-texto-suave); }
 
 /* =========================================================
-   RECORRIDO POR PASOS (.hero--pasos, assets/js/recorrido-pasos.js)
-   Una pantalla fija; cada gesto lleva a la siguiente parada.
-   Los datos salen al irse la cámara y entran cuando frena.
+   RECORRIDO CON DATOS (.hero--pasos, assets/js/recorrido-pasos.js)
+   Scroll libre. En cada parada la cámara se detiene un tramo y
+   entra su tarjeta de datos; al seguir bajando, sale y la cámara viaja.
    ========================================================= */
-.hero--pasos { height: 100vh; height: 100svh; }
-/* Sin "tirar para recargar" mientras el dedo maneja el recorrido */
-html:has(.hero--pasos) { overscroll-behavior-y: none; }
+/* 360 fotogramas + 9 pausas: largo para que la cámara no corra */
+.hero--pasos { height: 1500vh; }
 
 .paso {
   position: absolute;
@@ -539,7 +538,6 @@ html:has(.hero--pasos) { overscroll-behavior-y: none; }
   background: var(--color-texto);
   transform-origin: top;
   transform: scaleY(0);
-  transition: transform 900ms var(--ease-in-out);
 }
 .pasos-nav__punto {
   display: flex;

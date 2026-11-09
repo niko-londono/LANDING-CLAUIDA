@@ -103,3 +103,11 @@ Las 9 claves del recorrido (`trabajo/claves`) ya existen en WebP dentro de la se
 - Se quitan los capítulos a pantalla completa porque repetían lo que ahora cuenta el recorrido.
 - Movimiento reducido: la cámara salta a la parada y los datos solo aparecen y desaparecen.
 - Skills: animate, animation-performance, mobile-native.
+
+## Cafetería Sostenible: vuelta al scroll libre (2026-11-08)
+
+- Al usuario le gustaron las tarjetas de datos, pero no el scroll por secciones. Se vuelve a **scroll libre** y se conservan las 9 tarjetas.
+- **360 fotogramas** (antes 240), uno cada 0,44 s de vídeo. Variantes: ordenador 1920 / 1280 / 960 y móvil 1080 / 800, WebP calidad 60. Pesan 17 MB (1280) y 13 MB (móvil 800); por eso la carga va de grueso a fino: paradas, 1 de cada 8, de 4, de 2 y el resto.
+- Línea de tiempo con **pausas**: en cada parada la cámara se queda quieta 26 "unidades" de scroll (1 unidad = 1 fotograma de viaje) mientras su tarjeta está en pantalla. Sección de 1500vh.
+- Fluidez: la vista sigue al scroll con inercia (suavizado exponencial de 110 ms, independiente de los Hz) y funde cada fotograma con el siguiente solo en el tramo central (smoothstep 0,3-0,7), para no dejar imagen doble.
+- El riel de la derecha lleva a la pausa de cada parada con scroll suave.
