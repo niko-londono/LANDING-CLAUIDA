@@ -17,7 +17,7 @@
   <!-- Open Graph -->
   <meta property="og:title" content="Cafetería Sostenible · Claudia, diseño de interiores">
   <meta property="og:description" content="Un espacio gastronómico universitario con bambú, palets reciclados y energía solar.">
-  <meta property="og:image" content="/assets/proyectos/cafeteria-sostenible/v2/escritorio/poster.webp">
+  <meta property="og:image" content="/assets/proyectos/cafeteria-sostenible/v3/escritorio/poster.webp">
   <meta property="og:type" content="website">
 
   <!-- Tipografías -->
@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <link rel="preload" as="image" href="/assets/proyectos/cafeteria-sostenible/v2/escritorio/poster.webp">
+  <link rel="preload" as="image" href="/assets/proyectos/cafeteria-sostenible/v3/escritorio/poster.webp">
   <link rel="stylesheet" href="/assets/css/styles.css?v=20261109b">
   <!-- Marca que hay JS antes de pintar, para ocultar lo que se revelará con el scroll -->
   <script>document.documentElement.classList.add("js");</script>
@@ -50,10 +50,10 @@
 
     <!-- ============ HERO · recorrido por pasos ============
          Scroll libre y continuo: cada tarjeta entra al llegar a su zona (data-fotograma, en el orden del vídeo).
-         Lo controla assets/js/recorrido-pasos.js. Los datos salen de la memoria de grado. -->
-    <section class="hero hero--pasos" id="inicio" aria-label="Recorrido por la Cafetería Sostenible" style="--poster: url(/assets/proyectos/cafeteria-sostenible/v2/escritorio/poster.webp); --poster-movil: url(/assets/proyectos/cafeteria-sostenible/v2/movil/poster.webp)">
+         Lo controla assets/js/recorrido-pasos.js (data-fundido="largo": la cámara del vídeo es rápida). Los datos salen de la memoria de grado. -->
+    <section class="hero hero--pasos" id="inicio" aria-label="Recorrido por la Cafetería Sostenible" style="--poster: url(/assets/proyectos/cafeteria-sostenible/v3/escritorio/poster.webp); --poster-movil: url(/assets/proyectos/cafeteria-sostenible/v3/movil/poster.webp)">
       <div class="hero__fijo">
-        <canvas class="hero__lienzo" data-base="/assets/proyectos/cafeteria-sostenible/v2" aria-hidden="true"></canvas>
+        <canvas class="hero__lienzo" data-base="/assets/proyectos/cafeteria-sostenible/v3" data-fundido="largo" aria-hidden="true"></canvas>
         <div class="hero__velo" aria-hidden="true"></div>
 
         <!-- 01 · Entrada -->
@@ -69,7 +69,7 @@
         </article>
 
         <!-- 02 · Área de comida -->
-        <article class="paso" data-fotograma="19">
+        <article class="paso" data-fotograma="17">
           <p class="etiqueta" style="--i: 0">02 · Área de comida</p>
           <h2 style="--i: 1">Todo el servicio en una sola línea</h2>
           <p class="paso__texto" style="--i: 2">Heladería, buffet de comida rápida y zona de microondas, con rutas de entrada y salida separadas para que nadie se cruce con la bandeja en la mano.</p>
@@ -80,7 +80,7 @@
         </article>
 
         <!-- 03 · Comedor interior -->
-        <article class="paso" data-fotograma="61">
+        <article class="paso" data-fotograma="80">
           <p class="etiqueta" style="--i: 0">03 · Comedor interior</p>
           <h2 style="--i: 1">Techo de bambú, suelo de palets</h2>
           <p class="paso__texto" style="--i: 2">Varas de bambú natural de 7 cm sobre perfiles de aluminio, y un suelo hecho con palets desarmados, lijados y barnizados sin plomo ni mercurio.</p>
@@ -92,7 +92,7 @@
         </article>
 
         <!-- 04 · Terraza -->
-        <article class="paso" data-fotograma="91">
+        <article class="paso" data-fotograma="115">
           <p class="etiqueta" style="--i: 0">04 · Terraza</p>
           <h2 style="--i: 1">Un suelo que deja pasar la lluvia</h2>
           <p class="paso__texto" style="--i: 2">Adoquín permeable y hormigón ranurado forman un sistema urbano de drenaje sostenible: el agua vuelve al terreno en lugar de correr hacia la alcantarilla.</p>
@@ -103,7 +103,7 @@
         </article>
 
         <!-- 05 · Bancos curvos -->
-        <article class="paso" data-fotograma="133">
+        <article class="paso" data-fotograma="159">
           <p class="etiqueta" style="--i: 0">05 · Bancos curvos</p>
           <h2 style="--i: 1">Asientos para quedarse</h2>
           <p class="paso__texto" style="--i: 2">Piezas de bambú atornilladas a una estructura de acero, con jardineras de concreto y sansevierias que limpian el aire alrededor.</p>
@@ -114,7 +114,7 @@
         </article>
 
         <!-- 06 · Vegetación -->
-        <article class="paso" data-fotograma="175">
+        <article class="paso" data-fotograma="204">
           <p class="etiqueta" style="--i: 0">06 · Vegetación</p>
           <h2 style="--i: 1">Plantas que purifican el aire</h2>
           <p class="paso__texto" style="--i: 2">Palma areca, monstera, heliconia, hiedra, sansevieria, bambú y palmera Alexander: especies tropicales que filtran formaldehído y benceno y absorben CO₂.</p>
@@ -125,7 +125,7 @@
         </article>
 
         <!-- 07 · Reciclaje y luz -->
-        <article class="paso" data-fotograma="205">
+        <article class="paso" data-fotograma="249">
           <p class="etiqueta" style="--i: 0">07 · Reciclaje y luz</p>
           <h2 style="--i: 1">Reciclar a la vista de todos</h2>
           <p class="paso__texto" style="--i: 2">Puntos de reciclaje en el comedor y un cuarto de residuos aparte. Toda la iluminación es LED, y el plafón de la cocina refleja casi toda la luz, así que bastan menos lámparas.</p>
@@ -191,8 +191,8 @@
           <figure class="mosaico__item mosaico__item--a flota-lenta">
             <div class="foto revelar">
               <picture>
-                <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/v2/movil/800/frame_0133.webp 800w, /assets/proyectos/cafeteria-sostenible/v2/movil/1080/frame_0133.webp 1080w">
-                <img class="paralaje" sizes="(min-width: 860px) 60vw, 100vw" srcset="/assets/proyectos/cafeteria-sostenible/v2/escritorio/960/frame_0133.webp 960w, /assets/proyectos/cafeteria-sostenible/v2/escritorio/1280/frame_0133.webp 1280w, /assets/proyectos/cafeteria-sostenible/v2/escritorio/1920/frame_0133.webp 1920w" src="/assets/proyectos/cafeteria-sostenible/v2/escritorio/960/frame_0133.webp" width="1920" height="1080" alt="Gente sentada en el banco curvo de la terraza bajo un árbol solar" loading="lazy" decoding="async">
+                <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/v3/movil/540/frame_0159.webp 540w, /assets/proyectos/cafeteria-sostenible/v3/movil/720/frame_0159.webp 720w">
+                <img class="paralaje" sizes="(min-width: 860px) 60vw, 100vw" srcset="/assets/proyectos/cafeteria-sostenible/v3/escritorio/960/frame_0159.webp 960w, /assets/proyectos/cafeteria-sostenible/v3/escritorio/1280/frame_0159.webp 1280w, /assets/proyectos/cafeteria-sostenible/v3/escritorio/1920/frame_0159.webp 1920w" src="/assets/proyectos/cafeteria-sostenible/v3/escritorio/960/frame_0159.webp" width="1920" height="1080" alt="Gente sentada en el banco curvo de la terraza bajo un árbol solar" loading="lazy" decoding="async">
               </picture>
             </div>
             <figcaption>Terraza · banco curvo y árbol solar</figcaption>
@@ -201,8 +201,8 @@
           <figure class="mosaico__item mosaico__item--b flota-rapida">
             <div class="foto revelar">
               <picture>
-                <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/v2/movil/800/frame_0247.webp 800w, /assets/proyectos/cafeteria-sostenible/v2/movil/1080/frame_0247.webp 1080w">
-                <img class="paralaje" sizes="(min-width: 860px) 35vw, 100vw" srcset="/assets/proyectos/cafeteria-sostenible/v2/escritorio/960/frame_0247.webp 960w, /assets/proyectos/cafeteria-sostenible/v2/escritorio/1280/frame_0247.webp 1280w, /assets/proyectos/cafeteria-sostenible/v2/escritorio/1920/frame_0247.webp 1920w" src="/assets/proyectos/cafeteria-sostenible/v2/escritorio/960/frame_0247.webp" width="1920" height="1080" alt="Puntos de reciclaje junto a una columna revestida de madera y plantas en maceta" loading="lazy" decoding="async">
+                <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/v3/movil/540/frame_0293.webp 540w, /assets/proyectos/cafeteria-sostenible/v3/movil/720/frame_0293.webp 720w">
+                <img class="paralaje" sizes="(min-width: 860px) 35vw, 100vw" srcset="/assets/proyectos/cafeteria-sostenible/v3/escritorio/960/frame_0293.webp 960w, /assets/proyectos/cafeteria-sostenible/v3/escritorio/1280/frame_0293.webp 1280w, /assets/proyectos/cafeteria-sostenible/v3/escritorio/1920/frame_0293.webp 1920w" src="/assets/proyectos/cafeteria-sostenible/v3/escritorio/960/frame_0293.webp" width="1920" height="1080" alt="Puntos de reciclaje junto a una columna revestida de madera y plantas en maceta" loading="lazy" decoding="async">
               </picture>
             </div>
             <figcaption>Interior · reciclaje a la vista</figcaption>
@@ -211,8 +211,8 @@
           <figure class="mosaico__item mosaico__item--c flota-media">
             <div class="foto revelar">
               <picture>
-                <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/v2/movil/800/frame_0001.webp 800w, /assets/proyectos/cafeteria-sostenible/v2/movil/1080/frame_0001.webp 1080w">
-                <img class="paralaje" sizes="(min-width: 860px) 40vw, 100vw" srcset="/assets/proyectos/cafeteria-sostenible/v2/escritorio/960/frame_0001.webp 960w, /assets/proyectos/cafeteria-sostenible/v2/escritorio/1280/frame_0001.webp 1280w, /assets/proyectos/cafeteria-sostenible/v2/escritorio/1920/frame_0001.webp 1920w" src="/assets/proyectos/cafeteria-sostenible/v2/escritorio/960/frame_0001.webp" width="1920" height="1080" alt="Entrada acristalada de la cafetería con el rótulo en madera" loading="lazy" decoding="async">
+                <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/v3/movil/540/frame_0001.webp 540w, /assets/proyectos/cafeteria-sostenible/v3/movil/720/frame_0001.webp 720w">
+                <img class="paralaje" sizes="(min-width: 860px) 40vw, 100vw" srcset="/assets/proyectos/cafeteria-sostenible/v3/escritorio/960/frame_0001.webp 960w, /assets/proyectos/cafeteria-sostenible/v3/escritorio/1280/frame_0001.webp 1280w, /assets/proyectos/cafeteria-sostenible/v3/escritorio/1920/frame_0001.webp 1920w" src="/assets/proyectos/cafeteria-sostenible/v3/escritorio/960/frame_0001.webp" width="1920" height="1080" alt="Entrada acristalada de la cafetería con el rótulo en madera" loading="lazy" decoding="async">
               </picture>
             </div>
             <figcaption>Entrada · llegada desde el campus</figcaption>
@@ -244,8 +244,8 @@
     <section class="seccion contacto cierre" id="cierre">
       <figure class="contacto__fondo" aria-hidden="true">
         <picture>
-          <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/v2/movil/800/frame_0360.webp 800w, /assets/proyectos/cafeteria-sostenible/v2/movil/1080/frame_0360.webp 1080w">
-          <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/v2/escritorio/960/frame_0360.webp 960w, /assets/proyectos/cafeteria-sostenible/v2/escritorio/1280/frame_0360.webp 1280w, /assets/proyectos/cafeteria-sostenible/v2/escritorio/1920/frame_0360.webp 1920w" src="/assets/proyectos/cafeteria-sostenible/v2/escritorio/960/frame_0360.webp" width="1920" height="1080" alt="" loading="lazy" decoding="async">
+          <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/v3/movil/540/frame_0360.webp 540w, /assets/proyectos/cafeteria-sostenible/v3/movil/720/frame_0360.webp 720w">
+          <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/v3/escritorio/960/frame_0360.webp 960w, /assets/proyectos/cafeteria-sostenible/v3/escritorio/1280/frame_0360.webp 1280w, /assets/proyectos/cafeteria-sostenible/v3/escritorio/1920/frame_0360.webp 1920w" src="/assets/proyectos/cafeteria-sostenible/v3/escritorio/960/frame_0360.webp" width="1920" height="1080" alt="" loading="lazy" decoding="async">
         </picture>
       </figure>
       <div class="contenedor cierre__contenido">
@@ -267,9 +267,9 @@
     </div>
   </footer>
 
-  <script src="/assets/proyectos/cafeteria-sostenible/v2/escritorio/manifest.js"></script>
-  <script src="/assets/proyectos/cafeteria-sostenible/v2/movil/manifest.js"></script>
+  <script src="/assets/proyectos/cafeteria-sostenible/v3/escritorio/manifest.js"></script>
+  <script src="/assets/proyectos/cafeteria-sostenible/v3/movil/manifest.js"></script>
   <script src="/assets/js/main.js?v=20261109b" defer></script>
-  <script src="/assets/js/recorrido-pasos.js?v=20261108d" defer></script>
+  <script src="/assets/js/recorrido-pasos.js?v=20261109" defer></script>
 </body>
 </html>

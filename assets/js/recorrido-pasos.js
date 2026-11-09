@@ -24,6 +24,12 @@
   const raiz = lienzo.dataset.base;
   const reducir = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const conBitmap = "createImageBitmap" in window;
+  // data-fundido="largo": para vídeos con cámara rápida (mucho cambio entre fotogramas).
+  // Funde cada fotograma con el siguiente en todo el tramo y, al soltar el scroll,
+  // la vista se asienta en un fotograma entero para no dejar imagen doble.
+  const fundidoLargo = lienzo.dataset.fundido === "largo";
+  const ASENTAR_MS = 140;
+  let temporizadorAsentar = 0;
 
   // Bitmaps descomprimidos alrededor de la vista (en el sentido del movimiento hay más)
   const DELANTE = 14, DETRAS = 6, LIBERAR = 26;
@@ -77,7 +83,7 @@
     const siguiente = () => {
       if (cola.length) return cola.shift();
       if (!resto.size) return -1;
-      const c = Math.max(0, Math.round(mostrado));
+      const c = Number.isFinite(mostrado) ? Math.max(0, Math.round(mostrado)) : 0;
       let mejor = -1, mejorD = Infinity;
       resto.forEach((i) => {
         const d = (i - c) * direccion >= 0 ? Math.abs(i - c) : Math.abs(i - c) * 1.5;
@@ -171,9 +177,15 @@
     const base = Math.floor(mostrado);
     const a = cercana(base);
     if (a < 0) return; // aún nada listo: se ve el póster de fondo
-    // Fundido corto con el siguiente, solo en el tramo central (smoothstep 0,3-0,7)
-    const t = reducir ? 0 : Math.min(1, Math.max(0, (mostrado - base - 0.3) / 0.4));
-    const alfa = t * t * (3 - 2 * t);
+    // Fundido con el siguiente: en todo el tramo (lineal) con fundido largo;
+    // si no, solo en el tramo central (smoothstep 0,3-0,7)
+    const frac = mostrado - base;
+    let alfa = 0;
+    if (!reducir && fundidoLargo) alfa = frac;
+    else if (!reducir) {
+      const t = Math.min(1, Math.max(0, (frac - 0.3) / 0.4));
+      alfa = t * t * (3 - 2 * t);
+    }
     const b = alfa > 0.02 && a === base && dibujable(base + 1) ? base + 1 : -1;
     const clave = `${a}|${b}|${b < 0 ? 0 : alfa.toFixed(2)}`;
     if (clave === pintadoClave) return;
@@ -208,6 +220,7 @@
   /* ---------- Bucle ---------- */
   const progreso = () => {
     const recorrido = hero.offsetHeight - window.innerHeight;
+    if (!(recorrido > 0)) return 0; // ventana sin alto (pestaña oculta, prerender): evita NaN
     return Math.min(1, Math.max(0, (window.scrollY - hero.offsetTop) / recorrido));
   };
 
@@ -236,6 +249,13 @@
     if (mostrado < 0) mostrado = objetivo;
     actualizarUI(objetivo, p);
     pedirCuadro();
+    if (fundidoLargo && !reducir) {
+      clearTimeout(temporizadorAsentar);
+      temporizadorAsentar = setTimeout(() => {
+        const entero = Math.round(objetivo);
+        if (entero !== objetivo) { objetivo = entero; pedirCuadro(); }
+      }, ASENTAR_MS);
+    }
   };
 
   // Puntos del riel: llevan al inicio de la zona de cada tarjeta

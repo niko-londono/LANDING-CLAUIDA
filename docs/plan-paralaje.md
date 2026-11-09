@@ -172,3 +172,12 @@ Referencias revisadas: cheshirepropertystudio.com y dbltakedesign.com. Se tomaro
 - Exportado con la skill parallax-con-claude: ordenador 1920 / 1280 / 960 (12 / 7,3 / 5,3 MB) y móvil 720 / 540 (4,7 / 3,3 MB), WebP calidad 70. El móvil no pasa de 720 porque la fuente solo tiene 660 px de alto. Claves del manifiesto: `secuencia` y `secuencia-movil` (las que lee `recorrido-pasos.js`).
 - Página `/proyectos/casa-prototipo`: misma estructura que la Cafetería (scroll libre con tarjetas), sección de 1050vh (~30 fotogramas por pantalla). Ocho paradas: exterior (1), fachada (30), entrada (55), salón (78), comedor y cocina (118), cae la tarde (158), salón y chimenea (205), conjunto (314). Textos y cifras inventados a partir de lo que se ve, a petición del usuario.
 - También en el portafolio de la landing y en la ciudad de Inmersión (celda [-2, 1], forma nueva `casa-madera`: dos plantas, tejado a dos aguas con paneles solares, balcón, piscina y terraza).
+
+## Cafetería Sostenible: fluidez con cámara rápida (2026-11-09)
+
+- Diagnóstico: entre dos fotogramas seguidos la imagen cambia ~4 veces más que en la Casa prototipo (diferencia media 30 frente a 7). El vídeo dura 160 s con la cámara muy rápida (y solo ~15 fotogramas únicos por segundo), así que 360 fotogramas son uno cada 0,44 s. Más fotogramas apenas reducen el salto (720 → 22) y sí suben la descarga: por eso "más fotogramas se veía menos fluido". Además pesaban 2-3,6 veces más que los de la Casa (móvil 1080 px ampliado desde un recorte de ~600 px).
+- Fotogramas nuevos en `v3/` (sigue en 360): hasta la parada 08 se reparten por **movimiento de cámara**, no por tiempo (cada paso de scroll cambia lo mismo; peor salto 70 → 58); el tramo final, casi quieto, igual que antes. Paradas: 1, 17, 80, 115, 159, 204, 249, 319, 360.
+- Peso: ordenador 1920/1280/960 calidad 55 (26 / 16 / 11 MB); móvil 720/540 calidad 60 (11 / 8 MB, antes 18 / 13).
+- Reproductor: `data-fundido="largo"` en el lienzo funde cada fotograma con el siguiente en todo el tramo y, a los 140 ms sin scroll, la vista se asienta en un fotograma entero (sin imagen doble). La Casa prototipo no lo usa.
+- Corrección compartida: con la ventana sin alto (pestaña oculta, prerender) el progreso daba NaN y la descarga se paraba tras la primera pasada.
+- Skills: animation-performance.
