@@ -1,8 +1,10 @@
 /* =========================================================
    Inmersión · arranque y bucle
    Render bajo demanda: solo se dibuja cuando algo cambia
-   (cámara, vuelo, hover, tamaño). Quieta, la ciudad no gasta
-   GPU ni batería; en movimiento va al ritmo de la pantalla.
+   (cámara, vuelo, hover, tráfico, tamaño). Con el tráfico en marcha
+   se dibuja cada fotograma; con movimiento reducido los coches se
+   quedan quietos y la ciudad vuelve a no gastar GPU estando quieta.
+   Con la pestaña oculta el navegador pausa el bucle.
    Con ?fps en la URL aparece un contador.
 
    Módulos:
@@ -10,7 +12,8 @@
      ciudad.js      cuadrícula, entorno instanciado, proyectos
      camara.js      controles con inercia, teclado, vuelos
      interaccion.js raycasting, hover, clic
-     hud.js         índice, ficha, etiqueta, controles del mapa
+     hud.js         índice, ficha, rótulos, controles del mapa
+     trafico.js     coches que circulan (semáforos, distancia, frenado)
    ========================================================= */
 import * as THREE from "three";
 import { crearEscena } from "./escena.js";
@@ -18,6 +21,7 @@ import { crearCiudad } from "./ciudad.js";
 import { crearControles } from "./camara.js";
 import { crearInteraccion } from "./interaccion.js";
 import { crearHud } from "./hud.js";
+import { crearTrafico } from "./trafico.js";
 
 function hayWebGL() {
   try {
@@ -49,6 +53,7 @@ async function iniciar() {
   const invalidar = () => { sucio = true; };
 
   const ciudad = crearCiudad(escena, datos);
+  const trafico = crearTrafico(escena, Math.random);
   const vista = crearControles(camara, lienzo, invalidar);
 
   let seleccionado = null;
@@ -139,6 +144,8 @@ async function iniciar() {
     anterior = ahora;
     if (vista.paso(ahora, dt)) sucio = true;
     if (interaccion.paso(dt)) sucio = true;
+    // El tráfico mueve la escena en cada fotograma (salvo con movimiento reducido)
+    if (trafico.paso(dt)) sucio = true;
     if (sucio || medirFps) {
       sucio = false;
       hud.actualizarRotulos(camara, window.innerWidth, window.innerHeight);
@@ -160,7 +167,7 @@ async function iniciar() {
   requestAnimationFrame(() => requestAnimationFrame(() => hud.listo()));
 
   // Para depurar desde la consola
-  window.__inmersion = { THREE, renderer, escena, camara, ciudad, vista };
+  window.__inmersion = { THREE, renderer, escena, camara, ciudad, vista, trafico };
 }
 
 iniciar().catch((err) => {

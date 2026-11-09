@@ -157,3 +157,10 @@ Referencias revisadas: cheshirepropertystudio.com y dbltakedesign.com. Se tomaro
 - Decoración de calle, todo con InstancedMesh (una llamada por tipo): asfalto cálido, línea discontinua por tramos, pasos de cebra en cada cruce del centro, coches en los dos carriles (carrocería + cabina), personas en aceras, parques y delante de cada proyecto (cuerpo + cabeza), árboles de alineación redondos, bancos y flores en los parques, y un bosque en cuña a la derecha de la vista general.
 - Rótulos fijos: un botón HTML sobre el marcador de cada proyecto, con rombo terracota (proyecto) u ocre (presentación) y una punta que señala la cuadra. Se recolocan solo cuando la escena se redibuja. Hover y selección los oscurecen. Así se distingue a simple vista con qué casas se puede interactuar. Sustituyen a la etiqueta que seguía al puntero.
 - Coste medido en escritorio: 83 llamadas en la vista general, unos 116 mil triángulos (99 mil en táctil, con bosque menos denso), 60-63 llamadas de cerca.
+
+## Inmersión: tráfico en movimiento (2026-11-09)
+
+- Los coches circulan (módulo `assets/js/inmersion/trafico.js`): 101 coches en 40 carriles, por la derecha, que dan la vuelta en la niebla.
+- Semáforos en ciclo de 10 s: 3,4 s de verde para las calles de un eje, 1,6 s de rojo para todos, y lo mismo para el otro eje. Cada coche limita su velocidad por la distancia de frenado hasta la línea de parada (antes del paso de cebra) o hasta el coche de delante; acelera a 3 u/s² y frena a 6. No entra en un cruce si al otro lado no hay sitio (sin esto, las colas bloqueaban los cruces).
+- Comprobado con una simulación de 4 minutos: 0 choques entre carriles cruzados, hueco mínimo entre coches del mismo carril de 3,3 u de centro a centro (un coche mide 2,1) y todos los coches avanzan (mínimo 102 u por minuto).
+- Rendimiento: 0,023 ms por paso de simulación; 3 InstancedMesh con DynamicDrawUsage (carrocería, cabina y sombra de contacto, que sustituye a la sombra del mapa estático). Con el tráfico en marcha la escena se redibuja cada fotograma; con movimiento reducido los coches se quedan quietos y vuelve el render bajo demanda.

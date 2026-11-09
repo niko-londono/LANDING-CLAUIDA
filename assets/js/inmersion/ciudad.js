@@ -17,8 +17,8 @@ import { PALETA, esTactil } from "./escena.js";
 export const BLOQUE = 12;          // lado de una cuadra
 export const CALLE = 5;            // ancho de calle
 export const PASO = BLOQUE + CALLE; // de centro a centro
-const RADIO_CIUDAD = 3;            // cuadras de proyectos: de -3 a 3
-const RADIO_ENTORNO = 6;           // el entorno sigue hasta el horizonte
+export const RADIO_CIUDAD = 3;            // cuadras de proyectos: de -3 a 3
+export const RADIO_ENTORNO = 6;           // el entorno sigue hasta el horizonte
 
 export const LIMITE = (RADIO_CIUDAD + 0.5) * PASO; // hasta dónde puede ir la cámara
 
@@ -354,28 +354,7 @@ export function crearCiudad(escena, lista) {
   marcas.computeLineDistances();
   escena.add(marcas);
 
-  /* ---- Coches en los dos carriles (estáticos) ---- */
-  const coloresCoche = [PALETA.terracota, PALETA.oliva, 0xf3ede4, 0x3a3631, PALETA.ocre, 0x6f7f8c, 0xb9b2a6, 0x8a2f2a];
-  const carrocerias = [], cabinas = [];
-  const coche = (x, z, alongX) => {
-    const color = elegir(coloresCoche);
-    const giro = alongX ? Math.PI / 2 : 0;
-    carrocerias.push({ x, y: 0.12, z, sx: 0.95, sy: 0.55, sz: 2.1, giro, color });
-    cabinas.push({ x, y: 0.67, z, sx: 0.82, sy: 0.42, sz: 1.1, giro });
-  };
-  for (let i = -RADIO_ENTORNO; i < RADIO_ENTORNO; i++) {
-    const e = (i + 0.5) * PASO;
-    for (let j = -RADIO_ENTORNO + 1; j < RADIO_ENTORNO; j++) {
-      if (Math.max(Math.abs(i + 0.5), Math.abs(j)) > RADIO_CIUDAD + 2) continue;
-      const centro = j * PASO;
-      for (const carril of [-1.15, 1.15]) {
-        if (rnd() < 0.42) coche(e + carril, centro + entre(-4.2, 4.2), false); // calle a lo largo de z
-        if (rnd() < 0.42) coche(centro + entre(-4.2, 4.2), e + carril, true);  // calle a lo largo de x
-      }
-    }
-  }
-  instancias(escena, caja, mat(0xffffff, { roughness: 0.55 }), carrocerias, { sombra: true });
-  instancias(escena, caja, mat(0x3d4448, { roughness: 0.3, metalness: 0.2 }), cabinas);
+  /* ---- Coches: ahora circulan; viven en trafico.js ---- */
 
   /* ---- Personas en aceras y parques: cuerpo + cabeza ---- */
   const ropa = [PALETA.terracota, PALETA.oliva, 0xf3ede4, 0x3a3631, PALETA.ocre, 0x6f7f8c, 0x9a4f6a, 0xd8c7b0];
