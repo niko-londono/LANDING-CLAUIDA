@@ -92,3 +92,14 @@ Las 9 claves del recorrido (`trabajo/claves`) ya existen en WebP dentro de la se
 - Paralaje: CSS scroll-driven (`scroll(root)` en las capas de la portada, `view()` en `.deriva`, el plano y el riel del proceso) que corre fuera del hilo principal; respaldo con un solo rAF en main.js. En la portada, además, profundidad con el ratón suavizada (lerp), solo con puntero fino y sin movimiento reducido.
 - La escena se recorta por abajo: el borde inferior hace de suelo y las capas lejanas se hunden tras él.
 - Skills: impeccable, ui-ux-pro-max (paleta y fuentes; su propuesta negro + dorado se descartó por fría), animate (capas, curvas, movimiento reducido).
+
+## Cafetería Sostenible: recorrido por pasos (2026-11-08)
+
+- El vídeo dura 2:40 y en 500-750vh de scroll la cámara corría demasiado. La página pasa a un **recorrido por pasos** (`.hero--pasos` + `assets/js/recorrido-pasos.js`): una pantalla fija con 9 paradas en el orden del vídeo (entrada, área de comida, comedor, terraza, bancos curvos, vegetación, reciclaje y luz, árboles solares, conjunto).
+- Cada gesto (rueda, trackpad, dedo o teclado) avanza una parada; mientras la cámara viaja se ignoran los gestos. Un gesto es una ráfaga de eventos sin pausas de más de 220 ms, así que la inercia del trackpad no salta paradas.
+- Viaje de cámara: rAF que recorre los fotogramas intermedios con la curva `--ease-in-out` (cubic-bezier 0.77, 0, 0.175, 1); dura entre 1,3 y 3,4 s según la distancia.
+- Datos de la memoria de grado en una tarjeta por parada: salen en 450 ms al empezar el viaje y entran escalonados (80 ms, con un desenfoque de 4 px) al 72 % del viaje, cuando la cámara ya frena.
+- En la última parada el siguiente gesto suelta el scroll normal (galería, ficha, cierre); al volver arriba del todo, el recorrido se retoma hacia atrás. El riel de la derecha permite saltar a cualquier parada, y hay un enlace "Saltar recorrido".
+- Se quitan los capítulos a pantalla completa porque repetían lo que ahora cuenta el recorrido.
+- Movimiento reducido: la cámara salta a la parada y los datos solo aparecen y desaparecen.
+- Skills: animate, animation-performance, mobile-native.

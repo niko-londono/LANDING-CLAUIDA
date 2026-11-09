@@ -26,7 +26,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 
   <link rel="preload" as="image" href="/assets/proyectos/cafeteria-sostenible/escritorio/poster.webp">
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20261108d">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20261108e">
   <!-- Marca que hay JS antes de pintar, para ocultar lo que se revelará con el scroll -->
   <script>document.documentElement.classList.add("js");</script>
 </head>
@@ -40,7 +40,7 @@
     </button>
     <nav class="menu" id="menu" aria-label="Principal">
       <a href="/#portafolio" style="--i: 0">Portafolio</a>
-      <a href="#espacios" style="--i: 1">Espacios</a>
+      <a href="#galeria" style="--i: 1">Galería</a>
       <a href="#ficha" style="--i: 2">Ficha</a>
       <a href="/#contacto" class="boton boton--pequeno" style="--i: 3">Contacto</a>
     </nav>
@@ -48,102 +48,137 @@
 
   <main>
 
-    <!-- ============ HERO · recorrido con scroll (240 fotogramas, más largo que el de Casa Roble) ============ -->
-    <section class="hero hero--largo" id="inicio" aria-label="Recorrido por la Cafetería Sostenible" style="--poster: url(/assets/proyectos/cafeteria-sostenible/escritorio/poster.webp); --poster-movil: url(/assets/proyectos/cafeteria-sostenible/movil/poster.webp)">
+    <!-- ============ HERO · recorrido por pasos ============
+         Cada gesto de scroll lleva a la siguiente parada (data-fotograma, en el orden del vídeo).
+         Lo controla assets/js/recorrido-pasos.js. Los datos salen de la memoria de grado. -->
+    <section class="hero hero--pasos" id="inicio" aria-label="Recorrido por la Cafetería Sostenible" style="--poster: url(/assets/proyectos/cafeteria-sostenible/escritorio/poster.webp); --poster-movil: url(/assets/proyectos/cafeteria-sostenible/movil/poster.webp)">
       <div class="hero__fijo">
-        <canvas class="hero__lienzo" id="lienzo" data-base="/assets/proyectos/cafeteria-sostenible" aria-hidden="true"></canvas>
+        <canvas class="hero__lienzo" data-base="/assets/proyectos/cafeteria-sostenible" aria-hidden="true"></canvas>
         <div class="hero__velo" aria-hidden="true"></div>
 
-        <div class="hero__texto hero__texto--portada" data-desde="0" data-hasta="0.1">
-          <p class="etiqueta">Proyecto · Espacio gastronómico</p>
+        <!-- 01 · Entrada -->
+        <article class="paso paso--portada" data-fotograma="1">
+          <p class="etiqueta" style="--i: 0">Proyecto · Espacio gastronómico</p>
           <h1 class="titular" aria-label="Cafetería Sostenible"><span class="palabra" aria-hidden="true"><span>Cafetería</span></span> <span class="palabra" aria-hidden="true"><span>Sostenible</span></span></h1>
-          <p class="hero__bajada">Un lugar para comer, estudiar y descansar en el campus. Desliza para recorrerla.</p>
-        </div>
+          <p class="paso__texto" style="--i: 2">Una cafetería para el bloque A de la PUCMM, Campus Santo Domingo: un lugar para comer, estudiar y descansar sin tener que cruzar dos avenidas.</p>
+          <dl class="cifras" style="--i: 3">
+            <div><dt>Personas sentadas</dt><dd>246</dd></div>
+            <div><dt>Del campus usa el bloque A</dt><dd>40 %</dd></div>
+            <div><dt>Proyecto de grado</dt><dd>2022</dd></div>
+          </dl>
+        </article>
 
-        <!-- Riel del recorrido: dónde estás y cuánto queda -->
-        <div class="recorrido" aria-hidden="true">
-          <div class="recorrido__riel"><span class="recorrido__relleno"></span></div>
-          <ol class="recorrido__paradas">
-            <li style="--en: 0" data-desde="0">Entrada</li>
-            <li style="--en: 0.08" data-desde="0.08">Interior</li>
-            <li style="--en: 0.27" data-desde="0.27">Terraza</li>
-            <li style="--en: 0.84" data-desde="0.84">Vista aérea</li>
+        <!-- 02 · Área de comida -->
+        <article class="paso" data-fotograma="13">
+          <p class="etiqueta" style="--i: 0">02 · Área de comida</p>
+          <h2 style="--i: 1">Todo el servicio en una sola línea</h2>
+          <p class="paso__texto" style="--i: 2">Heladería, buffet de comida rápida y zona de microondas, con rutas de entrada y salida separadas para que nadie se cruce con la bandeja en la mano.</p>
+          <dl class="cifras" style="--i: 3">
+            <div><dt>Zonas de servicio</dt><dd>3</dd></div>
+            <div><dt>Rutas: entrada y salida</dt><dd>2</dd></div>
+          </dl>
+        </article>
+
+        <!-- 03 · Comedor interior -->
+        <article class="paso" data-fotograma="41">
+          <p class="etiqueta" style="--i: 0">03 · Comedor interior</p>
+          <h2 style="--i: 1">Techo de bambú, suelo de palets</h2>
+          <p class="paso__texto" style="--i: 2">Varas de bambú natural de 7 cm sobre perfiles de aluminio, y un suelo hecho con palets desarmados, lijados y barnizados sin plomo ni mercurio.</p>
+          <dl class="cifras" style="--i: 3">
+            <div><dt>Techo de bambú</dt><dd>142 m²</dd></div>
+            <div><dt>Suelo de palets</dt><dd>60 m²</dd></div>
+            <div><dt>Personas</dt><dd>106</dd></div>
+          </dl>
+        </article>
+
+        <!-- 04 · Terraza -->
+        <article class="paso" data-fotograma="61">
+          <p class="etiqueta" style="--i: 0">04 · Terraza</p>
+          <h2 style="--i: 1">Un suelo que deja pasar la lluvia</h2>
+          <p class="paso__texto" style="--i: 2">Adoquín permeable y hormigón ranurado forman un sistema urbano de drenaje sostenible: el agua vuelve al terreno en lugar de correr hacia la alcantarilla.</p>
+          <dl class="cifras" style="--i: 3">
+            <div><dt>Suelo exterior permeable</dt><dd>342 m²</dd></div>
+            <div><dt>Césped bermuda, de poco riego</dt><dd>45 m²</dd></div>
+          </dl>
+        </article>
+
+        <!-- 05 · Bancos curvos -->
+        <article class="paso" data-fotograma="89">
+          <p class="etiqueta" style="--i: 0">05 · Bancos curvos</p>
+          <h2 style="--i: 1">Asientos para quedarse</h2>
+          <p class="paso__texto" style="--i: 2">Piezas de bambú atornilladas a una estructura de acero, con jardineras de concreto y sansevierias que limpian el aire alrededor.</p>
+          <dl class="cifras" style="--i: 3">
+            <div><dt>Personas en la terraza</dt><dd>140</dd></div>
+            <div><dt>Tipos de asiento</dt><dd>5</dd></div>
+          </dl>
+        </article>
+
+        <!-- 06 · Vegetación -->
+        <article class="paso" data-fotograma="117">
+          <p class="etiqueta" style="--i: 0">06 · Vegetación</p>
+          <h2 style="--i: 1">Plantas que purifican el aire</h2>
+          <p class="paso__texto" style="--i: 2">Palma areca, monstera, heliconia, hiedra, sansevieria, bambú y palmera Alexander: especies tropicales que filtran formaldehído y benceno y absorben CO₂.</p>
+          <dl class="cifras" style="--i: 3">
+            <div><dt>Especies</dt><dd>7</dd></div>
+            <div><dt>Riego del bambú, ya arraigado</dt><dd>0</dd></div>
+          </dl>
+        </article>
+
+        <!-- 07 · Reciclaje y luz -->
+        <article class="paso" data-fotograma="137">
+          <p class="etiqueta" style="--i: 0">07 · Reciclaje y luz</p>
+          <h2 style="--i: 1">Reciclar a la vista de todos</h2>
+          <p class="paso__texto" style="--i: 2">Puntos de reciclaje en el comedor y un cuarto de residuos aparte. Toda la iluminación es LED, y el plafón de la cocina refleja casi toda la luz, así que bastan menos lámparas.</p>
+          <dl class="cifras" style="--i: 3">
+            <div><dt>Ahorro con LED</dt><dd>80 %</dd></div>
+            <div><dt>Luz que refleja el plafón</dt><dd>89 %</dd></div>
+          </dl>
+        </article>
+
+        <!-- 08 · Árboles solares -->
+        <article class="paso" data-fotograma="213">
+          <p class="etiqueta" style="--i: 0">08 · Energía solar</p>
+          <h2 style="--i: 1">Árboles que recogen el sol</h2>
+          <p class="paso__texto" style="--i: 2">Estructuras de acero con paneles solares en la copa y entre 6 y 11 ramas con LED. De día dan sombra; de noche iluminan la terraza con la energía del día.</p>
+          <dl class="cifras" style="--i: 3">
+            <div><dt>Altura</dt><dd>5 m</dd></div>
+            <div><dt>Carga máxima</dt><dd>108 W</dd></div>
+            <div><dt>Ahorro</dt><dd>90 %</dd></div>
+          </dl>
+        </article>
+
+        <!-- 09 · Vista final -->
+        <article class="paso paso--final" data-fotograma="240">
+          <p class="etiqueta" style="--i: 0">09 · El conjunto</p>
+          <h2 style="--i: 1">Comer, estudiar, descansar</h2>
+          <p class="paso__texto" style="--i: 2">Un espacio que responde a la demanda del campus con materiales locales y reciclados, agua de lluvia que vuelve a la tierra y energía del sol.</p>
+          <div class="paso__acciones" style="--i: 3">
+            <a href="/#contacto" class="boton">Hablemos de tu proyecto</a>
+            <a href="#galeria" class="enlace-flecha">Seguir bajando <svg class="flecha" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+        <!-- Riel: dónde estás y saltar a una parada -->
+        <nav class="pasos-nav" aria-label="Paradas del recorrido">
+          <div class="pasos-nav__riel" aria-hidden="true"><span class="pasos-nav__relleno"></span></div>
+          <ol>
+            <li><button class="pasos-nav__punto" type="button" aria-current="step"><span>Entrada</span></button></li>
+            <li><button class="pasos-nav__punto" type="button"><span>Comida</span></button></li>
+            <li><button class="pasos-nav__punto" type="button"><span>Comedor</span></button></li>
+            <li><button class="pasos-nav__punto" type="button"><span>Terraza</span></button></li>
+            <li><button class="pasos-nav__punto" type="button"><span>Bancos</span></button></li>
+            <li><button class="pasos-nav__punto" type="button"><span>Plantas</span></button></li>
+            <li><button class="pasos-nav__punto" type="button"><span>Reciclaje</span></button></li>
+            <li><button class="pasos-nav__punto" type="button"><span>Sol</span></button></li>
+            <li><button class="pasos-nav__punto" type="button"><span>Conjunto</span></button></li>
           </ol>
-        </div>
-        <div class="hero__texto hero__texto--lado" data-desde="0.1" data-hasta="0.25">
-          <p class="etiqueta">Interior</p>
-          <h2>Techo de bambú y suelo de palets recuperados</h2>
-        </div>
-        <div class="hero__texto hero__texto--lado" data-desde="0.3" data-hasta="0.56">
-          <p class="etiqueta">Terraza</p>
-          <h2>Sombra, vegetación y bancos curvos de bambú</h2>
-        </div>
-        <div class="hero__texto" data-desde="0.86" data-hasta="1.01">
-          <p class="etiqueta">Vista aérea</p>
-          <h2>Árboles solares que dan sombra y luz</h2>
-          <a href="/#contacto" class="boton">Hablemos de tu proyecto</a>
-        </div>
+        </nav>
+
+        <p class="pasos-contador" aria-hidden="true"><span class="pasos-contador__actual">01</span> / 09</p>
+        <p class="pasos-pista" aria-hidden="true">Desliza para avanzar</p>
+        <a class="pasos-saltar" href="#galeria">Saltar recorrido</a>
       </div>
     </section>
-
-    <!-- ============ ESPACIOS · capítulos a pantalla completa ============ -->
-    <div id="espacios">
-      <section class="capitulo" aria-labelledby="cap-interior">
-        <figure class="capitulo__fondo">
-          <picture>
-            <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/movil/720/frame_0039.webp 720w, /assets/proyectos/cafeteria-sostenible/movil/1080/frame_0039.webp 1080w">
-            <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/escritorio/960/frame_0039.webp 960w, /assets/proyectos/cafeteria-sostenible/escritorio/1920/frame_0039.webp 1920w" src="/assets/proyectos/cafeteria-sostenible/escritorio/960/frame_0039.webp" width="1920" height="1080" alt="Comedor interior bajo un techo de varas de bambú, con suelo de madera de palets y mesas abiertas a la terraza" loading="lazy" decoding="async">
-          </picture>
-        </figure>
-        <div class="capitulo__tarjeta aparecer">
-          <p class="etiqueta">01 · Comedor interior</p>
-          <h2 id="cap-interior">Materiales que tuvieron otra vida</h2>
-          <p>142 m² de techo con varas de bambú natural, suelo hecho con palets desarmados y lijados, y bancos de palets con jardinera. Caben 106 personas.</p>
-        </div>
-      </section>
-
-      <section class="capitulo capitulo--derecha" aria-labelledby="cap-servicio">
-        <figure class="capitulo__fondo">
-          <picture>
-            <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/movil/720/frame_0014.webp 720w, /assets/proyectos/cafeteria-sostenible/movil/1080/frame_0014.webp 1080w">
-            <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/escritorio/960/frame_0014.webp 960w, /assets/proyectos/cafeteria-sostenible/escritorio/1920/frame_0014.webp 1920w" src="/assets/proyectos/cafeteria-sostenible/escritorio/960/frame_0014.webp" width="1920" height="1080" alt="Heladería con frente granate junto al mostrador del buffet y una jardinera de madera" loading="lazy" decoding="async">
-          </picture>
-        </figure>
-        <div class="capitulo__tarjeta aparecer">
-          <p class="etiqueta">02 · Servicio</p>
-          <h2 id="cap-servicio">Un recorrido claro, de la entrada a la mesa</h2>
-          <p>Heladería, buffet de comida rápida y zona de microondas en línea, con rutas de entrada y salida separadas para que nadie se cruce con la bandeja en la mano.</p>
-        </div>
-      </section>
-
-      <section class="capitulo" aria-labelledby="cap-terraza">
-        <figure class="capitulo__fondo">
-          <picture>
-            <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/movil/720/frame_0102.webp 720w, /assets/proyectos/cafeteria-sostenible/movil/1080/frame_0102.webp 1080w">
-            <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/escritorio/960/frame_0102.webp 960w, /assets/proyectos/cafeteria-sostenible/escritorio/1920/frame_0102.webp 1920w" src="/assets/proyectos/cafeteria-sostenible/escritorio/960/frame_0102.webp" width="1920" height="1080" alt="Terraza con un largo banco curvo de bambú, mesas blancas y un árbol solar" loading="lazy" decoding="async">
-          </picture>
-        </figure>
-        <div class="capitulo__tarjeta aparecer">
-          <p class="etiqueta">03 · Terraza</p>
-          <h2 id="cap-terraza">Una terraza para quedarse</h2>
-          <p>Bancos curvos de bambú sobre acero con jardineras de sansevieria, mesas con sombrilla y palmeras. Caben 140 personas, y el adoquín permeable devuelve la lluvia al suelo.</p>
-        </div>
-      </section>
-
-      <section class="capitulo capitulo--derecha" aria-labelledby="cap-solar">
-        <figure class="capitulo__fondo">
-          <picture>
-            <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/movil/720/frame_0227.webp 720w, /assets/proyectos/cafeteria-sostenible/movil/1080/frame_0227.webp 1080w">
-            <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/escritorio/960/frame_0227.webp 960w, /assets/proyectos/cafeteria-sostenible/escritorio/1920/frame_0227.webp 1920w" src="/assets/proyectos/cafeteria-sostenible/escritorio/960/frame_0227.webp" width="1920" height="1080" alt="Vista aérea de la terraza con árboles solares, bancos curvos y mesas" loading="lazy" decoding="async">
-          </picture>
-        </figure>
-        <div class="capitulo__tarjeta aparecer">
-          <p class="etiqueta">04 · Energía</p>
-          <h2 id="cap-solar">Árboles que recogen el sol</h2>
-          <p>Estructuras de acero de 5 metros con paneles solares en la copa y ramas de LED. De día dan sombra; de noche iluminan la terraza con la energía del día.</p>
-        </div>
-      </section>
-    </div>
 
     <!-- ============ GALERÍA · mosaico con profundidad ============ -->
     <section class="seccion proyectos" id="galeria">
@@ -235,5 +270,6 @@
   <script src="/assets/proyectos/cafeteria-sostenible/escritorio/manifest.js"></script>
   <script src="/assets/proyectos/cafeteria-sostenible/movil/manifest.js"></script>
   <script src="/assets/js/main.js?v=20261108c" defer></script>
+  <script src="/assets/js/recorrido-pasos.js?v=20261108" defer></script>
 </body>
 </html>

@@ -274,8 +274,6 @@ button, .boton, .menu a, .marca {
 
 /* ---------- Hero con secuencia ---------- */
 .hero { position: relative; height: 500vh; }
-/* Recorridos con más fotogramas (vídeos largos): más scroll para que no corra */
-.hero--largo { height: 750vh; }
 .hero__fijo {
   position: sticky;
   top: 0;
@@ -426,6 +424,221 @@ button, .boton, .menu a, .marca {
 .hero__texto--lado h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); margin: 0; }
 .hero__texto--lado .etiqueta { margin-bottom: 0.75rem; }
 .hero__bajada { color: var(--color-texto-suave); }
+
+/* =========================================================
+   RECORRIDO POR PASOS (.hero--pasos, assets/js/recorrido-pasos.js)
+   Una pantalla fija; cada gesto lleva a la siguiente parada.
+   Los datos salen al irse la cámara y entran cuando frena.
+   ========================================================= */
+.hero--pasos { height: 100vh; height: 100svh; }
+/* Sin "tirar para recargar" mientras el dedo maneja el recorrido */
+html:has(.hero--pasos) { overscroll-behavior-y: none; }
+
+.paso {
+  position: absolute;
+  left: calc(var(--margen) + env(safe-area-inset-left, 0px));
+  bottom: calc(9vh + env(safe-area-inset-bottom, 0px));
+  width: min(31rem, calc(100% - 2 * var(--margen) - 2.5rem));
+  padding: clamp(1.4rem, 2.6vw, 2.1rem);
+  background: var(--material-claro);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  backdrop-filter: blur(16px) saturate(150%);
+  border-radius: var(--radio);
+  box-shadow: 0 20px 60px -30px rgba(29, 27, 25, 0.45);
+  /* Salida: rápida y sin estorbar al viaje de la cámara */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(14px);
+  transition:
+    opacity 450ms var(--ease-out),
+    transform 450ms var(--ease-out),
+    visibility 0s linear 450ms;
+}
+.paso.activo {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity 800ms var(--ease-out), transform 800ms var(--ease-out), visibility 0s;
+}
+/* Cada línea entra por separado: etiqueta, título, texto, cifras */
+.paso > :not(.titular) {
+  opacity: 0;
+  transform: translateY(10px);
+  filter: blur(4px);
+  transition: opacity 300ms var(--ease-out), transform 300ms var(--ease-out), filter 300ms var(--ease-out);
+}
+.paso.activo > :not(.titular) {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+  transition-duration: 800ms;
+  transition-delay: calc(120ms + var(--i, 0) * 80ms);
+}
+.paso .etiqueta { margin-bottom: 0.8rem; }
+.paso h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin: 0 0 0.75rem; }
+.paso__texto { margin: 0; color: var(--color-texto-suave); }
+.paso__acciones { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: 1.5rem; }
+
+/* Portada: sin tarjeta, sobre el velo lateral; el titular sube palabra a palabra */
+.paso--portada {
+  top: 18vh;
+  bottom: auto;
+  width: min(44rem, calc(100% - 2 * var(--margen) - 2.5rem));
+  padding: 0;
+  background: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+.paso--portada .paso__texto { max-width: 30rem; font-size: 1.0625rem; margin-top: 1.25rem; }
+.paso--portada.activo .titular .palabra > span { transform: none; }
+
+/* Cifras clave de cada parada */
+.cifras {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem 2.25rem;
+  margin: 1.25rem 0 0;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--color-linea);
+}
+.cifras div { display: flex; flex-direction: column-reverse; }
+.cifras dd {
+  margin: 0;
+  font-family: var(--fuente-titulo);
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  line-height: 1;
+}
+.cifras dt {
+  margin-top: 0.4rem;
+  max-width: 9.5rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: var(--color-texto-suave);
+}
+
+/* Riel de paradas: cada punto es un botón para saltar a esa parada */
+.pasos-nav {
+  position: absolute;
+  right: calc(var(--margen) + env(safe-area-inset-right, 0px));
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 600ms var(--ease-out) 600ms;
+}
+.hero.listo .pasos-nav { opacity: 1; }
+.pasos-nav ol { list-style: none; margin: 0; padding: 0; }
+.pasos-nav__riel {
+  position: absolute;
+  right: 3px; top: 0.8rem; bottom: 0.8rem;
+  width: 1px;
+  background: rgba(42, 38, 34, 0.18);
+}
+.pasos-nav__relleno {
+  position: absolute; inset: 0;
+  background: var(--color-texto);
+  transform-origin: top;
+  transform: scaleY(0);
+  transition: transform 900ms var(--ease-in-out);
+}
+.pasos-nav__punto {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.85rem;
+  height: 1.6rem;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-texto);
+  text-shadow: 0 0 10px rgba(244, 239, 232, 0.95), 0 0 2px rgba(244, 239, 232, 0.9);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.pasos-nav__punto span { opacity: 0.55; transition: opacity 250ms ease; }
+.pasos-nav__punto::after {
+  content: "";
+  flex: none;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--color-fondo);
+  box-shadow: 0 0 0 1px var(--color-texto);
+  transition: background-color 250ms ease, transform 250ms var(--ease-out);
+}
+.pasos-nav__punto[aria-current] span { opacity: 1; }
+.pasos-nav__punto[aria-current]::after { background: var(--color-texto); transform: scale(1.3); }
+.pasos-nav__punto:active::after { transform: scale(0.85); }
+@media (hover: hover) and (pointer: fine) {
+  .pasos-nav__punto:hover span { opacity: 1; }
+}
+
+.pasos-contador,
+.pasos-pista,
+.pasos-saltar {
+  position: absolute;
+  bottom: calc(2.5vh + env(safe-area-inset-bottom, 0px));
+  margin: 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-texto);
+  text-shadow: 0 0 10px rgba(244, 239, 232, 0.95);
+}
+.pasos-contador { right: calc(var(--margen) + env(safe-area-inset-right, 0px)); font-variant-numeric: tabular-nums; }
+.pasos-pista {
+  left: 50%;
+  translate: -50% 0;
+  opacity: 0;
+  transition: opacity 600ms var(--ease-out);
+}
+.hero.listo:not(.dentro) .pasos-pista { opacity: 0.7; }
+.pasos-saltar {
+  left: calc(var(--margen) + env(safe-area-inset-left, 0px));
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 250ms ease;
+}
+.hero.al-final .pasos-saltar { opacity: 0; pointer-events: none; }
+@media (hover: hover) and (pointer: fine) {
+  .pasos-saltar:hover { opacity: 1; }
+}
+
+@media (max-width: 760px) {
+  .paso { bottom: calc(6.5vh + env(safe-area-inset-bottom, 0px)); padding: 1.25rem 1.3rem; }
+  .paso h2 { font-size: 1.65rem; }
+  .paso__texto { font-size: 0.95rem; }
+  /* En vertical la foto no deja hueco limpio: la portada también va en tarjeta */
+  .paso--portada {
+    top: auto;
+    bottom: calc(6.5vh + env(safe-area-inset-bottom, 0px));
+    padding: 1.25rem 1.3rem;
+    background: var(--material-claro);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    backdrop-filter: blur(16px) saturate(150%);
+    box-shadow: 0 20px 60px -30px rgba(29, 27, 25, 0.45);
+  }
+  .paso--portada .titular { font-size: 2.6rem; }
+  .paso--portada .paso__texto { font-size: 0.95rem; margin-top: 0.9rem; }
+  /* Las cifras en una sola fila, para que la tarjeta no tape media pantalla */
+  .cifras { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 1rem; margin-top: 1rem; padding-top: 0.9rem; }
+  .cifras dd { font-size: 1.55rem; }
+  .cifras dt { font-size: 0.68rem; }
+  .pasos-nav__punto { height: 1.4rem; }
+  .pasos-nav__punto span { font-size: 0; }
+  .pasos-pista { display: none; }
+}
+
+/* Movimiento reducido: los datos solo aparecen y desaparecen, sin desplazarse */
+@media (prefers-reduced-motion: reduce) {
+  .paso, .paso > :not(.titular) { transform: none; filter: none; }
+}
 
 /* =========================================================
    PARALAJE
