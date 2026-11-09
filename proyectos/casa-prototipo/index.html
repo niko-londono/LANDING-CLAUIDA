@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Casa prototipo · Claudia, diseño de interiores</title>
+  <meta name="description" content="Casa prototipo: recorrido con scroll por una vivienda de madera, piedra y vidrio, del exterior a la chimenea del salón. Proyecto de Claudia, diseño de interiores.">
+  <meta name="theme-color" content="#f2ece3">
+  <meta name="color-scheme" content="light">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/assets/img/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/img/favicon/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Casa prototipo · Claudia, diseño de interiores">
+  <meta property="og:description" content="Una vivienda de madera, piedra y vidrio, recorrida del exterior a la chimenea.">
+  <meta property="og:image" content="/assets/proyectos/casa-prototipo/escritorio/poster.webp">
+  <meta property="og:type" content="website">
+
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="preload" as="image" href="/assets/proyectos/casa-prototipo/escritorio/poster.webp">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20261109b">
+  <!-- Marca que hay JS antes de pintar, para ocultar lo que se revelará con el scroll -->
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+
+  <!-- ============ CABECERA ============ -->
+  <header class="cabecera" id="cabecera">
+    <a href="/" class="marca" aria-label="Claudia, inicio">Claudia<span>interiores</span></a>
+    <button class="menu-boton" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
+      <span></span><span></span>
+    </button>
+    <nav class="menu" id="menu" aria-label="Principal">
+      <a href="/#portafolio" style="--i: 0">Portafolio</a>
+      <a href="#galeria" style="--i: 1">Galería</a>
+      <a href="#ficha" style="--i: 2">Ficha</a>
+      <a href="/#contacto" class="boton boton--pequeno" style="--i: 3">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============ HERO · recorrido con datos ============
+         Secuencia de 314 fotogramas que une dos vídeos: el vuelo desde la vista
+         aérea hasta el salón de día y, tras un fundido de 0,6 s, el mismo salón
+         al atardecer hasta la chimenea. Scroll libre; cada tarjeta entra en su
+         zona (data-fotograma). Lo controla assets/js/recorrido-pasos.js.
+         La sección mide 1050vh (la Cafetería, con 360 fotogramas, 1200vh):
+         unos 30 fotogramas por pantalla en las dos. -->
+    <section class="hero hero--pasos" id="inicio" aria-label="Recorrido por la Casa prototipo" style="height: 1050vh; --poster: url(/assets/proyectos/casa-prototipo/escritorio/poster.webp); --poster-movil: url(/assets/proyectos/casa-prototipo/movil/poster.webp)">
+      <div class="hero__fijo">
+        <canvas class="hero__lienzo" data-base="/assets/proyectos/casa-prototipo" aria-hidden="true"></canvas>
+        <div class="hero__velo" aria-hidden="true"></div>
+
+        <article class="paso paso--portada" data-fotograma="1">
+          <p class="etiqueta" style="--i: 0">Proyecto · Vivienda</p>
+          <h1 class="titular" aria-label="Casa prototipo"><span class="palabra" aria-hidden="true"><span>Casa</span></span> <span class="palabra" aria-hidden="true"><span><em>prototipo</em></span></span></h1>
+          <p class="paso__texto" style="--i: 2">Una casa de dos plantas en una esquina de la ciudad: madera, piedra y vidrio alrededor de una terraza con piscina. Un modelo pensado para repetirse en otros solares sin perder calidez.</p>
+          <dl class="cifras" style="--i: 3">
+            <div><dt>Plantas</dt><dd>2</dd></div>
+            <div><dt>Superficie construida</dt><dd>210 m²</dd></div>
+            <div><dt>Paneles solares</dt><dd>10</dd></div>
+          </dl>
+        </article>
+
+        <article class="paso" data-fotograma="30">
+          <p class="etiqueta" style="--i: 0">02 · Fachada</p>
+          <h2 style="--i: 1">Madera, piedra y una rampa para todos</h2>
+          <p class="paso__texto" style="--i: 2">Revestimiento de madera termotratada sobre un zócalo de piedra local. Al acceso se llega por una rampa suave con pasamanos iluminado, y el voladizo del balcón protege la entrada de la lluvia.</p>
+          <dl class="cifras" style="--i: 3">
+            <div><dt>Pendiente de la rampa</dt><dd>6 %</dd></div>
+            <div><dt>Terraza con piscina y BBQ</dt><dd>48 m²</dd></div>
+          </dl>
+        </article>
+
+        <article class="paso" data-fotograma="55">
+          <p class="etiqueta" style="--i: 0">03 · Entrada</p>
+          <h2 style="--i: 1">Una puerta que deja ver la casa</h2>
+          <p class="paso__texto" style="--i: 2">Dos hojas de vidrio con marco grafito: desde fuera ya se adivinan el salón y la cocina. La luz del interior es la primera bienvenida.</p>
+          <dl class="cifras" style="--i: 3">
+            <div><dt>Hojas acristaladas</dt><dd>2</dd></div>
+            <div><dt>Altura de paso</dt><dd>2,4 m</dd></div>
+          </dl>
+        </article>
+
+        <article class="paso" data-fotograma="78">
+          <p class="etiqueta" style="--i: 0">04 · Salón de día</p>
+          <h2 style="--i: 1">Un salón abierto a la luz</h2>
+          <p class="paso__texto" style="--i: 2">Ventanales de suelo a techo en dos lados, líneas de luz empotradas en el techo y roble claro en el suelo. Un sofá modular en L ordena la zona de estar sin cerrarla.</p>
+          <dl class="cifras" style="--i: 3">
+            <div><dt>Altura libre</dt><dd>3 m</dd></div>
+            <div><dt>Ventanales de suelo a techo</dt><dd>4</dd></div>
+          </dl>
+        </article>
+
+        <article class="paso" data-fotograma="118">
+          <p class="etiqueta" style="--i: 0">05 · Comedor y cocina</p>
+          <h2 style="--i: 1">Una mesa para diez y una isla de mármol</h2>
+          <p class="paso__texto" style="--i: 2">La mesa de madera maciza conecta el salón con la cocina. La isla de mármol veteado hace de barra, y los electrodomésticos se esconden en columnas blancas.</p>
+          <dl class="cifras" style="--i: 3">
+            <div><dt>Comensales</dt><dd>10</dd></div>
+            <div><dt>Largo de la isla</dt><dd>3,2 m</dd></div>
+          </dl>
+        </article>
+
+        <article class="paso" data-fotograma="158">
+          <p class="etiqueta" style="--i: 0">06 · Cae la tarde</p>
+          <h2 style="--i: 1">La misma casa, otra luz</h2>
+          <p class="paso__texto" style="--i: 2">Al atardecer manda la iluminación indirecta: lámparas colgantes sobre la mesa y tiras LED cálidas. Los blancos se vuelven tostados y el espacio se recoge.</p>
+          <dl class="cifras" style="--i: 3">
+            <div><dt>Temperatura de color</dt><dd>2700 K</dd></div>
+            <div><dt>Escenas de luz</dt><dd>3</dd></div>
+          </dl>
+        </article>
+
+        <article class="paso" data-fotograma="205">
+          <p class="etiqueta" style="--i: 0">07 · Salón y chimenea</p>
+          <h2 style="--i: 1">Un muro que reúne</h2>
+          <p class="paso__texto" style="--i: 2">Un paño de piedra oscura de suelo a techo integra la televisión y una chimenea lineal de bioetanol. Leñero a la vista, cortinas de lino y butacas para alargar la sobremesa.</p>
+          <dl class="cifras" style="--i: 3">
+            <div><dt>Chimenea lineal</dt><dd>1,8 m</dd></div>
+            <div><dt>Muro de piedra</dt><dd>4,2 m</dd></div>
+          </dl>
+        </article>
+
+        <article class="paso paso--final" data-fotograma="314">
+          <p class="etiqueta" style="--i: 0">08 · El conjunto</p>
+          <h2 style="--i: 1">Hecha para vivirla</h2>
+          <p class="paso__texto" style="--i: 2">Un prototipo que equilibra luz natural, materiales cálidos y espacios abiertos, listo para adaptarse a cada familia y a cada solar.</p>
+          <div class="paso__acciones" style="--i: 3">
+            <a href="/#contacto" class="boton">Hablemos de tu casa</a>
+            <a href="#galeria" class="enlace-flecha">Seguir bajando <svg class="flecha" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
+          </div>
+        </article>
+
+        <!-- Riel: dónde estás y saltar a una parada -->
+        <nav class="pasos-nav" aria-label="Paradas del recorrido">
+          <div class="pasos-nav__riel" aria-hidden="true"><span class="pasos-nav__relleno"></span></div>
+          <ol>
+            <li><button class="pasos-nav__punto" type="button" aria-current="step"><span>Exterior</span></button></li>
+            <li><button class="pasos-nav__punto" type="button"><span>Fachada</span></button></li>
+            <li><button class="pasos-nav__punto" type="button"><span>Entrada</span></button></li>
+            <li><button class="pasos-nav__punto" type="button"><span>Salón</span></button></li>
+            <li><button class="pasos-nav__punto" type="button"><span>Cocina</span></button></li>
+            <li><button class="pasos-nav__punto" type="button"><span>Tarde</span></button></li>
+            <li><button class="pasos-nav__punto" type="button"><span>Chimenea</span></button></li>
+            <li><button class="pasos-nav__punto" type="button"><span>Conjunto</span></button></li>
+          </ol>
+        </nav>
+
+        <p class="pasos-contador" aria-hidden="true"><span class="pasos-contador__actual">01</span> / 08</p>
+        <p class="pasos-pista" aria-hidden="true">Desliza para recorrerla</p>
+        <a class="pasos-saltar" href="#galeria">Saltar recorrido</a>
+      </div>
+    </section>
+
+    <!-- ============ GALERÍA · mosaico con profundidad ============ -->
+    <section class="seccion proyectos" id="galeria">
+      <div class="contenedor">
+        <p class="etiqueta aparecer">Galería</p>
+        <h2 class="aparecer">La casa, en detalle</h2>
+        <p class="texto-largo aparecer">Un mismo lenguaje dentro y fuera: madera cálida, piedra, blancos suaves y mucha luz, de día y al caer la tarde.</p>
+
+        <div class="mosaico">
+          <figure class="mosaico__item mosaico__item--a flota-lenta">
+            <div class="foto revelar">
+              <picture>
+                <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/casa-prototipo/movil/540/frame_0001.webp 540w, /assets/proyectos/casa-prototipo/movil/720/frame_0001.webp 720w">
+                <img class="paralaje" sizes="(min-width: 860px) 60vw, 100vw" srcset="/assets/proyectos/casa-prototipo/escritorio/960/frame_0001.webp 960w, /assets/proyectos/casa-prototipo/escritorio/1280/frame_0001.webp 1280w, /assets/proyectos/casa-prototipo/escritorio/1920/frame_0001.webp 1920w" src="/assets/proyectos/casa-prototipo/escritorio/960/frame_0001.webp" width="1920" height="1080" alt="Vista aérea de la casa de madera en una esquina, con terraza, piscina y rampa de acceso" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption>Exterior · la casa en su esquina</figcaption>
+          </figure>
+
+          <figure class="mosaico__item mosaico__item--b flota-rapida">
+            <div class="foto revelar">
+              <picture>
+                <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/casa-prototipo/movil/540/frame_0140.webp 540w, /assets/proyectos/casa-prototipo/movil/720/frame_0140.webp 720w">
+                <img class="paralaje" sizes="(min-width: 860px) 35vw, 100vw" srcset="/assets/proyectos/casa-prototipo/escritorio/960/frame_0140.webp 960w, /assets/proyectos/casa-prototipo/escritorio/1280/frame_0140.webp 1280w, /assets/proyectos/casa-prototipo/escritorio/1920/frame_0140.webp 1920w" src="/assets/proyectos/casa-prototipo/escritorio/960/frame_0140.webp" width="1920" height="1080" alt="Comedor con mesa larga de madera e isla de cocina de mármol veteado" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption>Comedor · la isla de mármol</figcaption>
+          </figure>
+
+          <figure class="mosaico__item mosaico__item--c flota-media">
+            <div class="foto revelar">
+              <picture>
+                <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/casa-prototipo/movil/540/frame_0260.webp 540w, /assets/proyectos/casa-prototipo/movil/720/frame_0260.webp 720w">
+                <img class="paralaje" sizes="(min-width: 860px) 40vw, 100vw" srcset="/assets/proyectos/casa-prototipo/escritorio/960/frame_0260.webp 960w, /assets/proyectos/casa-prototipo/escritorio/1280/frame_0260.webp 1280w, /assets/proyectos/casa-prototipo/escritorio/1920/frame_0260.webp 1920w" src="/assets/proyectos/casa-prototipo/escritorio/960/frame_0260.webp" width="1920" height="1080" alt="Salón al atardecer con sofá gris frente a la chimenea lineal en un muro de piedra oscura" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption>Salón · la chimenea al atardecer</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FICHA · datos del proyecto ============ -->
+    <section class="seccion" id="ficha">
+      <div class="contenedor dos-columnas">
+        <div>
+          <p class="etiqueta aparecer">Ficha del proyecto</p>
+          <h2 class="aparecer">Un modelo que se adapta</h2>
+          <p class="texto-largo aparecer">La Casa prototipo reúne en una sola vivienda lo que más piden las familias: un exterior para disfrutar, una planta baja abierta y un salón que se transforma cuando cae la tarde. Su diseño modular permite ajustarla a otros solares y presupuestos.</p>
+        </div>
+        <dl class="ficha aparecer">
+          <div><dt>Tipo</dt><dd>Vivienda unifamiliar · Prototipo replicable</dd></div>
+          <div><dt>Superficie</dt><dd>210 m² construidos en dos plantas · 48 m² de terraza</dd></div>
+          <div><dt>Exterior</dt><dd>Piscina, área de BBQ, rampa accesible y jardinera con árboles</dd></div>
+          <div><dt>Materiales</dt><dd>Madera termotratada, piedra natural, roble claro, mármol veteado y piedra oscura</dd></div>
+          <div><dt>Luz</dt><dd>Ventanales de suelo a techo, líneas LED empotradas e iluminación cálida de tarde</dd></div>
+          <div><dt>Energía</dt><dd>Paneles solares en la cubierta</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============ CIERRE · siguiente paso ============ -->
+    <section class="seccion contacto cierre" id="cierre">
+      <figure class="contacto__fondo" aria-hidden="true">
+        <picture>
+                <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/casa-prototipo/movil/540/frame_0314.webp 540w, /assets/proyectos/casa-prototipo/movil/720/frame_0314.webp 720w">
+                <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/proyectos/casa-prototipo/escritorio/960/frame_0314.webp 960w, /assets/proyectos/casa-prototipo/escritorio/1280/frame_0314.webp 1280w, /assets/proyectos/casa-prototipo/escritorio/1920/frame_0314.webp 1920w" src="/assets/proyectos/casa-prototipo/escritorio/960/frame_0314.webp" width="1920" height="1080" alt="" loading="lazy" decoding="async">
+              </picture>
+      </figure>
+      <div class="contenedor cierre__contenido">
+        <h2 class="aparecer">¿Te imaginas tu casa así?</h2>
+        <p class="aparecer">Cuéntame cómo vives y la diseñamos a tu medida, del exterior a la chimenea.</p>
+        <div class="cierre__acciones aparecer">
+          <a href="/#contacto" class="boton">Hablemos de tu espacio</a>
+          <a href="/#portafolio" class="enlace-flecha">Ver más proyectos <svg class="flecha" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor pie__fila">
+      <span>© <span id="anio">2026</span> Claudia Hernández · Diseño de interiores</span>
+      <a href="/#portafolio">Ver más proyectos</a>
+    </div>
+  </footer>
+
+  <script src="/assets/proyectos/casa-prototipo/escritorio/manifest.js"></script>
+  <script src="/assets/proyectos/casa-prototipo/movil/manifest.js"></script>
+  <script src="/assets/js/main.js?v=20261109b" defer></script>
+  <script src="/assets/js/recorrido-pasos.js?v=20261108d" defer></script>
+</body>
+</html>

@@ -34,6 +34,7 @@ function azar(semilla) {
 }
 
 const caja = new THREE.BoxGeometry(1, 1, 1).translate(0, 0.5, 0); // base en y = 0
+const cajaCentrada = new THREE.BoxGeometry(1, 1, 1);
 
 const mat = (color, extra = {}) => new THREE.MeshStandardMaterial({ color, roughness: 0.92, metalness: 0, ...extra });
 const MATERIALES = {
@@ -115,6 +116,35 @@ const FORMAS = {
       g.add(bloque(MATERIALES.madera, 1, 2, 0.15, x, 0, z + 2.25));
     }
     return 4.4;
+  },
+  // Casa prototipo: dos plantas de madera sobre zócalo de piedra, tejado a dos
+  // aguas con paneles solares, balcón y terraza con piscina
+  "casa-madera"(g) {
+    g.add(bloque(MATERIALES.piedra, 6, 1, 4.6, -1.6, 0, -1.6));
+    g.add(bloque(MATERIALES.madera, 6, 4.6, 4.6, -1.6, 1, -1.6));
+    g.add(bloque(MATERIALES.vidrio, 3.4, 1.8, 0.12, -1.6, 1.2, 0.75));
+    g.add(bloque(MATERIALES.techo, 6.4, 0.2, 1.6, -1.6, 3.2, 1.4)); // balcón
+    // Tejado a dos aguas: dos faldones inclinados (cumbrera a lo largo de x)
+    const base = 5.6, alto = 2, medio = 2.6, x0 = -1.6, z0 = -1.6;
+    const ang = Math.atan2(alto, medio);
+    const largo = Math.hypot(alto, medio) + 0.35;
+    for (const lado of [1, -1]) {
+      const faldon = new THREE.Mesh(cajaCentrada, MATERIALES.tejado);
+      faldon.scale.set(6.8, 0.22, largo);
+      faldon.rotation.x = lado * ang;
+      faldon.position.set(x0, base + alto / 2, z0 + lado * medio / 2);
+      faldon.castShadow = true;
+      g.add(faldon);
+    }
+    // Paneles solares sobre el faldón que mira a la calle
+    const solar = new THREE.Mesh(cajaCentrada, MATERIALES.panel);
+    solar.scale.set(3.2, 0.08, 1.7);
+    solar.rotation.x = ang;
+    solar.position.set(x0 + 0.9, base + alto / 2 + 0.2, z0 + medio / 2 + 0.12);
+    g.add(solar);
+    g.add(bloque(MATERIALES.agua, 3.6, 0.12, 2.2, 3, 0, -1.8));
+    g.add(bloque(MATERIALES.madera, 3.8, 0.2, 2.8, 3, 0, 1.6)); // terraza
+    return 7.6;
   },
   // Exterior campestre: piscina, pérgola y área de BBQ
   piscina(g) {

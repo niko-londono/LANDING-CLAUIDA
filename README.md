@@ -44,7 +44,7 @@ npx serve .
 
 ## Añadir un proyecto a la ciudad (Inmersión)
 Añade una entrada en `assets/js/inmersion/proyectos.json`: `celda` libre en la cuadrícula
-de -3 a 3, una `forma` de las que hay en `ciudad.js` (casa, casa-l, oficina, pabellon,
+de -3 a 3, una `forma` de las que hay en `ciudad.js` (casa, casa-l, casa-madera, oficina, pabellon,
 dos-casas, piscina), textos, `imagenes` (se cargan solo al abrir la ficha) y, si existe,
 `enlace` a su página. Opcional: `modelo` con la ruta a un `.glb` low-poly; se descarga
 solo al seleccionar la cuadra y sustituye al edificio genérico.
