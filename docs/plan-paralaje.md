@@ -111,3 +111,10 @@ Las 9 claves del recorrido (`trabajo/claves`) ya existen en WebP dentro de la se
 - Línea de tiempo con **pausas**: en cada parada la cámara se queda quieta 26 "unidades" de scroll (1 unidad = 1 fotograma de viaje) mientras su tarjeta está en pantalla. Sección de 1500vh.
 - Fluidez: la vista sigue al scroll con inercia (suavizado exponencial de 110 ms, independiente de los Hz) y funde cada fotograma con el siguiente solo en el tramo central (smoothstep 0,3-0,7), para no dejar imagen doble.
 - El riel de la derecha lleva a la pausa de cada parada con scroll suave.
+
+## Cafetería Sostenible: sin pausas y sin tirones (2026-11-08)
+
+- Las pausas en cada parada se sentían como "scroll por secciones". Se quitan: la cámara avanza siempre con el scroll (fotograma = progreso × 359) y cada tarjeta entra al llegar a su zona (desde `data-fotograma` − 3 hasta la siguiente zona o 40 fotogramas; la última entra 22 fotogramas antes del final). Sección de 1200vh (~30 fotogramas por pantalla).
+- Los tirones venían de descomprimir cada WebP en el hilo principal al pintarlo: 10,7 ms de mediana y hasta 20 ms por fotograma nuevo (medido a 1280 px), dos por cuadro con el fundido. Ahora los fotogramas se descargan como Blob y solo los cercanos a la vista (14 por delante, 6 por detrás) se descomprimen con `createImageBitmap`, fuera del hilo principal: pintar cuesta 2,9 ms. Los lejanos se liberan (`close()`).
+- Descarga: inicio de cada zona y 1 de cada 8 primero; después siempre el fotograma pendiente más cercano a la vista, con 6 descargas a la vez.
+- Si un fotograma aún no está listo se pinta el listo más cercano, nunca se espera.

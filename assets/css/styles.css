@@ -427,11 +427,11 @@ button, .boton, .menu a, .marca {
 
 /* =========================================================
    RECORRIDO CON DATOS (.hero--pasos, assets/js/recorrido-pasos.js)
-   Scroll libre. En cada parada la cámara se detiene un tramo y
-   entra su tarjeta de datos; al seguir bajando, sale y la cámara viaja.
+   Scroll libre y continuo: la cámara nunca se detiene; cada tarjeta de
+   datos entra al llegar a su zona y sale al dejarla.
    ========================================================= */
-/* 360 fotogramas + 9 pausas: largo para que la cámara no corra */
-.hero--pasos { height: 1500vh; }
+/* 360 fotogramas: unos 30 por pantalla de scroll, para que la cámara no corra */
+.hero--pasos { height: 1200vh; }
 
 .paso {
   position: absolute;
