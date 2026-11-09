@@ -1,0 +1,1 @@
+(window.SECUENCIAS = window.SECUENCIAS || {})["secuencia"] = {"frames":240,"formato":"webp","patron":"frame_{n}.webp","cifras":4,"ancho":1920,"alto":1080,"transparente":false,"poster":"poster.webp","variantes":[{"ancho":1920,"alto":1080,"carpeta":"1920","peso":19473850},{"ancho":960,"alto":540,"carpeta":"960","peso":8281084}]};

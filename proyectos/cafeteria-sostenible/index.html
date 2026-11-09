@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Cafetería Sostenible · Claudia, diseño de interiores</title>
+  <meta name="description" content="Cafetería Sostenible para la PUCMM, Campus Santo Domingo: recorrido con scroll por el interior de bambú y la terraza con árboles solares. Proyecto de Claudia, diseño de interiores.">
+  <meta name="theme-color" content="#f2ece3">
+  <meta name="color-scheme" content="light">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/assets/img/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/img/favicon/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Cafetería Sostenible · Claudia, diseño de interiores">
+  <meta property="og:description" content="Un espacio gastronómico universitario con bambú, palets reciclados y energía solar.">
+  <meta property="og:image" content="/assets/proyectos/cafeteria-sostenible/escritorio/poster.webp">
+  <meta property="og:type" content="website">
+
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="preload" as="image" href="/assets/proyectos/cafeteria-sostenible/escritorio/poster.webp">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20261108d">
+  <!-- Marca que hay JS antes de pintar, para ocultar lo que se revelará con el scroll -->
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+
+  <!-- ============ CABECERA ============ -->
+  <header class="cabecera" id="cabecera">
+    <a href="/" class="marca" aria-label="Claudia, inicio">Claudia<span>interiores</span></a>
+    <button class="menu-boton" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
+      <span></span><span></span>
+    </button>
+    <nav class="menu" id="menu" aria-label="Principal">
+      <a href="/#portafolio" style="--i: 0">Portafolio</a>
+      <a href="#espacios" style="--i: 1">Espacios</a>
+      <a href="#ficha" style="--i: 2">Ficha</a>
+      <a href="/#contacto" class="boton boton--pequeno" style="--i: 3">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============ HERO · recorrido con scroll (240 fotogramas, más largo que el de Casa Roble) ============ -->
+    <section class="hero hero--largo" id="inicio" aria-label="Recorrido por la Cafetería Sostenible" style="--poster: url(/assets/proyectos/cafeteria-sostenible/escritorio/poster.webp); --poster-movil: url(/assets/proyectos/cafeteria-sostenible/movil/poster.webp)">
+      <div class="hero__fijo">
+        <canvas class="hero__lienzo" id="lienzo" data-base="/assets/proyectos/cafeteria-sostenible" aria-hidden="true"></canvas>
+        <div class="hero__velo" aria-hidden="true"></div>
+
+        <div class="hero__texto hero__texto--portada" data-desde="0" data-hasta="0.1">
+          <p class="etiqueta">Proyecto · Espacio gastronómico</p>
+          <h1 class="titular" aria-label="Cafetería Sostenible"><span class="palabra" aria-hidden="true"><span>Cafetería</span></span> <span class="palabra" aria-hidden="true"><span>Sostenible</span></span></h1>
+          <p class="hero__bajada">Un lugar para comer, estudiar y descansar en el campus. Desliza para recorrerla.</p>
+        </div>
+
+        <!-- Riel del recorrido: dónde estás y cuánto queda -->
+        <div class="recorrido" aria-hidden="true">
+          <div class="recorrido__riel"><span class="recorrido__relleno"></span></div>
+          <ol class="recorrido__paradas">
+            <li style="--en: 0" data-desde="0">Entrada</li>
+            <li style="--en: 0.08" data-desde="0.08">Interior</li>
+            <li style="--en: 0.27" data-desde="0.27">Terraza</li>
+            <li style="--en: 0.84" data-desde="0.84">Vista aérea</li>
+          </ol>
+        </div>
+        <div class="hero__texto hero__texto--lado" data-desde="0.1" data-hasta="0.25">
+          <p class="etiqueta">Interior</p>
+          <h2>Techo de bambú y suelo de palets recuperados</h2>
+        </div>
+        <div class="hero__texto hero__texto--lado" data-desde="0.3" data-hasta="0.56">
+          <p class="etiqueta">Terraza</p>
+          <h2>Sombra, vegetación y bancos curvos de bambú</h2>
+        </div>
+        <div class="hero__texto" data-desde="0.86" data-hasta="1.01">
+          <p class="etiqueta">Vista aérea</p>
+          <h2>Árboles solares que dan sombra y luz</h2>
+          <a href="/#contacto" class="boton">Hablemos de tu proyecto</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ESPACIOS · capítulos a pantalla completa ============ -->
+    <div id="espacios">
+      <section class="capitulo" aria-labelledby="cap-interior">
+        <figure class="capitulo__fondo">
+          <picture>
+            <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/movil/720/frame_0039.webp 720w, /assets/proyectos/cafeteria-sostenible/movil/1080/frame_0039.webp 1080w">
+            <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/escritorio/960/frame_0039.webp 960w, /assets/proyectos/cafeteria-sostenible/escritorio/1920/frame_0039.webp 1920w" src="/assets/proyectos/cafeteria-sostenible/escritorio/960/frame_0039.webp" width="1920" height="1080" alt="Comedor interior bajo un techo de varas de bambú, con suelo de madera de palets y mesas abiertas a la terraza" loading="lazy" decoding="async">
+          </picture>
+        </figure>
+        <div class="capitulo__tarjeta aparecer">
+          <p class="etiqueta">01 · Comedor interior</p>
+          <h2 id="cap-interior">Materiales que tuvieron otra vida</h2>
+          <p>142 m² de techo con varas de bambú natural, suelo hecho con palets desarmados y lijados, y bancos de palets con jardinera. Caben 106 personas.</p>
+        </div>
+      </section>
+
+      <section class="capitulo capitulo--derecha" aria-labelledby="cap-servicio">
+        <figure class="capitulo__fondo">
+          <picture>
+            <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/movil/720/frame_0014.webp 720w, /assets/proyectos/cafeteria-sostenible/movil/1080/frame_0014.webp 1080w">
+            <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/escritorio/960/frame_0014.webp 960w, /assets/proyectos/cafeteria-sostenible/escritorio/1920/frame_0014.webp 1920w" src="/assets/proyectos/cafeteria-sostenible/escritorio/960/frame_0014.webp" width="1920" height="1080" alt="Heladería con frente granate junto al mostrador del buffet y una jardinera de madera" loading="lazy" decoding="async">
+          </picture>
+        </figure>
+        <div class="capitulo__tarjeta aparecer">
+          <p class="etiqueta">02 · Servicio</p>
+          <h2 id="cap-servicio">Un recorrido claro, de la entrada a la mesa</h2>
+          <p>Heladería, buffet de comida rápida y zona de microondas en línea, con rutas de entrada y salida separadas para que nadie se cruce con la bandeja en la mano.</p>
+        </div>
+      </section>
+
+      <section class="capitulo" aria-labelledby="cap-terraza">
+        <figure class="capitulo__fondo">
+          <picture>
+            <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/movil/720/frame_0102.webp 720w, /assets/proyectos/cafeteria-sostenible/movil/1080/frame_0102.webp 1080w">
+            <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/escritorio/960/frame_0102.webp 960w, /assets/proyectos/cafeteria-sostenible/escritorio/1920/frame_0102.webp 1920w" src="/assets/proyectos/cafeteria-sostenible/escritorio/960/frame_0102.webp" width="1920" height="1080" alt="Terraza con un largo banco curvo de bambú, mesas blancas y un árbol solar" loading="lazy" decoding="async">
+          </picture>
+        </figure>
+        <div class="capitulo__tarjeta aparecer">
+          <p class="etiqueta">03 · Terraza</p>
+          <h2 id="cap-terraza">Una terraza para quedarse</h2>
+          <p>Bancos curvos de bambú sobre acero con jardineras de sansevieria, mesas con sombrilla y palmeras. Caben 140 personas, y el adoquín permeable devuelve la lluvia al suelo.</p>
+        </div>
+      </section>
+
+      <section class="capitulo capitulo--derecha" aria-labelledby="cap-solar">
+        <figure class="capitulo__fondo">
+          <picture>
+            <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/movil/720/frame_0227.webp 720w, /assets/proyectos/cafeteria-sostenible/movil/1080/frame_0227.webp 1080w">
+            <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/escritorio/960/frame_0227.webp 960w, /assets/proyectos/cafeteria-sostenible/escritorio/1920/frame_0227.webp 1920w" src="/assets/proyectos/cafeteria-sostenible/escritorio/960/frame_0227.webp" width="1920" height="1080" alt="Vista aérea de la terraza con árboles solares, bancos curvos y mesas" loading="lazy" decoding="async">
+          </picture>
+        </figure>
+        <div class="capitulo__tarjeta aparecer">
+          <p class="etiqueta">04 · Energía</p>
+          <h2 id="cap-solar">Árboles que recogen el sol</h2>
+          <p>Estructuras de acero de 5 metros con paneles solares en la copa y ramas de LED. De día dan sombra; de noche iluminan la terraza con la energía del día.</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============ GALERÍA · mosaico con profundidad ============ -->
+    <section class="seccion proyectos" id="galeria">
+      <div class="contenedor">
+        <p class="etiqueta aparecer">Galería</p>
+        <h2 class="aparecer">La cafetería, en detalle</h2>
+        <p class="texto-largo aparecer">Una cafetería para el bloque A del campus, que da continuidad al edificio sostenible de Ciencias de la Salud e Ingeniería.</p>
+
+        <div class="mosaico">
+          <figure class="mosaico__item mosaico__item--a flota-lenta">
+            <div class="foto revelar">
+              <picture>
+                <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/movil/720/frame_0089.webp 720w, /assets/proyectos/cafeteria-sostenible/movil/1080/frame_0089.webp 1080w">
+                <img class="paralaje" sizes="(min-width: 860px) 60vw, 100vw" srcset="/assets/proyectos/cafeteria-sostenible/escritorio/960/frame_0089.webp 960w, /assets/proyectos/cafeteria-sostenible/escritorio/1920/frame_0089.webp 1920w" src="/assets/proyectos/cafeteria-sostenible/escritorio/960/frame_0089.webp" width="1920" height="1080" alt="Gente sentada en el banco curvo de la terraza bajo un árbol solar" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption>Terraza · banco curvo y árbol solar</figcaption>
+          </figure>
+
+          <figure class="mosaico__item mosaico__item--b flota-rapida">
+            <div class="foto revelar">
+              <picture>
+                <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/movil/720/frame_0165.webp 720w, /assets/proyectos/cafeteria-sostenible/movil/1080/frame_0165.webp 1080w">
+                <img class="paralaje" sizes="(min-width: 860px) 35vw, 100vw" srcset="/assets/proyectos/cafeteria-sostenible/escritorio/960/frame_0165.webp 960w, /assets/proyectos/cafeteria-sostenible/escritorio/1920/frame_0165.webp 1920w" src="/assets/proyectos/cafeteria-sostenible/escritorio/960/frame_0165.webp" width="1920" height="1080" alt="Puntos de reciclaje junto a una columna revestida de madera y plantas en maceta" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption>Interior · reciclaje a la vista</figcaption>
+          </figure>
+
+          <figure class="mosaico__item mosaico__item--c flota-media">
+            <div class="foto revelar">
+              <picture>
+                <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/movil/720/frame_0001.webp 720w, /assets/proyectos/cafeteria-sostenible/movil/1080/frame_0001.webp 1080w">
+                <img class="paralaje" sizes="(min-width: 860px) 40vw, 100vw" srcset="/assets/proyectos/cafeteria-sostenible/escritorio/960/frame_0001.webp 960w, /assets/proyectos/cafeteria-sostenible/escritorio/1920/frame_0001.webp 1920w" src="/assets/proyectos/cafeteria-sostenible/escritorio/960/frame_0001.webp" width="1920" height="1080" alt="Entrada acristalada de la cafetería con el rótulo en madera" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption>Entrada · llegada desde el campus</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FICHA · datos del proyecto (de la memoria de grado) ============ -->
+    <section class="seccion" id="ficha">
+      <div class="contenedor dos-columnas">
+        <div>
+          <p class="etiqueta aparecer">Ficha del proyecto</p>
+          <h2 class="aparecer">Diseñar con lo que el lugar ya ofrece</h2>
+          <p class="texto-largo aparecer">La cafetería del bloque A se había quedado pequeña tras la apertura del nuevo edificio de doce plantas. La propuesta resuelve la demanda sin que nadie tenga que cruzar dos avenidas para comer, con materiales locales, reciclados y de bajo consumo.</p>
+        </div>
+        <dl class="ficha aparecer">
+          <div><dt>Cliente</dt><dd>PUCMM, Campus Santo Domingo</dd></div>
+          <div><dt>Tipo</dt><dd>Cafetería universitaria · Proyecto de grado, 2022</dd></div>
+          <div><dt>Capacidad</dt><dd>106 personas dentro · 140 en la terraza</dd></div>
+          <div><dt>Materiales</dt><dd>Bambú natural, madera de palets, microcemento, hormigón ranurado y adoquín permeable</dd></div>
+          <div><dt>Energía</dt><dd>Iluminación LED (80 % de ahorro) y árboles solares (90 %)</dd></div>
+          <div><dt>Vegetación</dt><dd>Palma areca, bambú, heliconia, monstera, hiedra, sansevieria y palmera Alexander</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============ CIERRE · siguiente paso ============ -->
+    <section class="seccion contacto cierre" id="cierre">
+      <figure class="contacto__fondo" aria-hidden="true">
+        <picture>
+          <source media="(max-aspect-ratio: 3/4)" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/movil/720/frame_0240.webp 720w, /assets/proyectos/cafeteria-sostenible/movil/1080/frame_0240.webp 1080w">
+          <img class="paralaje paralaje--fuerte" sizes="100vw" srcset="/assets/proyectos/cafeteria-sostenible/escritorio/960/frame_0240.webp 960w, /assets/proyectos/cafeteria-sostenible/escritorio/1920/frame_0240.webp 1920w" src="/assets/proyectos/cafeteria-sostenible/escritorio/960/frame_0240.webp" width="1920" height="1080" alt="" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <div class="contenedor cierre__contenido">
+        <h2 class="aparecer">¿Tienes un espacio que debería ser más verde?</h2>
+        <p class="aparecer">Cuéntame qué necesitas y lo diseñamos con materiales que cuidan el lugar.</p>
+        <div class="cierre__acciones aparecer">
+          <a href="/#contacto" class="boton">Hablemos de tu espacio</a>
+          <a href="/#portafolio" class="enlace-flecha">Ver más proyectos <svg class="flecha" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor pie__fila">
+      <span>© <span id="anio">2026</span> Claudia · Diseño de interiores</span>
+      <a href="/#portafolio">Ver más proyectos</a>
+    </div>
+  </footer>
+
+  <script src="/assets/proyectos/cafeteria-sostenible/escritorio/manifest.js"></script>
+  <script src="/assets/proyectos/cafeteria-sostenible/movil/manifest.js"></script>
+  <script src="/assets/js/main.js?v=20261108c" defer></script>
+</body>
+</html>

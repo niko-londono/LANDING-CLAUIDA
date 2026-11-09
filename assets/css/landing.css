@@ -250,6 +250,9 @@
 @media (min-width: 900px) {
   .proyecto--destacado .proyecto__enlace { grid-template-columns: 7fr 5fr; align-items: center; gap: 4rem; }
   .proyecto--destacado .proyecto__portada { aspect-ratio: 16 / 11; }
+  /* Destacado en espejo: foto a la derecha, para alternar con el anterior */
+  .proyecto--invertido .proyecto__enlace { grid-template-columns: 5fr 7fr; }
+  .proyecto--invertido .proyecto__portada { order: 2; }
 }
 
 /* ---------- Proceso ---------- */
