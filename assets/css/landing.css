@@ -390,3 +390,56 @@
   .datos div { grid-template-columns: 1fr; gap: 0.15rem; }
 }
 .presentacion { margin-top: clamp(4rem, 9vw, 7rem); }
+
+/* ---------- Principio (manifiesto) ---------- */
+.manifiesto__texto { display: grid; gap: 1.5rem; }
+.manifiesto__bajada { margin: 0; max-width: 34rem; font-size: 1.125rem; color: var(--color-texto-suave); }
+
+/* ---------- Firma de la carta en Quién soy ---------- */
+.firma {
+  margin: 2.5rem 0 0;
+  font-family: var(--fuente-titulo);
+  font-style: italic;
+  font-size: clamp(2.75rem, 5vw, 3.75rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--terracota);
+}
+.firma__cargo { margin: 0.6rem 0 0; font-size: 0.875rem; color: var(--color-texto-suave); }
+
+/* ---------- ¿Te suena? · problemas del cliente ---------- */
+.problemas__lista {
+  margin: 3rem 0 0;
+  border-bottom: 1px solid var(--color-linea);
+}
+.problemas__lista div {
+  display: grid;
+  gap: 0.5rem;
+  padding-block: 1.75rem;
+  border-top: 1px solid var(--color-linea);
+}
+.problemas__lista dt {
+  font-family: var(--fuente-titulo);
+  font-size: clamp(1.6rem, 2.8vw, 2.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.problemas__lista dd { margin: 0; max-width: 34rem; color: var(--color-texto-suave); }
+@media (min-width: 900px) {
+  .problemas__lista div { grid-template-columns: 1fr 1fr; gap: 5rem; align-items: baseline; padding-block: 2.25rem; }
+}
+.problemas__cierre { margin: 2.5rem 0 0; font-size: 1.125rem; }
+.problemas__cierre a {
+  color: var(--terracota);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+/* ---------- Servicios · para quién ---------- */
+.servicio__para {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-texto);
+}

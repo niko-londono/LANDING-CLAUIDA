@@ -346,6 +346,27 @@
     aviso.classList.add("visible");
   });
 
+  /* ---------- 8. Atajo a WhatsApp ---------- */
+  // Visible tras dejar la primera pantalla; se oculta cuando el contacto o
+  // el cierre están a la vista (ya hay una llamada a la acción ahí).
+  const whatsapp = document.querySelector(".whatsapp");
+  if (whatsapp) {
+    const finales = document.querySelectorAll("#contacto, #cierre");
+    let finalVisible = false;
+    const actualizar = () => {
+      whatsapp.classList.toggle("visible", window.scrollY > window.innerHeight * 0.6 && !finalVisible);
+    };
+    if ("IntersectionObserver" in window && finales.length) {
+      new IntersectionObserver((entradas) => {
+        finalVisible = entradas.some((e) => e.isIntersecting);
+        actualizar();
+      }, { threshold: 0.15 }).observe(finales[0]);
+      if (finales[1]) new IntersectionObserver((e) => { finalVisible = e[0].isIntersecting; actualizar(); }, { threshold: 0.15 }).observe(finales[1]);
+    }
+    window.addEventListener("scroll", actualizar, { passive: true });
+    actualizar();
+  }
+
   /* ---------- Año del pie ---------- */
   const anio = document.getElementById("anio");
   if (anio) anio.textContent = new Date().getFullYear();

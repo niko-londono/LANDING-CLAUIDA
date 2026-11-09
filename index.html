@@ -24,8 +24,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20261109">
-  <link rel="stylesheet" href="/assets/css/landing.css?v=20261109">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20261109b">
+  <link rel="stylesheet" href="/assets/css/landing.css?v=20261109b">
   <!-- Marca que hay JS antes de pintar, para ocultar lo que se revelará con el scroll -->
   <script>document.documentElement.classList.add("js");</script>
 </head>
@@ -56,10 +56,10 @@
       <div class="contenedor portada__rejilla">
         <div class="portada__texto">
           <h1 class="titular" aria-label="Espacios que se sienten como casa"><span class="palabra" aria-hidden="true"><span>Espacios</span></span> <span class="palabra" aria-hidden="true"><span>que</span></span> <span class="palabra" aria-hidden="true"><span>se</span></span> <span class="palabra" aria-hidden="true"><span>sienten</span></span> <span class="palabra" aria-hidden="true"><span><em>como</em></span></span> <span class="palabra" aria-hidden="true"><span><em>casa</em></span></span></h1>
-          <p class="portada__bajada">Diseño interior y exterior, remodelaciones y visualización 3D para hogares y negocios. Espacios que unen función y estética, pensados para vivirlos.</p>
+          <p class="portada__bajada">Diseño interior y exterior, remodelaciones y visualización 3D para hogares y negocios en Santo Domingo, República Dominicana.</p>
           <div class="portada__acciones">
             <a href="#portafolio" class="boton boton--acento">Ver portafolio</a>
-            <a href="#contacto" class="boton">Agenda una cita</a>
+            <a href="#contacto" class="boton">Cuéntame tu proyecto</a>
           </div>
         </div>
 
@@ -101,7 +101,12 @@
     <!-- ============ MANIFIESTO · el plano se dibuja con el scroll ============ -->
     <section class="manifiesto" id="manifiesto">
       <div class="contenedor manifiesto__rejilla">
-        <p class="manifiesto__frase aparecer">Diseño desde la luz, los recorridos y los materiales: <em>lo que hace que un lugar se sienta tuyo.</em></p>
+        <!-- Principio de trabajo con nombre propio: la frase se recuerda y
+             el párrafo explica qué cambia para el cliente -->
+        <div class="manifiesto__texto">
+          <p class="manifiesto__frase aparecer">Primero, cómo vives. <em>Después, cómo se ve.</em></p>
+          <p class="manifiesto__bajada aparecer">Antes de hablar de estilos te pregunto por tus rutinas: quién cocina, dónde se acumulan las cosas, por dónde entra la luz de la tarde. Así cada decisión de diseño resuelve algo real, y el espacio sigue funcionando cuando pasa la novedad.</p>
+        </div>
         <svg class="plano" viewBox="0 0 800 520" aria-hidden="true" fill="none" stroke="var(--color-texto)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
           <path pathLength="1" d="M40 40H760V480H40Z"/>
           <path pathLength="1" d="M360 40V250M360 320V480M360 250H560M630 250H760"/>
@@ -127,7 +132,10 @@
           <div class="texto-largo">
             <p class="aparecer">Soy diseñadora de interiores, licenciada en Diseño e Interiorismo por la PUCMM con <em>Summa Cum Laude</em>. Diseño proyectos residenciales y comerciales: interiores, exteriores, remodelaciones y visualización 3D.</p>
             <p class="aparecer">Trabajo desde la empatía, el pensamiento crítico y la escucha. Me adapto a los cambios y a lo que cada cliente necesita, y cuido la precisión de cada entrega, del moodboard a los planos.</p>
+            <p class="aparecer">Sea una habitación, una casa entera o tu negocio, me encantaría conocerlo.</p>
           </div>
+          <p class="firma aparecer" aria-hidden="true">Claudia</p>
+          <p class="firma__cargo aparecer">Claudia Lorena Hernández · Diseñadora de interiores</p>
           <dl class="datos aparecer">
             <div><dt>Formación</dt><dd>Lic. en Diseño e Interiorismo, PUCMM, 2022</dd></div>
             <div><dt>Herramientas</dt><dd>SketchUp + V-Ray, Twinmotion, AutoCAD, Photoshop e IA</dd></div>
@@ -167,6 +175,28 @@
       </div>
     </section>
 
+    <!-- ============ ¿TE SUENA? · el problema antes que el servicio ============ -->
+    <section class="seccion problemas" id="problemas">
+      <div class="contenedor">
+        <h2 class="aparecer">¿Te suena alguno?</h2>
+        <dl class="problemas__lista">
+          <div class="aparecer">
+            <dt>«No logro imaginar cómo quedará»</dt>
+            <dd>Te muestro tu espacio en renders 3D realistas antes de comprar o construir nada, y lo ajustamos hasta que te convenza.</dd>
+          </div>
+          <div class="aparecer">
+            <dt>«El espacio no me funciona»</dt>
+            <dd>Redistribuyo para que la luz, los recorridos y el almacenaje trabajen a tu favor, aunque los metros sean pocos o la planta sea difícil.</dd>
+          </div>
+          <div class="aparecer">
+            <dt>«Remodelar me da miedo»</dt>
+            <dd>Entrego planos detallados y especificaciones técnicas para que la obra avance sin improvisar y con menos sorpresas.</dd>
+          </div>
+        </dl>
+        <p class="problemas__cierre aparecer">Si te reconociste en alguno, <a href="#contacto">cuéntame tu caso</a>.</p>
+      </div>
+    </section>
+
     <!-- ============ SERVICIOS ============ -->
     <section class="seccion servicios" id="servicios">
       <div class="contenedor">
@@ -175,17 +205,17 @@
           <li class="servicio aparecer">
             <svg class="servicio__icono" viewBox="0 0 48 48" aria-hidden="true"><path d="M6 6h36v36H6zM22 6v16h20M22 30v12M22 22v2"/><path d="M22 30a8 8 0 0 1 8-8"/></svg>
             <h3>Diseño interior y exterior</h3>
-            <p>Casas nuevas y remodelaciones: baños, habitaciones, cocina, lavandería, piscina y área de BBQ.</p>
+            <p><span class="servicio__para">Para familias y propietarios</span>Casas nuevas y remodelaciones: baños, habitaciones, cocina, lavandería, piscina y área de BBQ.</p>
           </li>
           <li class="servicio aparecer">
             <svg class="servicio__icono" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 5l17 9.5v19L24 43 7 33.5v-19zM7 14.5L24 24l17-9.5M24 24v19"/></svg>
             <h3>Visualización 3D</h3>
-            <p>Moodboard, concepto, modelado 3D y renders realistas con SketchUp, V-Ray y Twinmotion para ver el espacio antes de construirlo.</p>
+            <p><span class="servicio__para">Para quien quiere decidir con certeza, y para constructoras</span>Moodboard, concepto, modelado 3D y renders realistas con SketchUp, V-Ray y Twinmotion para ver el espacio antes de construirlo.</p>
           </li>
           <li class="servicio aparecer">
             <svg class="servicio__icono" viewBox="0 0 48 48" aria-hidden="true"><path d="M6 16l4-10h28l4 10M6 16h36M6 16c0 4 3 6 6 6s6-2 6-6c0 4 3 6 6 6s6-2 6-6c0 4 3 6 6 6s6-2 6-6M9 22v20h30V22M20 42V30h8v12"/></svg>
             <h3>Interiorismo comercial</h3>
-            <p>Locales y oficinas distribuidos para trabajar mejor y alineados con la identidad de tu empresa.</p>
+            <p><span class="servicio__para">Para empresas y negocios</span>Locales y oficinas distribuidos para trabajar mejor y alineados con la identidad de tu empresa.</p>
           </li>
         </ul>
       </div>
@@ -251,7 +281,7 @@
           <p class="aparecer">Cuéntame tu proyecto y te respondo en menos de 48 horas.</p>
           <ul class="contacto__datos aparecer">
             <li><a href="mailto:claudialorena.hernandezp@gmail.com">claudialorena.hernandezp@gmail.com</a></li>
-            <li><a href="tel:+18098015805">809-801-5805</a></li>
+            <li><a href="https://wa.me/18098015805?text=Hola%20Claudia%2C%20quiero%20contarte%20sobre%20mi%20espacio." target="_blank" rel="noopener">WhatsApp</a> · <a href="tel:+18098015805">809-801-5805</a></li>
             <li>Santo Domingo, República Dominicana</li>
           </ul>
         </div>
@@ -267,6 +297,12 @@
 
   </main>
 
+  <!-- Atajo a WhatsApp: aparece al dejar la portada y se esconde en Contacto -->
+  <a class="whatsapp" href="https://wa.me/18098015805?text=Hola%20Claudia%2C%20quiero%20contarte%20sobre%20mi%20espacio." target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 19.5l1.2-3.6A8 8 0 1 1 8.6 18.7z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5"/></svg>
+    <span>Escríbeme por WhatsApp</span>
+  </a>
+
   <footer class="pie">
     <div class="contenedor pie__fila">
       <span>© <span id="anio">2026</span> Claudia Hernández · Diseño de interiores</span>
@@ -274,6 +310,6 @@
     </div>
   </footer>
 
-  <script src="/assets/js/main.js?v=20261109" defer></script>
+  <script src="/assets/js/main.js?v=20261109b" defer></script>
 </body>
 </html>

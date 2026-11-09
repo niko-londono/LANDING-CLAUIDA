@@ -126,3 +126,15 @@ Las 9 claves del recorrido (`trabajo/claves`) ya existen en WebP dentro de la se
 - En la landing, «Estudio» pasa a «Quién soy» con una ficha de datos y una tarjeta que lleva al recorrido; el portafolio queda solo con la Cafetería Sostenible.
 - El formulario abre el correo de quien escribe con el mensaje listo para la dirección de Claudia (no hay servidor).
 - Skills: ui-ux-pro-max:brand (textos), impeccable (estructura de la sección).
+
+## Ideas de dos referencias, sin copiarlas (2026-11-09)
+
+Referencias revisadas: cheshirepropertystudio.com y dbltakedesign.com. Se tomaron ideas de estructura, no su aspecto ni sus textos.
+
+- **Principio con nombre propio** (como la "prueba de los diez años" de Cheshire, pero con el de Claudia): el manifiesto pasa a «Primero, cómo vives. Después, cómo se ve.» con un párrafo que explica qué cambia para el cliente.
+- **Carta firmada** en Quién soy: cierre personal y firma en Instrument Serif cursiva, color terracota.
+- **¿Te suena alguno?** (de DBL: hablar del problema antes que del servicio): tres frases del cliente con la respuesta de Claudia, en lista con líneas, sin tarjetas.
+- **Servicios con "para quién"**: una línea por servicio (familias, constructoras, empresas).
+- **Atajo a WhatsApp** (Cheshire): botón fijo en oliva; aparece al dejar la portada y se esconde en Contacto y en el cierre. En móvil solo el icono. También en Contacto.
+- Descartado: ventanas emergentes de captación de correo y banners de cookies (interrumpen), testimonios inventados (hay que reunir reseñas reales), escaparates con desborde horizontal en móvil (fallo visto en DBL).
+- Skills: impeccable, emil-design-eng.
