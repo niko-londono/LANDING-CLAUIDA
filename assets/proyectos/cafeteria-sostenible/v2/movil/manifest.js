@@ -1,1 +1,0 @@
-(window.SECUENCIAS = window.SECUENCIAS || {})["secuencia-movil"] = {"frames":360,"formato":"webp","patron":"frame_{n}.webp","cifras":4,"ancho":1080,"alto":1920,"transparente":false,"poster":"poster.webp","variantes":[{"ancho":1080,"alto":1920,"carpeta":"1080","peso":18262790},{"ancho":800,"alto":1422,"carpeta":"800","peso":12831394}]};
