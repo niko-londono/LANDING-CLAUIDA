@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <title>Inmersión · Claudia Hernández, diseño de interiores</title>
+  <meta name="description" content="Recorre los proyectos de Claudia Hernández como una ciudad 3D: cada cuadra es un proyecto de diseño interior y exterior.">
+  <meta name="theme-color" content="#f2ece3">
+  <meta name="color-scheme" content="light">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/assets/img/favicon/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/img/favicon/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Inmersión · Claudia Hernández, diseño de interiores">
+  <meta property="og:description" content="Una ciudad 3D donde cada cuadra es un proyecto.">
+  <meta property="og:type" content="website">
+
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20261109b">
+  <link rel="stylesheet" href="/assets/css/inmersion.css?v=20261109">
+
+  <!-- Three.js solo se descarga en esta página, con versión fija -->
+  <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" crossorigin>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body class="inmersion">
+
+  <!-- Lienzo 3D: la ciudad. Es decorativo para lectores de pantalla;
+       la lista de proyectos del panel da el mismo acceso con teclado. -->
+  <canvas class="ciudad" id="ciudad" aria-hidden="true"></canvas>
+
+  <!-- Velo de carga -->
+  <div class="carga" id="carga" role="status">
+    <p class="carga__texto">Levantando la ciudad…</p>
+  </div>
+
+  <!-- ============ HUD ============ -->
+  <header class="hud-cabecera">
+    <a href="/" class="marca" aria-label="Claudia, inicio">Claudia<span>interiores</span></a>
+    <h1 class="hud-titulo">Inmersión</h1>
+    <a href="/#portafolio" class="hud-volver">Volver al sitio</a>
+  </header>
+
+  <!-- Índice de proyectos: navegar sin el ratón y orientarse -->
+  <nav class="hud-indice" aria-label="Proyectos de la ciudad">
+    <p class="hud-indice__titulo">Cada cuadra es un proyecto</p>
+    <ul class="hud-indice__lista" id="indice"></ul>
+  </nav>
+
+  <!-- Leyenda y ayuda de controles -->
+  <aside class="hud-leyenda" aria-label="Leyenda">
+    <ul class="leyenda">
+      <li><span class="leyenda__muestra leyenda__muestra--proyecto"></span>Proyecto</li>
+      <li><span class="leyenda__muestra leyenda__muestra--presentacion"></span>Presentación</li>
+      <li><span class="leyenda__muestra leyenda__muestra--entorno"></span>Entorno</li>
+    </ul>
+    <p class="ayuda ayuda--raton">Arrastra para moverte · rueda para acercarte · clic derecho para girar · WASD</p>
+    <p class="ayuda ayuda--tactil">Arrastra para moverte · pellizca para acercarte · dos dedos para girar</p>
+  </aside>
+
+  <!-- Controles del mapa -->
+  <div class="hud-mapa" role="group" aria-label="Controles del mapa">
+    <button class="mapa-boton" id="acercar" type="button" aria-label="Acercar">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12"/></svg>
+    </button>
+    <button class="mapa-boton" id="alejar" type="button" aria-label="Alejar">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12"/></svg>
+    </button>
+    <button class="mapa-boton mapa-boton--texto" id="vista-general" type="button" aria-label="Vista general de la ciudad">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 9.5L10 4l7 5.5M5.5 8v8h9V8"/></svg>
+      <span>Vista general</span>
+    </button>
+  </div>
+
+  <!-- Nombre del proyecto bajo el puntero -->
+  <div class="etiqueta-3d" id="etiqueta" aria-hidden="true"></div>
+
+  <!-- Ficha del proyecto seleccionado -->
+  <aside class="panel-ficha" id="ficha" aria-labelledby="ficha-titulo" hidden>
+    <button class="ficha__cerrar" id="ficha-cerrar" type="button" aria-label="Cerrar ficha y volver a la vista general">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15"/></svg>
+    </button>
+    <div class="ficha__contenido" id="ficha-contenido"></div>
+  </aside>
+
+  <!-- Sin WebGL: la ciudad no puede dibujarse, pero el índice sigue sirviendo -->
+  <div class="sin-3d" id="sin-3d" hidden>
+    <h2>Tu navegador no puede mostrar la ciudad 3D</h2>
+    <p>Puedes ver los proyectos en la lista o volver al <a href="/#portafolio">portafolio</a>.</p>
+  </div>
+  <noscript>
+    <div class="sin-3d">
+      <h2>La ciudad necesita JavaScript</h2>
+      <p>Mientras tanto, mira el <a href="/#portafolio">portafolio</a>.</p>
+    </div>
+  </noscript>
+
+  <div class="fps" id="fps" hidden></div>
+
+  <script type="module" src="/assets/js/inmersion/app.js?v=20261109"></script>
+</body>
+</html>

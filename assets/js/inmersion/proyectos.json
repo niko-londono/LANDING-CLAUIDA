@@ -1,0 +1,87 @@
+{
+  "_nota": "Cada proyecto ocupa una cuadra de la ciudad. celda = [columna, fila] en la cuadrícula de 7×7 (de -3 a 3; [0,0] es el centro). forma = el edificio de bajo polígono que lo representa (ver ciudad.js). imagenes y modelo se cargan solo al abrir el proyecto.",
+  "proyectos": [
+    {
+      "id": "quien-soy",
+      "nombre": "Casa de roble",
+      "categoria": "presentacion",
+      "tipo": "Presentación · Quién soy",
+      "meta": ["Claudia Lorena Hernández", "Diseñadora de interiores"],
+      "concepto": "El corazón de la ciudad es mi presentación: una casa de una planta abierta al jardín que se recorre con el scroll mientras te cuento quién soy, cómo trabajo y qué herramientas domino.",
+      "entregables": ["Recorrido con scroll", "Formación y trayectoria", "Herramientas: SketchUp + V-Ray, Twinmotion, AutoCAD, Photoshop e IA"],
+      "imagenes": [
+        { "src": "/assets/proyectos/casa-roble/escritorio/960/frame_0001.webp", "alt": "Fachada blanca con revestimiento de roble y camino de losas" },
+        { "src": "/assets/proyectos/casa-roble/escritorio/960/frame_0052.webp", "alt": "Salón con sofá de lino y mesa redonda de roble" },
+        { "src": "/assets/proyectos/casa-roble/escritorio/960/frame_0090.webp", "alt": "Cocina con isla blanca y ventanal al jardín" }
+      ],
+      "enlace": { "href": "/quien-soy", "texto": "Conocer a Claudia" },
+      "celda": [0, 0],
+      "forma": "casa"
+    },
+    {
+      "id": "cafeteria-sostenible",
+      "nombre": "Cafetería Sostenible",
+      "categoria": "comercial",
+      "tipo": "Espacio gastronómico · Proyecto de grado",
+      "meta": ["Pontificia Universidad Católica Madre y Maestra"],
+      "concepto": "Una cafetería universitaria con techo de bambú, suelos de palets recuperados y árboles solares que dan sombra de día y luz de noche.",
+      "entregables": ["Concepto sostenible", "Interior, terraza y vegetación", "Modelado 3D y recorrido animado"],
+      "imagenes": [
+        { "src": "/assets/proyectos/cafeteria-sostenible/v2/escritorio/960/frame_0001.webp", "alt": "Entrada de la Cafetería Sostenible" },
+        { "src": "/assets/proyectos/cafeteria-sostenible/v2/escritorio/960/frame_0121.webp", "alt": "Interior de la cafetería con mobiliario de madera" },
+        { "src": "/assets/proyectos/cafeteria-sostenible/v2/escritorio/960/frame_0340.webp", "alt": "Terraza vista desde arriba con árboles solares y bancos curvos" }
+      ],
+      "enlace": { "href": "/proyectos/cafeteria-sostenible", "texto": "Recorrer el proyecto" },
+      "celda": [2, 0],
+      "forma": "pabellon"
+    },
+    {
+      "id": "casa-campestre",
+      "nombre": "Casa campestre familiar",
+      "categoria": "residencial",
+      "tipo": "Diseño interior y exterior · Remodelación",
+      "meta": ["2024"],
+      "concepto": "Remodelación completa de una casa campestre: baños, habitaciones, cocina y lavandería en el interior; piscina y área de BBQ en el exterior.",
+      "entregables": ["Moodboard y concepto del espacio", "Modelado 3D y renders", "Planos detallados", "Especificaciones técnicas"],
+      "imagenes": [],
+      "celda": [-2, -1],
+      "forma": "casa-l"
+    },
+    {
+      "id": "oficina-ingenieros",
+      "nombre": "Oficina de ingenieros",
+      "categoria": "comercial",
+      "tipo": "Local comercial · Diseño y distribución",
+      "meta": ["2022", "Consorcio Tecnológico & Ambiental (CETECAM)"],
+      "concepto": "Diseño, distribución y división de un local comercial para una firma de ingenieros: un entorno moderno y eficiente, alineado con la identidad de la empresa.",
+      "entregables": ["Distribución y división de espacios", "Modelado en SketchUp + V-Ray", "Planos en AutoCAD"],
+      "imagenes": [],
+      "celda": [0, -2],
+      "forma": "oficina"
+    },
+    {
+      "id": "casas-familiares",
+      "nombre": "Dos casas familiares",
+      "categoria": "residencial",
+      "tipo": "Diseño interior y exterior · Obra nueva",
+      "meta": ["2021 – 2024", "Constructora HEGSA"],
+      "concepto": "Diseño interior y exterior de dos viviendas familiares en construcción, pensadas desde el principio para la vida diaria de cada familia.",
+      "entregables": ["Concepto del espacio", "Modelado 3D y renders", "Planos y especificaciones técnicas"],
+      "imagenes": [],
+      "celda": [-1, 2],
+      "forma": "dos-casas"
+    },
+    {
+      "id": "exterior-campestre",
+      "nombre": "Piscina y área de BBQ",
+      "categoria": "exterior",
+      "tipo": "Remodelación exterior · Casa campestre",
+      "meta": ["2021 – 2024", "Constructora HEGSA"],
+      "concepto": "Un exterior funcional y relajante para el entretenimiento y el disfrute en familia: nueva piscina, área de BBQ y zonas de estar.",
+      "entregables": ["Moodboard y concepto", "Modelado 3D y renders de exteriores", "Planos detallados y especificaciones técnicas"],
+      "imagenes": [],
+      "celda": [2, 2],
+      "forma": "piscina"
+    }
+  ]
+}

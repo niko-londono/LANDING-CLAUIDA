@@ -443,3 +443,57 @@
   font-weight: 500;
   color: var(--color-texto);
 }
+
+/* ---------- Inmersión · entrada a la ciudad 3D ----------
+   Bloque oscuro (oliva, como Contacto) con una mini ciudad isométrica
+   en SVG: anticipa lo que hay al otro lado del botón. */
+.inmersion-entrada {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+  margin-top: clamp(4rem, 8vw, 6rem);
+  padding: clamp(1.75rem, 4vw, 3rem);
+  border-radius: 16px;
+  background: var(--oliva);
+  color: var(--hueso-claro);
+  text-decoration: none;
+  overflow: hidden;
+}
+@media (min-width: 900px) {
+  .inmersion-entrada { grid-template-columns: 5fr 6fr; gap: 3rem; }
+}
+.inmersion-entrada__titulo { font-size: clamp(2.25rem, 4.2vw, 3.25rem); margin-bottom: 0.75rem; }
+.inmersion-entrada p { max-width: 28rem; color: rgba(248, 244, 238, 0.76); margin-bottom: 1.75rem; }
+.inmersion-entrada__boton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--hueso-claro);
+  border-color: var(--hueso-claro);
+  color: var(--tinta);
+  transition: transform 160ms var(--ease-out), background-color 200ms ease;
+}
+.inmersion-entrada:active .inmersion-entrada__boton { transform: scale(0.97); }
+.inmersion-entrada__boton .flecha { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 1.5; transition: transform 300ms var(--ease-out); }
+
+.mini-ciudad { width: 100%; height: auto; max-width: 30rem; justify-self: center; overflow: visible; }
+.mini-ciudad .mc-losa { fill: rgba(248, 244, 238, 0.07); }
+.mini-ciudad .mc-techo { fill: #f3ede4; }
+.mini-ciudad .mc-izq { fill: #d8c9b4; }
+.mini-ciudad .mc-der { fill: #b9ab96; }
+.mini-ciudad .mc-arbol { fill: var(--salvia); }
+.mini-ciudad .mc-techo.mc-terracota { fill: #c8693f; }
+.mini-ciudad .mc-izq.mc-terracota { fill: var(--terracota); }
+.mini-ciudad .mc-der.mc-terracota { fill: #86401f; }
+.mini-ciudad .mc-techo.mc-ocre { fill: #dcab5c; }
+.mini-ciudad .mc-izq.mc-ocre { fill: var(--ocre); }
+.mini-ciudad .mc-der.mc-ocre { fill: #9c6f27; }
+.mini-ciudad .mc-marca.mc-terracota { fill: #e07a4c; }
+.mini-ciudad .mc-marca.mc-ocre { fill: #e2b665; }
+.mini-ciudad .mc-hilo { stroke: rgba(248, 244, 238, 0.5); stroke-width: 1; }
+
+@media (hover: hover) and (pointer: fine) {
+  .inmersion-entrada:hover .inmersion-entrada__boton { background: #fff; }
+  .inmersion-entrada:hover .inmersion-entrada__boton .flecha { transform: translateX(4px); }
+}
+.inmersion-entrada:focus-visible { outline: 2px solid var(--terracota); outline-offset: 4px; }

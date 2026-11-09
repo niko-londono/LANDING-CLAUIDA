@@ -25,7 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/assets/css/styles.css?v=20261109b">
-  <link rel="stylesheet" href="/assets/css/landing.css?v=20261109b">
+  <link rel="stylesheet" href="/assets/css/landing.css?v=20261109c">
   <!-- Marca que hay JS antes de pintar, para ocultar lo que se revelará con el scroll -->
   <script>document.documentElement.classList.add("js");</script>
 </head>
@@ -41,8 +41,9 @@
       <a href="#quien-soy" style="--i: 0">Quién soy</a>
       <a href="#servicios" style="--i: 1">Servicios</a>
       <a href="#portafolio" style="--i: 2">Portafolio</a>
-      <a href="#proceso" style="--i: 3">Proceso</a>
-      <a href="#contacto" class="boton boton--pequeno" style="--i: 4">Contacto</a>
+      <a href="/inmersion" style="--i: 3">Inmersión</a>
+      <a href="#proceso" style="--i: 4">Proceso</a>
+      <a href="#contacto" class="boton boton--pequeno" style="--i: 5">Contacto</a>
     </nav>
   </header>
 
@@ -251,6 +252,16 @@
             </a>
           </li>
         </ul>
+
+        <!-- Inmersión: todos los proyectos como una ciudad 3D (/inmersion) -->
+        <a class="inmersion-entrada revelar" href="/inmersion">
+          <div class="inmersion-entrada__texto">
+            <h3 class="inmersion-entrada__titulo">Inmersión</h3>
+            <p>Recorre mi trabajo como una ciudad en 3D: cada cuadra es un proyecto. Acércate, gira y entra en el que quieras.</p>
+            <span class="boton inmersion-entrada__boton">Entrar a la ciudad <svg class="flecha" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span>
+          </div>
+          <svg class="mini-ciudad" viewBox="0 0 400 230" aria-hidden="true"><path class="mc-losa" d="M200 22.0L236.0 40L200 58.0L164.0 40Z"/><path class="mc-izq" d="M171.2 40.0L200 54.4V36.4L171.2 22.0Z"/><path class="mc-der" d="M200 54.4L228.8 40.0V22.0L200 36.4Z"/><path class="mc-techo" d="M200 7.6L228.8 22.0L200 36.4L171.2 22.0Z"/><path class="mc-losa" d="M160 42.0L196.0 60L160 78.0L124.0 60Z"/><path class="mc-izq" d="M131.2 60.0L160 74.4V48.4L131.2 34.0Z"/><path class="mc-der" d="M160 74.4L188.8 60.0V34.0L160 48.4Z"/><path class="mc-techo" d="M160 19.6L188.8 34.0L160 48.4L131.2 34.0Z"/><path class="mc-losa" d="M240 42.0L276.0 60L240 78.0L204.0 60Z"/><path class="mc-izq" d="M211.2 60.0L240 74.4V44.4L211.2 30.0Z"/><path class="mc-der" d="M240 74.4L268.8 60.0V30.0L240 44.4Z"/><path class="mc-techo" d="M240 15.6L268.8 30.0L240 44.4L211.2 30.0Z"/><path class="mc-losa" d="M120 62.0L156.0 80L120 98.0L84.0 80Z"/><path class="mc-izq" d="M91.2 80.0L120 94.4V84.4L91.2 70.0Z"/><path class="mc-der" d="M120 94.4L148.8 80.0V70.0L120 84.4Z"/><path class="mc-techo" d="M120 55.6L148.8 70.0L120 84.4L91.2 70.0Z"/><path class="mc-losa" d="M200 62.0L236.0 80L200 98.0L164.0 80Z"/><path class="mc-arbol" d="M192 66l4 10h-8z"/><path class="mc-arbol" d="M206 64l4 10h-8z"/><path class="mc-arbol" d="M200 73l4 10h-8z"/><path class="mc-losa" d="M280 62.0L316.0 80L280 98.0L244.0 80Z"/><path class="mc-izq" d="M251.2 80.0L280 94.4V82.4L251.2 68.0Z"/><path class="mc-der" d="M280 94.4L308.8 80.0V68.0L280 82.4Z"/><path class="mc-techo" d="M280 53.6L308.8 68.0L280 82.4L251.2 68.0Z"/><path class="mc-losa" d="M80 82.0L116.0 100L80 118.0L44.0 100Z"/><path class="mc-izq" d="M51.2 100.0L80 114.4V84.4L51.2 70.0Z"/><path class="mc-der" d="M80 114.4L108.8 100.0V70.0L80 84.4Z"/><path class="mc-techo" d="M80 55.6L108.8 70.0L80 84.4L51.2 70.0Z"/><path class="mc-losa" d="M160 82.0L196.0 100L160 118.0L124.0 100Z"/><path class="mc-izq mc-ocre" d="M131.2 100.0L160 114.4V92.4L131.2 78.0Z"/><path class="mc-der mc-ocre" d="M160 114.4L188.8 100.0V78.0L160 92.4Z"/><path class="mc-techo mc-ocre" d="M160 63.6L188.8 78.0L160 92.4L131.2 78.0Z"/><path class="mc-marca mc-ocre" d="M160 41.6l5 6-5 6-5-6z"/><path class="mc-hilo" d="M160 53.6V61.6"/><path class="mc-losa" d="M240 82.0L276.0 100L240 118.0L204.0 100Z"/><path class="mc-izq mc-terracota" d="M211.2 100.0L240 114.4V74.4L211.2 60.0Z"/><path class="mc-der mc-terracota" d="M240 114.4L268.8 100.0V60.0L240 74.4Z"/><path class="mc-techo mc-terracota" d="M240 45.6L268.8 60.0L240 74.4L211.2 60.0Z"/><path class="mc-marca mc-terracota" d="M240 23.6l5 6-5 6-5-6z"/><path class="mc-hilo" d="M240 35.6V43.6"/><path class="mc-losa" d="M320 82.0L356.0 100L320 118.0L284.0 100Z"/><path class="mc-izq" d="M291.2 100.0L320 114.4V90.4L291.2 76.0Z"/><path class="mc-der" d="M320 114.4L348.8 100.0V76.0L320 90.4Z"/><path class="mc-techo" d="M320 61.6L348.8 76.0L320 90.4L291.2 76.0Z"/><path class="mc-losa" d="M120 102.0L156.0 120L120 138.0L84.0 120Z"/><path class="mc-izq" d="M91.2 120.0L120 134.4V120.4L91.2 106.0Z"/><path class="mc-der" d="M120 134.4L148.8 120.0V106.0L120 120.4Z"/><path class="mc-techo" d="M120 91.6L148.8 106.0L120 120.4L91.2 106.0Z"/><path class="mc-losa" d="M200 102.0L236.0 120L200 138.0L164.0 120Z"/><path class="mc-izq" d="M171.2 120.0L200 134.4V118.4L171.2 104.0Z"/><path class="mc-der" d="M200 134.4L228.8 120.0V104.0L200 118.4Z"/><path class="mc-techo" d="M200 89.6L228.8 104.0L200 118.4L171.2 104.0Z"/><path class="mc-losa" d="M280 102.0L316.0 120L280 138.0L244.0 120Z"/><path class="mc-izq" d="M251.2 120.0L280 134.4V120.4L251.2 106.0Z"/><path class="mc-der" d="M280 134.4L308.8 120.0V106.0L280 120.4Z"/><path class="mc-techo" d="M280 91.6L308.8 106.0L280 120.4L251.2 106.0Z"/><path class="mc-losa" d="M160 122.0L196.0 140L160 158.0L124.0 140Z"/><path class="mc-izq" d="M131.2 140.0L160 154.4V128.4L131.2 114.0Z"/><path class="mc-der" d="M160 154.4L188.8 140.0V114.0L160 128.4Z"/><path class="mc-techo" d="M160 99.6L188.8 114.0L160 128.4L131.2 114.0Z"/><path class="mc-losa" d="M240 122.0L276.0 140L240 158.0L204.0 140Z"/><path class="mc-izq" d="M211.2 140.0L240 154.4V120.4L211.2 106.0Z"/><path class="mc-der" d="M240 154.4L268.8 140.0V106.0L240 120.4Z"/><path class="mc-techo" d="M240 91.6L268.8 106.0L240 120.4L211.2 106.0Z"/><path class="mc-losa" d="M200 142.0L236.0 160L200 178.0L164.0 160Z"/><path class="mc-izq" d="M171.2 160.0L200 174.4V166.4L171.2 152.0Z"/><path class="mc-der" d="M200 174.4L228.8 160.0V152.0L200 166.4Z"/><path class="mc-techo" d="M200 137.6L228.8 152.0L200 166.4L171.2 152.0Z"/></svg>
+        </a>
       </div>
     </section>
 

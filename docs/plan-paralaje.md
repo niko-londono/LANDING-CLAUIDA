@@ -138,3 +138,16 @@ Referencias revisadas: cheshirepropertystudio.com y dbltakedesign.com. Se tomaro
 - **Atajo a WhatsApp** (Cheshire): botón fijo en oliva; aparece al dejar la portada y se esconde en Contacto y en el cierre. En móvil solo el icono. También en Contacto.
 - Descartado: ventanas emergentes de captación de correo y banners de cookies (interrumpen), testimonios inventados (hay que reunir reseñas reales), escaparates con desborde horizontal en móvil (fallo visto en DBL).
 - Skills: impeccable, emil-design-eng.
+
+## Inmersión: ciudad 3D de proyectos (2026-11-09)
+
+- Página nueva `/inmersion`, enlazada desde el menú (junto a Portafolio) y con un bloque oscuro al final del portafolio (mini ciudad isométrica en SVG).
+- Three.js 0.160 puro por importmap (jsDelivr, versión fija), sin build. Módulos en `assets/js/inmersion/`: escena, ciudad, cámara, interacción, HUD y arranque.
+- Ciudad de 13×13 cuadras; las 7×7 centrales son navegables. Cada proyecto de `proyectos.json` ocupa una cuadra con un edificio low-poly según su `forma`, líneas de luz en las aristas (fundidas en una geometría por proyecto) y un marcador. La casa de roble (Quién soy) está en el centro, en ocre.
+- Rendimiento: entorno con InstancedMesh (aceras, edificios, copas, troncos, postes, luces), frustum culling con esferas de instancias calculadas, raycasting contra 6 cajas invisibles, sombras de 1024 px (512 en táctil) que solo se recalculan cuando una cuadra se mueve, pixel ratio ≤ 2 (≤ 1,5 en táctil) y render bajo demanda. Medido en escritorio: 75 llamadas en la vista general, ~20 al acercarse, 22 mil triángulos, al ritmo de la pantalla.
+- Cámara: MapControls con inercia y límites (no sale de la ciudad, no baja del horizonte); WASD/flechas y +/−. Vuelos con la curva --ease-in-out del sitio (bezier exacto), de 0,8 a 1,6 s, interrumpibles. En pantallas verticales la vista general es más cenital.
+- HUD: índice de proyectos (fila de chips en móvil), leyenda y ayuda según el puntero, botones de acercar, alejar y vista general, etiqueta al pasar el ratón, ficha lateral (hoja inferior en móvil) con imágenes que se cargan al abrirla. Escape vuelve a la vista general.
+- Carga perezosa: imágenes de cada ficha al abrirla; campo opcional `modelo` (.glb) que descarga GLTFLoader y el modelo solo al seleccionar la cuadra.
+- Sin WebGL o sin JS: aviso y enlace al portafolio. Movimiento reducido: la cámara salta en lugar de volar.
+- Los cuatro proyectos del CV sin imágenes muestran «se publicarán pronto» (no se inventan renders).
+- Skills: impeccable, animate, animation-performance, mobile-native.
