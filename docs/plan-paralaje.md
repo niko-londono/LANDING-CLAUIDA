@@ -151,3 +151,9 @@ Referencias revisadas: cheshirepropertystudio.com y dbltakedesign.com. Se tomaro
 - Sin WebGL o sin JS: aviso y enlace al portafolio. Movimiento reducido: la cámara salta en lugar de volar.
 - Los cuatro proyectos del CV sin imágenes muestran «se publicarán pronto» (no se inventan renders).
 - Skills: impeccable, animate, animation-performance, mobile-native.
+
+## Inmersión: calles vivas y rótulos de proyecto (2026-11-09)
+
+- Decoración de calle, todo con InstancedMesh (una llamada por tipo): asfalto cálido, línea discontinua por tramos, pasos de cebra en cada cruce del centro, coches en los dos carriles (carrocería + cabina), personas en aceras, parques y delante de cada proyecto (cuerpo + cabeza), árboles de alineación redondos, bancos y flores en los parques, y un bosque en cuña a la derecha de la vista general.
+- Rótulos fijos: un botón HTML sobre el marcador de cada proyecto, con rombo terracota (proyecto) u ocre (presentación) y una punta que señala la cuadra. Se recolocan solo cuando la escena se redibuja. Hover y selección los oscurecen. Así se distingue a simple vista con qué casas se puede interactuar. Sustituyen a la etiqueta que seguía al puntero.
+- Coste medido en escritorio: 83 llamadas en la vista general, unos 116 mil triángulos (99 mil en táctil, con bosque menos denso), 60-63 llamadas de cerca.

@@ -82,7 +82,7 @@ async function iniciar() {
   const interaccion = crearInteraccion({
     camara, lienzo, ciudad, renderer,
     alSeleccionar: seleccionar,
-    alHover: (p, x, y) => hud.hover(p, x, y),
+    alHover: (p) => hud.hover(p),
     invalidar,
   });
 
@@ -141,6 +141,7 @@ async function iniciar() {
     if (interaccion.paso(dt)) sucio = true;
     if (sucio || medirFps) {
       sucio = false;
+      hud.actualizarRotulos(camara, window.innerWidth, window.innerHeight);
       renderer.render(escena, camara);
     }
     if (medirFps) {

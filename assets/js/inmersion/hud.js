@@ -21,7 +21,43 @@ export function crearHud({ proyectos, alElegir, alCerrar, alVistaGeneral, alZoom
   const indice = $("indice");
   const ficha = $("ficha");
   const contenido = $("ficha-contenido");
-  const etiqueta = $("etiqueta");
+  const capaRotulos = $("rotulos");
+
+  /* ---------- Rótulos fijos sobre cada proyecto ----------
+     Distinguen las cuadras con las que se puede interactuar de las demás.
+     Son botones HTML (nítidos, accesibles, clicables) que se colocan
+     sobre el marcador de cada edificio solo cuando la escena se redibuja:
+     6 transform por fotograma, nada más. */
+  const rotulos = new Map();
+  for (const p of proyectos) {
+    if (!p.centro || !capaRotulos) break; // sin 3D no hay rótulos
+    const r = document.createElement("button");
+    r.type = "button";
+    r.className = "rotulo";
+    r.dataset.categoria = p.datos.categoria;
+    r.tabIndex = -1; // el índice ya da el acceso con teclado; evita duplicar paradas
+    r.setAttribute("aria-hidden", "true");
+    r.innerHTML = `<span class="rotulo__texto"><span class="rotulo__punto"></span>${escapar(p.datos.nombre)}</span>`;
+    r.addEventListener("click", () => alElegir(p));
+    capaRotulos.append(r);
+    rotulos.set(p, r);
+  }
+  let vector = null;
+  function actualizarRotulos(camara, ancho, alto) {
+    if (!rotulos.size) return;
+    vector ??= proyectos[0].centro.clone(); // un Vector3 reutilizable, sin importar three aquí
+    for (const [p, r] of rotulos) {
+      vector.set(p.centro.x, p.alto + p.elevacion + 4.3, p.centro.z).project(camara);
+      const fuera = vector.z > 1 || Math.abs(vector.x) > 1.1 || Math.abs(vector.y) > 1.1;
+      r.classList.toggle("oculto", fuera);
+      if (fuera) continue;
+      const x = (vector.x * 0.5 + 0.5) * ancho;
+      const y = (-vector.y * 0.5 + 0.5) * alto;
+      r.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0)`;
+      // Los lejanos quedan detrás de los cercanos
+      r.style.zIndex = String(Math.round((1 - vector.z) * 10000));
+    }
+  }
 
   /* ---------- Índice ---------- */
   const botones = new Map();
@@ -38,16 +74,13 @@ export function crearHud({ proyectos, alElegir, alCerrar, alVistaGeneral, alZoom
     botones.set(p, b);
   }
 
-  /* ---------- Etiqueta bajo el puntero ---------- */
-  let etiquetaDe = null;
-  function hover(p, x, y) {
-    if (p !== etiquetaDe) {
-      etiquetaDe = p;
-      if (p) etiqueta.textContent = p.datos.nombre;
-      etiqueta.classList.toggle("visible", !!p);
-      for (const [q, b] of botones) b.classList.toggle("sobre", q === p);
-    }
-    if (x !== undefined) etiqueta.style.transform = `translate(${x + 16}px, ${y + 14}px)`;
+  /* ---------- Hover: resalta el rótulo y la entrada del índice ---------- */
+  let sobre = null;
+  function hover(p) {
+    if (p === sobre) return;
+    sobre = p;
+    for (const [q, b] of botones) b.classList.toggle("sobre", q === p);
+    for (const [q, r] of rotulos) r.classList.toggle("sobre", q === p);
   }
 
   /* ---------- Ficha ---------- */
@@ -55,8 +88,8 @@ export function crearHud({ proyectos, alElegir, alCerrar, alVistaGeneral, alZoom
   function abrir(p) {
     const d = p.datos;
     abierto = p;
-    hover(null); // la cámara va a volar: la etiqueta quedaría fuera de sitio
     for (const [q, b] of botones) b.setAttribute("aria-current", q === p ? "true" : "false");
+    for (const [q, r] of rotulos) r.classList.toggle("activo", q === p);
 
     const meta = (d.meta || []).map(escapar).join(" · ");
     const entregables = (d.entregables || []).map((e) => `<li>${escapar(e)}</li>`).join("");
@@ -109,6 +142,7 @@ export function crearHud({ proyectos, alElegir, alCerrar, alVistaGeneral, alZoom
     const p = abierto;
     abierto = null;
     for (const b of botones.values()) b.setAttribute("aria-current", "false");
+    for (const r of rotulos.values()) r.classList.remove("activo");
     ficha.classList.remove("abierta");
     const fin = () => { if (!abierto) { ficha.hidden = true; contenido.innerHTML = ""; } };
     ficha.addEventListener("transitionend", fin, { once: true });
@@ -126,9 +160,10 @@ export function crearHud({ proyectos, alElegir, alCerrar, alVistaGeneral, alZoom
 
   function listo() {
     const carga = $("carga");
+    if (!carga) return;
     carga.classList.add("oculta");
     setTimeout(() => carga.remove(), 600);
   }
 
-  return { hover, abrir, cerrar, listo, abierto: () => abierto };
+  return { hover, abrir, cerrar, listo, actualizarRotulos, abierto: () => abierto };
 }

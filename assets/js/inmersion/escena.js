@@ -20,6 +20,7 @@ export const PALETA = {
   oliva: 0x2f3a2e,
   tinta: 0x1e1b18,
   calle: 0xddd2c2,
+  asfalto: 0x9d968d,
   agua: 0x8fb0ac,
   vidrio: 0xa9b8b0,
 };

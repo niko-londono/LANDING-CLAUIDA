@@ -25,7 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/assets/css/styles.css?v=20261109b">
-  <link rel="stylesheet" href="/assets/css/inmersion.css?v=20261109">
+  <link rel="stylesheet" href="/assets/css/inmersion.css?v=20261109b">
 
   <!-- Three.js solo se descarga en esta página, con versión fija -->
   <link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" crossorigin>
@@ -65,7 +65,7 @@
   <!-- Leyenda y ayuda de controles -->
   <aside class="hud-leyenda" aria-label="Leyenda">
     <ul class="leyenda">
-      <li><span class="leyenda__muestra leyenda__muestra--proyecto"></span>Proyecto</li>
+      <li><span class="leyenda__muestra leyenda__muestra--proyecto"></span>Proyecto (con rótulo, clic para abrir)</li>
       <li><span class="leyenda__muestra leyenda__muestra--presentacion"></span>Presentación</li>
       <li><span class="leyenda__muestra leyenda__muestra--entorno"></span>Entorno</li>
     </ul>
@@ -87,8 +87,8 @@
     </button>
   </div>
 
-  <!-- Nombre del proyecto bajo el puntero -->
-  <div class="etiqueta-3d" id="etiqueta" aria-hidden="true"></div>
+  <!-- Rótulos sobre los edificios con los que se puede interactuar (los coloca hud.js) -->
+  <div class="rotulos" id="rotulos"></div>
 
   <!-- Ficha del proyecto seleccionado -->
   <aside class="panel-ficha" id="ficha" aria-labelledby="ficha-titulo" hidden>
@@ -112,6 +112,6 @@
 
   <div class="fps" id="fps" hidden></div>
 
-  <script type="module" src="/assets/js/inmersion/app.js?v=20261109"></script>
+  <script type="module" src="/assets/js/inmersion/app.js?v=20261109b"></script>
 </body>
 </html>

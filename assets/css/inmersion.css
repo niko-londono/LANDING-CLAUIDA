@@ -32,7 +32,7 @@ body.inmersion { background: var(--hueso); }
 .ciudad:active { cursor: grabbing; }
 
 /* Paneles del HUD: material claro como las tarjetas del recorrido */
-.hud-cabecera, .hud-indice, .hud-leyenda, .mapa-boton, .panel-ficha, .etiqueta-3d {
+.hud-cabecera, .hud-indice, .hud-leyenda, .mapa-boton, .panel-ficha {
   background: var(--hud-fondo);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
   backdrop-filter: blur(14px) saturate(140%);
@@ -40,7 +40,7 @@ body.inmersion { background: var(--hueso); }
   box-shadow: var(--hud-sombra);
 }
 @media (prefers-reduced-transparency: reduce) {
-  .hud-cabecera, .hud-indice, .hud-leyenda, .mapa-boton, .panel-ficha, .etiqueta-3d {
+  .hud-cabecera, .hud-indice, .hud-leyenda, .mapa-boton, .panel-ficha {
     background: var(--hueso-claro);
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
@@ -196,21 +196,76 @@ button, a { touch-action: manipulation; }
 }
 .ficha__titulo:focus { outline: none; }
 
-/* ---------- Etiqueta bajo el puntero ---------- */
-.etiqueta-3d {
-  position: fixed;
+/* ---------- Rótulos sobre los proyectos ----------
+   Anclados por su punta inferior al marcador del edificio (hud.js mueve la
+   capa con transform). La punta señala la cuadra; el color del rombo dice
+   si es proyecto (terracota) o presentación (ocre). */
+.rotulos { position: fixed; inset: 0; z-index: 5; pointer-events: none; overflow: hidden; }
+.rotulo {
+  position: absolute;
   top: 0; left: 0;
-  z-index: 12;
-  padding: 0.45rem 0.75rem;
-  border-radius: 8px;
-  font-size: 0.82rem;
-  font-weight: 500;
-  white-space: nowrap;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 140ms ease;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: opacity 160ms ease;
 }
-.etiqueta-3d.visible { opacity: 1; }
+.rotulo.oculto { opacity: 0; pointer-events: none; }
+.rotulo__texto {
+  position: absolute;
+  left: 0; bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.42rem 0.75rem 0.42rem 0.6rem;
+  border-radius: 999px;
+  background: var(--hueso-claro);
+  border: 1px solid rgba(169, 80, 43, 0.35);
+  box-shadow: 0 8px 18px -10px rgba(30, 27, 24, 0.55);
+  color: var(--tinta);
+  font: 500 0.8rem/1 var(--fuente-texto);
+  white-space: nowrap;
+  transform: translate(-50%, -9px);
+  transition: transform 200ms var(--ease-out), background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+/* Punta que baja hasta el marcador */
+.rotulo__texto::after {
+  content: "";
+  position: absolute;
+  left: 50%; bottom: -5px;
+  width: 9px; height: 9px;
+  margin-left: -4.5px;
+  background: inherit;
+  border-right: inherit;
+  border-bottom: inherit;
+  transform: rotate(45deg);
+}
+.rotulo__punto { width: 0.5rem; height: 0.5rem; flex: none; transform: rotate(45deg); background: var(--terracota); }
+.rotulo[data-categoria="presentacion"] .rotulo__texto { border-color: rgba(200, 145, 58, 0.55); }
+.rotulo[data-categoria="presentacion"] .rotulo__punto { background: var(--ocre); }
+.rotulo.sobre .rotulo__texto, .rotulo.activo .rotulo__texto {
+  background: var(--tinta);
+  border-color: var(--tinta);
+  color: var(--hueso-claro);
+  transform: translate(-50%, -13px);
+}
+.rotulo:active .rotulo__texto { transform: translate(-50%, -9px) scale(0.96); }
+@media (hover: hover) and (pointer: fine) {
+  .rotulo:hover .rotulo__texto {
+    background: var(--tinta);
+    border-color: var(--tinta);
+    color: var(--hueso-claro);
+    transform: translate(-50%, -13px);
+  }
+}
+@media (max-width: 760px) {
+  .rotulo__texto { font-size: 0.72rem; padding: 0.36rem 0.6rem 0.36rem 0.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rotulo__texto { transition: background-color 160ms ease, color 160ms ease; }
+}
 
 /* ---------- Ficha del proyecto ----------
    Escritorio: panel a la derecha. Móvil: hoja inferior.
