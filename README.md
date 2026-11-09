@@ -21,6 +21,9 @@ docs/                   Notas de diseño y contenido
 
 ## Añadir un proyecto al portafolio
 1. Exporta su secuencia con la skill parallax-con-claude a `assets/proyectos/<nombre>/escritorio` y `/movil`.
+   Si después rehaces los fotogramas, ponlos en una carpeta nueva (`assets/proyectos/<nombre>/v2/`, `v3/`…)
+   y cambia las rutas: Vercel guarda `assets/proyectos/` en caché un año como inmutable, y con los
+   mismos nombres quien ya visitó la página seguiría viendo los fotogramas viejos.
 2. Copia `proyectos/casa-roble/index.html` a `proyectos/<nombre>/index.html` y cambia textos, rutas,
    `data-base` del canvas, `--poster` / `--poster-movil` de la sección hero y los `data-desde` de las paradas.
 3. Añade un `<li class="proyecto">` en la sección Portafolio de `index.html`. El primero lleva
