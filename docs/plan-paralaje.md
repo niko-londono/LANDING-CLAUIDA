@@ -182,3 +182,14 @@ Referencias revisadas: cheshirepropertystudio.com y dbltakedesign.com. Se tomaro
 - Reproductor: `data-fundido="largo"` en el lienzo funde cada fotograma con el siguiente en todo el tramo y, a los 140 ms sin scroll, la vista se asienta en un fotograma entero (sin imagen doble). La Casa prototipo no lo usa.
 - Corrección compartida: con la ventana sin alto (pestaña oculta, prerender) el progreso daba NaN y la descarga se paraba tras la primera pasada.
 - Skills: animation-performance.
+
+## Ideas de danyloklochko.com y xianzhaoduan.com/undergrad-vis (2026-11-22)
+
+Se tomaron mecánicas, no su aspecto ni sus textos.
+
+- **Cordón de lámpara: luz de día o de tarde** (de Danylo, «pull for day»). Botón `.lampara` que cuelga de un florón bajo la cabecera, a la derecha de la portada. Al tirar: tirón con rebote (WAAPI, 560 ms), la página se funde con View Transitions (650 ms) y pasa a `data-luz="tarde"` en `<html>`: hueso, lino y arena se doran, terracota más oscura para mantener el contraste (5,4:1 sobre hueso, 4,6:1 sobre lino), resplandor ocre fijo detrás del contenido y el sol de la portada baja 86 px y se vuelve ocre. Se recuerda en `localStorage` («luz») y se aplica en el `<head>` antes de pintar. El rótulo se ve desde 1200 px; por debajo queda para lectores de pantalla porque pisaría el arco.
+- **Ahora en Santo Domingo** (de la hora y el clima de Kyiv de Danylo): hora local (`America/Santo_Domingo`) que se actualiza cada minuto y temperatura con el estado del cielo de Open-Meteo (sin clave; caché de 30 min en `sessionStorage`; si falla, solo la hora).
+- **Lectura palabra a palabra** (de Duan): el párrafo del manifiesto pasa de tenue (0,32) a tinta con el scroll, con un cursor terracota en la última palabra leída. El scroll solo se escucha mientras el párrafo está a la vista. Sin efecto con movimiento reducido.
+- **Sobre al buzón** (del buzón de Danylo): el botón de enviar lleva un sobre que se cuela por una ranura (380 ms) antes de abrir el correo, y vuelve a aparecer.
+- Descartado: pantalla de carga con porcentaje (interrumpe la entrada), rótulos de capítulo numerados sobre los títulos (impeccable los veta), cifras grandes tipo informe (no hay datos reales que lo sostengan), tablero de corcho con chinchetas (ya existe el muestrario de materiales).
+- Skills: impeccable, animate.

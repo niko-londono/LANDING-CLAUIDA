@@ -497,3 +497,170 @@
   .inmersion-entrada:hover .inmersion-entrada__boton .flecha { transform: translateX(4px); }
 }
 .inmersion-entrada:focus-visible { outline: 2px solid var(--terracota); outline-offset: 4px; }
+
+/* =========================================================
+   LUZ DE TARDE · el cordón de la lámpara (idea tomada de
+   danyloklochko.com, llevada a la luz de una casa)
+   La paleta se calienta: hueso, lino y arena se doran, entra
+   un resplandor ocre desde la esquina de la ventana y el sol
+   de la portada baja y se vuelve ocre.
+   ========================================================= */
+:root[data-luz="tarde"] {
+  --hueso: #ecdcc5;
+  --hueso-claro: #f4e8d6;
+  --lino: #e1cbad;
+  --arena: #cfae88;
+  --terracota: #8f3f1f;          /* 5,4:1 sobre el hueso de tarde, 4,6:1 sobre el lino */
+  --color-texto-suave: #4f4439;  /* 7,1:1 sobre el hueso de tarde */
+  --color-linea: rgba(30, 27, 24, 0.18);
+  --material-claro: rgba(236, 220, 197, 0.76);
+}
+/* Resplandor de ventana: detrás del contenido, sobre el fondo del lienzo */
+:root[data-luz="tarde"] body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(90% 70% at 100% 0%, rgba(200, 145, 58, 0.22), transparent 62%),
+    radial-gradient(70% 60% at 0% 100%, rgba(169, 80, 43, 0.08), transparent 70%);
+}
+
+.sol {
+  fill: var(--terracota);
+  transform-box: fill-box;
+  transition: fill 600ms ease, transform 900ms var(--ease-in-out);
+}
+:root[data-luz="tarde"] .sol { fill: var(--ocre); transform: translateY(86px); }
+
+/* El cambio de luz funde toda la página (View Transitions; sin ella, instantáneo) */
+::view-transition-old(root),
+::view-transition-new(root) { animation-duration: 650ms; animation-timing-function: ease; }
+
+/* Cordón: cuelga del borde superior de la portada, junto a la escena */
+.lampara {
+  position: absolute;
+  top: calc(5.25rem + env(safe-area-inset-top, 0px));
+  right: calc(var(--margen) + env(safe-area-inset-right, 0px));
+  z-index: 2;
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+  padding: 0 0.5rem 0.5rem;
+  border: 0;
+  background: none;
+  color: var(--color-texto-suave);
+  font: 500 0.6875rem/1.3 var(--fuente-texto);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: grab;
+  touch-action: manipulation;
+}
+.lampara:active { cursor: grabbing; }
+.lampara__cordon {
+  width: 24px;
+  height: clamp(6rem, 16vh, 8.5rem);
+  overflow: visible;
+}
+.lampara__hilo { stroke: var(--color-texto); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+.lampara__casquillo, .lampara__floron { fill: var(--roble); }
+.lampara__tirador {
+  fill: var(--hueso-claro);
+  stroke: var(--color-texto);
+  stroke-width: 1.2;
+  transition: fill 400ms ease, filter 400ms ease;
+}
+:root[data-luz="tarde"] .lampara__tirador {
+  fill: #f6d9a0;
+  filter: drop-shadow(0 0 6px rgba(200, 145, 58, 0.75));
+}
+.lampara__texto { max-width: 7.5rem; text-align: center; text-wrap: balance; }
+.lampara:focus-visible { outline: 2px solid var(--terracota); outline-offset: 2px; border-radius: var(--radio); }
+@media (hover: hover) and (pointer: fine) {
+  .lampara__cordon { transition: transform 300ms var(--ease-out); }
+  .lampara:hover .lampara__cordon { transform: translateY(4px); }
+  .lampara:hover { color: var(--color-texto); }
+}
+/* Hasta 1200 px el rótulo pisaría el arco: queda solo para lectores de pantalla */
+@media (max-width: 1199px) {
+  .lampara__texto {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+/* En móvil, más corto y pegado al borde */
+@media (max-width: 899px) {
+  .lampara { right: calc(var(--margen) - 0.5rem); }
+  .lampara { top: calc(4.5rem + env(safe-area-inset-top, 0px)); }
+  .lampara__cordon { height: 5rem; }
+  .lampara__texto { max-width: 5.5rem; }
+}
+
+/* ---------- Hora y clima de Santo Domingo ---------- */
+.portada__ahora {
+  margin: 2rem 0 0;
+  font-size: 0.875rem;
+  color: var(--color-texto-suave);
+  font-variant-numeric: tabular-nums;
+}
+.portada__ahora time { color: var(--color-texto); font-weight: 500; }
+.js .portada__ahora { opacity: 0; transition: opacity 600ms var(--ease-out) 500ms; }
+.js .portada.lista .portada__ahora { opacity: 1; }
+
+/* =========================================================
+   LECTURA PALABRA A PALABRA (idea de xianzhaoduan.com/undergrad-vis)
+   El párrafo del manifiesto se "lee" con el scroll: las palabras
+   pasan de tenue a tinta y un cursor terracota marca por dónde va.
+   ========================================================= */
+.manifiesto__bajada.lectura .palabra-lectura {
+  opacity: 0.32;
+  transition: opacity 180ms ease;
+}
+.manifiesto__bajada.lectura .palabra-lectura.leida { opacity: 1; }
+.manifiesto__bajada.lectura .palabra-lectura.cursor { position: relative; }
+.manifiesto__bajada.lectura .palabra-lectura.cursor::after {
+  content: "";
+  position: absolute;
+  right: -0.2em;
+  top: 0.12em;
+  bottom: 0.08em;
+  width: 2px;
+  background: var(--terracota);
+}
+
+/* =========================================================
+   SOBRE AL BUZÓN (idea de danyloklochko.com)
+   Al enviar, el sobre del botón se cuela por la ranura antes
+   de abrir el correo.
+   ========================================================= */
+.boton--sobre { display: inline-flex; align-items: center; gap: 0.7rem; }
+.ranura {
+  display: block;
+  width: 1.5rem;
+  height: 1rem;
+  overflow: clip;
+  overflow-clip-margin: 2px;
+}
+.sobre {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+}
+@media (hover: hover) and (pointer: fine) {
+  .sobre { transition: transform 300ms var(--ease-out); }
+  .boton--sobre:hover .sobre { transform: translateX(3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sol { transition: fill 400ms ease; }
+  .lampara__cordon { transition: none; }
+  .lampara:hover .lampara__cordon { transform: none; }
+}

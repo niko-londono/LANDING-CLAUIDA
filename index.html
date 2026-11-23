@@ -24,10 +24,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20261109b">
-  <link rel="stylesheet" href="/assets/css/landing.css?v=20261109c">
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20261122">
+  <link rel="stylesheet" href="/assets/css/landing.css?v=20261122">
   <!-- Marca que hay JS antes de pintar, para ocultar lo que se revelará con el scroll -->
-  <script>document.documentElement.classList.add("js");</script>
+  <script>
+    document.documentElement.classList.add("js");
+    // Luz elegida en otra visita (día o tarde), antes de pintar para que no parpadee
+    try { if (localStorage.getItem("luz") === "tarde") document.documentElement.dataset.luz = "tarde"; } catch (e) {}
+  </script>
 </head>
 <body class="landing">
 
@@ -62,6 +66,8 @@
             <a href="#portafolio" class="boton boton--acento">Ver portafolio</a>
             <a href="#contacto" class="boton">Cuéntame tu proyecto</a>
           </div>
+          <!-- Hora y clima de Santo Domingo en vivo; JS lo rellena y lo muestra -->
+          <p class="portada__ahora" id="ahora" hidden>Ahora en Santo Domingo: <time id="ahora-hora"></time><span id="ahora-clima"></span></p>
         </div>
 
         <div class="escena" aria-hidden="true">
@@ -69,7 +75,7 @@
             <svg viewBox="0 0 600 720" preserveAspectRatio="xMidYMax meet"><path d="M40 720V320a260 260 0 0 1 520 0v400z" fill="var(--lino)"/></svg>
           </div>
           <div class="capa" style="--v: 230; --p: 0.5; --i: 1">
-            <svg viewBox="0 0 600 720" preserveAspectRatio="xMidYMax meet"><circle cx="408" cy="226" r="64" fill="var(--terracota)"/></svg>
+            <svg viewBox="0 0 600 720" preserveAspectRatio="xMidYMax meet"><circle class="sol" cx="408" cy="226" r="64"/></svg>
           </div>
           <div class="capa" style="--v: 90; --p: 0.7; --i: 2">
             <svg viewBox="0 0 600 720" preserveAspectRatio="xMidYMax meet"><path d="M130 720V410a170 170 0 0 1 340 0v310z" fill="var(--arena)"/></svg>
@@ -96,6 +102,16 @@
           </div>
         </div>
       </div>
+      <!-- Cordón de la lámpara: cambia la página de la luz de día a la de tarde -->
+      <button class="lampara" type="button" aria-pressed="false">
+        <svg class="lampara__cordon" viewBox="0 0 24 150" aria-hidden="true">
+          <rect class="lampara__floron" x="4" y="0" width="16" height="3" rx="1.5"/>
+          <path class="lampara__hilo" d="M12 3V113"/>
+          <rect class="lampara__casquillo" x="9" y="112" width="6" height="7" rx="1.5"/>
+          <path class="lampara__tirador" d="M12 119c-4.6 0-6 5.6-6 11.5S8.6 145 12 145s6-8.6 6-14.5S16.6 119 12 119z"/>
+        </svg>
+        <span class="lampara__texto">Tira para la luz de tarde</span>
+      </button>
       <a href="#manifiesto" class="desliza"><span class="desliza__linea" aria-hidden="true"></span>Desliza</a>
     </section>
 
@@ -317,7 +333,7 @@
           <label>Nombre<input type="text" name="nombre" required autocomplete="name"></label>
           <label>Correo<input type="email" name="correo" required autocomplete="email"></label>
           <label>Cuéntame tu proyecto<textarea name="mensaje" rows="4" required></textarea></label>
-          <button type="submit" class="boton" enterkeyhint="send">Enviar mensaje</button>
+          <button type="submit" class="boton boton--sobre" enterkeyhint="send"><span class="ranura" aria-hidden="true"><svg class="sobre" viewBox="0 0 24 16"><path d="M1.5 1.5h21v13h-21z"/><path d="M1.5 1.5 12 9.5l10.5-8"/></svg></span>Enviar mensaje</button>
           <p class="formulario__aviso" role="status" aria-live="polite"></p>
         </form>
       </div>
@@ -338,6 +354,6 @@
     </div>
   </footer>
 
-  <script src="/assets/js/main.js?v=20261109b" defer></script>
+  <script src="/assets/js/main.js?v=20261122" defer></script>
 </body>
 </html>

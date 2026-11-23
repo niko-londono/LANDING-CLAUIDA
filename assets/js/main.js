@@ -7,7 +7,11 @@
    4. Revelados al entrar en pantalla
    5. Paralaje de respaldo (si no hay animation-timeline)
    6. Sección actual en el menú
-   7. Formulario (de momento solo de ejemplo)
+   7. Formulario: abre el correo; el sobre entra al buzón
+   8. Atajo a WhatsApp
+   9. Luz de día o de tarde (cordón de la lámpara)
+   10. Hora y clima de Santo Domingo
+   11. Lectura palabra a palabra del manifiesto
    ========================================================= */
 
 (() => {
@@ -335,11 +339,25 @@
   // Sin servidor: abre el correo de quien escribe con el mensaje ya redactado
   // para la dirección de data-correo.
   const formulario = document.getElementById("formulario");
-  formulario?.addEventListener("submit", (e) => {
+  formulario?.addEventListener("submit", async (e) => {
     e.preventDefault();
     const datos = new FormData(formulario);
     const asunto = `Proyecto de ${datos.get("nombre")}`;
-    const cuerpo = `${datos.get("mensaje")}\n\n${datos.get("nombre")} · ${datos.get("correo")}`;
+    const cuerpo = `${datos.get("mensaje")}
+
+${datos.get("nombre")} · ${datos.get("correo")}`;
+    // El sobre del botón se cuela por la ranura y luego se abre el correo
+    const sobre = formulario.querySelector(".sobre");
+    if (sobre && !reducirMovimiento && sobre.animate) {
+      await sobre.animate(
+        [{ transform: "translateX(0)" }, { transform: "translateX(115%)" }],
+        { duration: 380, easing: "cubic-bezier(0.77, 0, 0.175, 1)" }
+      ).finished.catch(() => {});
+      sobre.animate(
+        [{ transform: "translateX(-115%)" }, { transform: "translateX(0)" }],
+        { duration: 320, delay: 500, easing: "cubic-bezier(0.23, 1, 0.32, 1)", fill: "backwards" }
+      );
+    }
     window.location.href = `mailto:${formulario.dataset.correo}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
     const aviso = formulario.querySelector(".formulario__aviso");
     aviso.textContent = "Se abrió tu correo con el mensaje listo. Solo falta enviarlo.";
@@ -365,6 +383,119 @@
     }
     window.addEventListener("scroll", actualizar, { passive: true });
     actualizar();
+  }
+
+  /* ---------- 9. Luz de día o de tarde (cordón de la lámpara) ---------- */
+  const lampara = document.querySelector(".lampara");
+  if (lampara) {
+    const raiz = document.documentElement;
+    const texto = lampara.querySelector(".lampara__texto");
+    const cordon = lampara.querySelector(".lampara__cordon");
+    const colorTema = document.querySelector('meta[name="theme-color"]');
+    const pintar = (tarde) => {
+      if (tarde) raiz.dataset.luz = "tarde"; else delete raiz.dataset.luz;
+      lampara.setAttribute("aria-pressed", String(tarde));
+      texto.textContent = tarde ? "Tira para volver al día" : "Tira para la luz de tarde";
+      colorTema?.setAttribute("content", tarde ? "#ecdcc5" : "#f2ece3");
+    };
+    pintar(raiz.dataset.luz === "tarde");
+    lampara.addEventListener("click", () => {
+      const tarde = raiz.dataset.luz !== "tarde";
+      try { localStorage.setItem("luz", tarde ? "tarde" : "dia"); } catch (e) {}
+      if (!reducirMovimiento && cordon.animate) {
+        // Tirón: baja, rebota un poco por encima y se asienta
+        cordon.animate([
+          { transform: "translateY(0)" },
+          { transform: "translateY(18px)", offset: 0.3 },
+          { transform: "translateY(-4px)", offset: 0.65 },
+          { transform: "translateY(0)" }
+        ], { duration: 560, easing: "cubic-bezier(0.23, 1, 0.32, 1)" });
+      }
+      if (document.startViewTransition) document.startViewTransition(() => pintar(tarde));
+      else pintar(tarde);
+    });
+  }
+
+  /* ---------- 10. Hora y clima de Santo Domingo ---------- */
+  const ahora = document.getElementById("ahora");
+  if (ahora) {
+    const hora = document.getElementById("ahora-hora");
+    const clima = document.getElementById("ahora-clima");
+    const formato = new Intl.DateTimeFormat("es-DO", { hour: "numeric", minute: "2-digit", timeZone: "America/Santo_Domingo" });
+    const ponerHora = () => {
+      const d = new Date();
+      hora.textContent = formato.format(d);
+      hora.dateTime = d.toISOString();
+    };
+    ponerHora();
+    ahora.hidden = false;
+    // Se actualiza al cambiar el minuto, no cada segundo
+    setTimeout(() => { ponerHora(); setInterval(ponerHora, 60000); }, (60 - new Date().getSeconds()) * 1000);
+
+    const describir = (c) =>
+      c === 0 ? "despejado" : c <= 2 ? "algo nublado" : c === 3 ? "nublado" :
+      c <= 48 ? "niebla" : c <= 57 ? "llovizna" : c <= 67 ? "lluvia" :
+      c <= 82 ? "chubascos" : c >= 95 ? "tormenta" : "";
+    const ponerClima = ({ t, c }) => {
+      const palabra = describir(c);
+      clima.textContent = ` · ${Math.round(t)} °C${palabra ? `, ${palabra}` : ""}`;
+    };
+    let guardado = null;
+    try { guardado = JSON.parse(sessionStorage.getItem("clima-sd")); } catch (e) {}
+    if (guardado && Date.now() - guardado.cuando < 30 * 60000) ponerClima(guardado);
+    else if ("fetch" in window) {
+      const corte = "AbortController" in window ? new AbortController() : null;
+      if (corte) setTimeout(() => corte.abort(), 5000);
+      fetch("https://api.open-meteo.com/v1/forecast?latitude=18.4861&longitude=-69.9312&current=temperature_2m,weather_code", { signal: corte?.signal })
+        .then((r) => (r.ok ? r.json() : Promise.reject()))
+        .then((d) => {
+          const dato = { t: d.current.temperature_2m, c: d.current.weather_code, cuando: Date.now() };
+          if (typeof dato.t !== "number") return;
+          ponerClima(dato);
+          try { sessionStorage.setItem("clima-sd", JSON.stringify(dato)); } catch (e) {}
+        })
+        .catch(() => {}); // Sin clima se queda solo la hora
+    }
+  }
+
+  /* ---------- 11. Lectura palabra a palabra del manifiesto ---------- */
+  const bajada = document.querySelector(".manifiesto__bajada");
+  if (bajada && !reducirMovimiento && "IntersectionObserver" in window) {
+    const textos = bajada.textContent.trim().split(/\s+/);
+    bajada.textContent = "";
+    const palabras = textos.map((t, i) => {
+      const span = document.createElement("span");
+      span.className = "palabra-lectura";
+      span.textContent = t;
+      bajada.append(span);
+      if (i < textos.length - 1) bajada.append(" ");
+      return span;
+    });
+    bajada.classList.add("lectura");
+    let leidas = 0;
+    let pedido = false;
+    const leer = () => {
+      pedido = false;
+      const r = bajada.getBoundingClientRect();
+      const alto = window.innerHeight || 1;
+      // Empieza cuando el párrafo asoma al 85 % de la pantalla y
+      // termina cuando su final pasa por el 55 %
+      const inicio = alto * 0.85;
+      const recorrido = r.height + alto * 0.3;
+      const p = Math.min(1, Math.max(0, (inicio - r.top) / recorrido));
+      const n = Math.round(p * palabras.length);
+      if (n === leidas) return;
+      const [desde, hasta] = n > leidas ? [leidas, n] : [n, leidas];
+      for (let i = desde; i < hasta; i++) palabras[i].classList.toggle("leida", i < n);
+      palabras[leidas - 1]?.classList.remove("cursor");
+      if (n > 0 && n < palabras.length) palabras[n - 1].classList.add("cursor");
+      leidas = n;
+    };
+    const pedirLectura = () => { if (!pedido) { pedido = true; requestAnimationFrame(leer); } };
+    new IntersectionObserver((entradas) => {
+      if (entradas[0].isIntersecting) { window.addEventListener("scroll", pedirLectura, { passive: true }); pedirLectura(); }
+      else { window.removeEventListener("scroll", pedirLectura); leer(); }
+    }).observe(bajada);
   }
 
   /* ---------- Año del pie ---------- */
