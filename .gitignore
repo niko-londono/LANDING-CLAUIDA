@@ -8,3 +8,12 @@ Thumbs.db
 
 # Material fuente (vídeo y PDF): no se sube ni se publica
 Recursos/
+
+# Escenas de Blender (pesadas, con texturas empaquetadas)
+2026-11-05 · casa minimalista/trabajo/blender/
+
+# Renders de Blender: PNG maestros, pruebas y copia de exportación (ya publicada en assets/)
+2026-11-05 · casa minimalista/trabajo/master-blender/
+2026-11-05 · casa minimalista/trabajo/master-blender-movil/
+2026-11-05 · casa minimalista/trabajo/blender-claves/
+2026-11-05 · casa minimalista/FINAL-blender/

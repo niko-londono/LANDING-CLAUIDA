@@ -31,6 +31,7 @@
 | Skill | Para qué sirve | Cuándo usarla aquí |
 |---|---|---|
 | **parallax-con-claude** | Crea las imágenes de una web parallax o de scrollytelling: entrevista, storyboard, escena 3D (Three.js) o 2D por capas, o un vídeo del usuario convertido en WebP para ordenador y móvil, con póster y manifiesto | Para crear o rehacer la secuencia de fotogramas del hero, un nuevo recorrido de cámara o pasar un vídeo a fotogramas |
+| **blender** (skill de usuario) | Construye, ilumina y renderiza escenas fotorrealistas en Blender por el conector MCP: pasar escenas de Three.js, texturas y modelos de Poly Haven, césped, árboles, atardeceres y render con Cycles. Se actualiza sola con lo aprendido en cada uso | Para hacer fotorrealista un recorrido (por ejemplo la casa de roble) o la ciudad de Inmersión. Se combina con parallax-con-claude, que exporta los fotogramas renderizados a WebP |
 | **emilkowalski-skills:animate** | Construye una animación desde cero decidiendo en orden: si debe animarse, su propósito, herramienta, propiedades, curva, duración, interrupción y salida. Escribe el código | Cuando se pide animar algo concreto: "haz que esto aparezca", "añade una transición" |
 | **emilkowalski-skills:find-animation-opportunities** | Busca dónde falta movimiento y descarta lo que no debe moverse. Solo propone, con valores exactos | "¿Qué más podría animarse?", "dale más vida a la página" |
 | **emilkowalski-skills:improve-animations** | Audita el movimiento que ya existe y deja planes de mejora priorizados. Solo planifica | "Revisa las animaciones", "audita el movimiento" |
@@ -72,6 +73,7 @@
 | Algo va lento o a tirones | animation-performance |
 | Arreglos en el móvil | mobile-native → apple-design (si toca movimiento o materiales) |
 | Nuevo recorrido 3D, nuevas fotos de secuencia o vídeo | parallax-con-claude |
+| Recorrido o escena con aspecto fotorrealista | blender → parallax-con-claude (exportar fotogramas) |
 | Logo, favicon, imagen para compartir o banner | ui-ux-pro-max:design / banner-design → brand |
 | Textos, tono, mensajes | ui-ux-pro-max:brand → impeccable (textos de UX) |
 | Profundidad, cristal o tipografía fina | apple-design → emil-design-eng |

@@ -123,6 +123,7 @@ Las 9 claves del recorrido (`trabajo/claves`) ya existen en WebP dentro de la se
 
 - Textos de la landing reescritos con el CV real: bio (Lic. en Diseño e Interiorismo, PUCMM, Summa Cum Laude 2022), herramientas, idiomas, servicios (diseño interior y exterior, visualización 3D, interiorismo comercial), proceso (conversación, moodboard y concepto, modelado 3D, planos) y contacto (correo y teléfono). No se publican la dirección ni las referencias del CV.
 - El recorrido de la casa de roble deja de ser un proyecto: pasa a `/quien-soy` como presentación personal (quién soy, formación, lo que hago, herramientas y trayectoria). `/proyectos/casa-roble` redirige ahí (vercel.json). Los fotogramas siguen en `assets/proyectos/casa-roble/`.
+- 2026-11-22: el recorrido de `/quien-soy` pasa a fotogramas renderizados en Blender (Cycles), misma cámara y 160 fotogramas. Están en `assets/proyectos/casa-roble-realista/` (carpeta nueva por la caché inmutable de Vercel); la carpeta antigua queda sin uso.
 - En la landing, «Estudio» pasa a «Quién soy» con una ficha de datos y una tarjeta que lleva al recorrido; el portafolio queda solo con la Cafetería Sostenible.
 - El formulario abre el correo de quien escribe con el mensaje listo para la dirección de Claudia (no hay servidor).
 - Skills: ui-ux-pro-max:brand (textos), impeccable (estructura de la sección).
