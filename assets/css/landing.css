@@ -407,32 +407,223 @@
 }
 .firma__cargo { margin: 0.6rem 0 0; font-size: 0.875rem; color: var(--color-texto-suave); }
 
-/* ---------- ¿Te suena? · problemas del cliente ---------- */
+/* ---------- ¿Te suena? · problemas del cliente + comparador 3D ----------
+   Móvil: primero el comparador, luego la lista (al elegir un problema,
+   el cambio se ve justo encima). Escritorio: lista a la izquierda y
+   comparador fijo (sticky) a la derecha. */
+.problemas__rejilla {
+  display: grid;
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+@media (min-width: 1000px) {
+  .problemas__rejilla { grid-template-columns: 5fr 7fr; gap: 4rem; align-items: start; }
+  .problemas__columna { grid-column: 1; grid-row: 1; }
+  .comparador { grid-column: 2; grid-row: 1; position: sticky; top: 6rem; }
+}
+
 .problemas__lista {
-  margin: 3rem 0 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
   border-bottom: 1px solid var(--color-linea);
 }
-.problemas__lista div {
+.problemas__lista li { border-top: 1px solid var(--color-linea); }
+.problema {
   display: grid;
-  gap: 0.5rem;
-  padding-block: 1.75rem;
-  border-top: 1px solid var(--color-linea);
+  gap: 0.45rem;
+  width: 100%;
+  padding: 1.5rem 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
-.problemas__lista dt {
+.problema__cambio {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-texto-suave);
+}
+/* Punto que dice cuál se está viendo: hueco o lleno */
+.problema__cambio::before {
+  content: "";
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px currentColor;
+  transition: background-color 200ms ease, box-shadow 200ms ease;
+}
+.problema__frase {
   font-family: var(--fuente-titulo);
-  font-size: clamp(1.6rem, 2.8vw, 2.25rem);
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
   line-height: 1.15;
   letter-spacing: -0.01em;
+  transition: color 200ms ease;
 }
-.problemas__lista dd { margin: 0; max-width: 34rem; color: var(--color-texto-suave); }
-@media (min-width: 900px) {
-  .problemas__lista div { grid-template-columns: 1fr 1fr; gap: 5rem; align-items: baseline; padding-block: 2.25rem; }
+.problema__respuesta { max-width: 34rem; color: var(--color-texto-suave); }
+.problema[aria-pressed="true"] .problema__frase { color: var(--terracota); }
+.problema[aria-pressed="true"] .problema__cambio { color: var(--color-texto); }
+.problema[aria-pressed="true"] .problema__cambio::before { background: var(--terracota); box-shadow: inset 0 0 0 1px var(--terracota); }
+.problema:focus-visible { outline: 2px solid var(--terracota); outline-offset: 4px; border-radius: var(--radio); }
+@media (hover: hover) and (pointer: fine) {
+  .problema:hover .problema__frase { color: var(--terracota); }
 }
-.problemas__cierre { margin: 2.5rem 0 0; font-size: 1.125rem; }
+/* Sin 3D: la lista vuelve a ser solo texto */
+.sin-3d .comparador { display: none; }
+.sin-3d .problema { cursor: default; }
+.sin-3d .problema__cambio { display: none; }
+.sin-3d .problema .problema__frase { color: inherit; }
+.problemas__cierre { margin: 2rem 0 0; font-size: 1.125rem; }
 .problemas__cierre a {
   color: var(--terracota);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
+}
+
+/* Escenario: lienzo 3D, barra arrastrable y etiquetas */
+.comparador { margin: 0; }
+.comparador__escenario {
+  position: relative;
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+  border: 1px solid var(--color-linea);
+  border-radius: var(--radio);
+  background: var(--color-fondo);
+  cursor: ew-resize;
+  touch-action: pan-y;   /* el scroll vertical sigue siendo de la página */
+  user-select: none;
+  -webkit-user-select: none;
+}
+@media (max-width: 699px) {
+  .comparador__escenario { aspect-ratio: 1 / 1; }
+}
+.comparador__lienzo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0;
+  transition: opacity 600ms var(--ease-out);
+}
+.comparador.lista .comparador__lienzo { opacity: 1; }
+.comparador__estado {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--color-texto-suave);
+  pointer-events: none;
+}
+.comparador__etiqueta {
+  position: absolute;
+  top: 0.75rem;
+  z-index: 1;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  background: var(--material-claro);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+.comparador.lista .comparador__etiqueta { opacity: 1; }
+.comparador__etiqueta--antes { left: 0.75rem; }
+.comparador__etiqueta--despues { right: 0.75rem; color: var(--terracota); }
+
+.comparador__barra {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  z-index: 2;
+  pointer-events: none;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: opacity 400ms var(--ease-out);
+}
+.comparador.lista .comparador__barra { opacity: 1; }
+.comparador__barra::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -0.75px;
+  width: 1.5px;
+  background: var(--color-texto);
+}
+.comparador__asa {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  border-radius: 50%;
+  background: var(--hueso-claro);
+  box-shadow: 0 0 0 1.5px var(--color-texto), 0 6px 18px -6px rgba(30, 27, 24, 0.45);
+  transition: transform 160ms var(--ease-out);
+}
+.comparador__asa svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: var(--color-texto);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.comparador__escenario.arrastrando .comparador__asa { transform: scale(0.94); }
+@media (hover: hover) and (pointer: fine) {
+  .comparador__escenario:hover .comparador__asa { transform: scale(1.06); }
+  .comparador__escenario.arrastrando .comparador__asa { transform: scale(0.94); }
+}
+/* El control real es un range invisible pero enfocable con el teclado */
+.comparador__control {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.comparador__control:focus-visible ~ .comparador__barra .comparador__asa {
+  box-shadow: 0 0 0 1.5px var(--color-texto), 0 0 0 5px var(--terracota);
+}
+.comparador__pie {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 0.85rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-texto-suave);
+}
+.comparador__pie-despues { text-align: right; }
+
+@media (prefers-reduced-motion: reduce) {
+  .comparador__asa { transition: none; }
 }
 
 /* ---------- Servicios · para quién ---------- */

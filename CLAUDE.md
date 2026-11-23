@@ -13,6 +13,7 @@
 - `index.html` es la landing del estudio. Cada proyecto del portafolio vive en `proyectos/<nombre>/index.html` con su recorrido con scroll; sus fotogramas en `assets/proyectos/<nombre>/`. Pasos para añadir uno: README.md.
 - `quien-soy/index.html` es la presentación personal de Claudia (recorrido de la casa de roble); no es un proyecto del portafolio.
 - `inmersion/index.html` es la ciudad 3D (Three.js 0.160 por importmap, sin build). Sus proyectos están en `assets/js/inmersion/proyectos.json`.
+- En la landing, «¿Te suena alguno?» lleva un comparador 3D plano → resultado en `assets/js/comparador/` (Three.js por el mismo importmap, cargado solo al acercarse a la sección). Si cambias `escena.js`, sube su `?v=` en `arranque.js` y el de `arranque.js` en `index.html`.
 - Vista previa local: configuración `landing` en `.claude/launch.json` (python http.server, puerto 4173).
 - Producción: Vercel despliega cada push a `main`. El dominio principal es https://landing-claudia.vercel.app; landing-clauida redirige ahí.
 - Publicar (commit + push) solo cuando el usuario lo apruebe ("Yes, publish").

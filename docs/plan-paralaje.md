@@ -193,3 +193,20 @@ Se tomaron mecánicas, no su aspecto ni sus textos.
 - **Sobre al buzón** (del buzón de Danylo): el botón de enviar lleva un sobre que se cuela por una ranura (380 ms) antes de abrir el correo, y vuelve a aparecer.
 - Descartado: pantalla de carga con porcentaje (interrumpe la entrada), rótulos de capítulo numerados sobre los títulos (impeccable los veta), cifras grandes tipo informe (no hay datos reales que lo sostengan), tablero de corcho con chinchetas (ya existe el muestrario de materiales).
 - Skills: impeccable, animate.
+
+## ¿Te suena alguno?: comparador 3D del plano al resultado (2026-11-23)
+
+Referencia: el comparador antes/después de un proyecto de AI Studio que pasó el usuario (zip con React). Se tomó la idea (los tres problemas eligen qué se compara y una barra separa la etapa del resultado), no su código ni sus imágenes: aquí todo es una escena Three.js hecha en código, sin Blender ni fotos.
+
+- Archivos: `assets/js/comparador/arranque.js` (sin Three; carga la escena cuando la sección está a 600 px) y `assets/js/comparador/escena.js`. Three.js 0.160 por el mismo importmap que Inmersión, ahora también en `index.html`.
+- Escena: sala, comedor y cocina en corte (9 × 7 m, muros de 2,80 m, sin techo) con ventanal al mar al atardecer; texturas pintadas en canvas con azar de semilla fija (tarima de roble, telas, alfombra, piedra, hormigón, cuadro con el arco de la portada).
+- Dos escenas con la misma cámara en un solo lienzo, separadas por la barra con `setScissor`. Izquierda, la etapa; derecha, el resultado:
+  - «No logro imaginar cómo quedará»: plano a línea (aristas en LineSegments2, relleno de papel que oculta las líneas de detrás) → render.
+  - «El espacio no me funciona»: vista cenital con tabiques que cierran comedor y cocina → planta abierta.
+  - «Remodelar me da miedo»: obra gris de hormigón con cotas (9,00 × 7,00 m, 2,80 m, ventanal 3,80 m) y replanteo de los muebles en discontinua terracota → terminado.
+- Entrada: al verse la sección, las líneas del plano se dibujan de abajo arriba (1,8 s) y la barra se desliza para descubrir el render (1,4 s, --ease-in-out). Al cambiar de problema la cámara vuela 1,2 s. Con movimiento reducido: todo dibujado, barra al 50 % y la cámara salta.
+- Render: tono ACES, sol bajo de tarde que entra por el ventanal con sombras suaves, cielo hemisférico y RoomEnvironment para los reflejos. Fondo = color de la página (sigue a la luz de día o de tarde).
+- Rendimiento: dibujo bajo demanda (solo con barra, cámara, tamaño o luz); el render funde el mobiliario en una malla por material; la sombra se calcula una vez (`shadowMap.autoUpdate = false`); pixel ratio ≤ 2 (≤ 1,5 y sombra de 1024 en táctil).
+- Barra: arrastre con puntero en todo el escenario (`touch-action: pan-y` para no bloquear el scroll del móvil) y un `input range` oculto pero enfocable para teclado y lectores de pantalla.
+- Maquetación: escritorio, lista a la izquierda y comparador fijo (sticky) a la derecha; móvil, comparador primero y lista debajo. Sin WebGL la sección queda como lista de texto.
+- Skills: impeccable, animate, animation-performance.

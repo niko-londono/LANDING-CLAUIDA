@@ -24,8 +24,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="/assets/css/styles.css?v=20261122">
-  <link rel="stylesheet" href="/assets/css/landing.css?v=20261122">
+  <!-- Three.js para el comparador 3D (se descarga solo al acercarse a la sección) -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="/assets/css/styles.css?v=20261123">
+  <link rel="stylesheet" href="/assets/css/landing.css?v=20261123b">
   <!-- Marca que hay JS antes de pintar, para ocultar lo que se revelará con el scroll -->
   <script>
     document.documentElement.classList.add("js");
@@ -192,25 +201,68 @@
       </div>
     </section>
 
-    <!-- ============ ¿TE SUENA? · el problema antes que el servicio ============ -->
+    <!-- ============ ¿TE SUENA? · el problema antes que el servicio ============
+         Cada problema elige qué muestra el comparador 3D (assets/js/comparador/):
+         a la izquierda de la barra, la etapa de trabajo; a la derecha, el resultado.
+         Los textos de las etiquetas y del pie viven en los data-* de cada botón. -->
     <section class="seccion problemas" id="problemas">
       <div class="contenedor">
         <h2 class="aparecer">¿Te suena alguno?</h2>
-        <dl class="problemas__lista">
-          <div class="aparecer">
-            <dt>«No logro imaginar cómo quedará»</dt>
-            <dd>Te muestro tu espacio en renders 3D realistas antes de comprar o construir nada, y lo ajustamos hasta que te convenza.</dd>
+        <div class="problemas__rejilla">
+          <figure class="comparador aparecer" id="comparador">
+            <div class="comparador__escenario">
+              <canvas class="comparador__lienzo" aria-hidden="true"></canvas>
+              <span class="comparador__etiqueta comparador__etiqueta--antes" aria-hidden="true">Plano</span>
+              <span class="comparador__etiqueta comparador__etiqueta--despues" aria-hidden="true">Render</span>
+              <input class="comparador__control" type="range" min="0" max="100" step="1" value="100" aria-label="Barra de comparación: a la izquierda la etapa de trabajo, a la derecha el resultado">
+              <div class="comparador__barra" aria-hidden="true">
+                <span class="comparador__asa"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span>
+              </div>
+              <p class="comparador__estado" role="status">Preparando la escena…</p>
+            </div>
+            <figcaption class="comparador__pie">
+              <span class="comparador__pie-antes">Plano a línea con la distribución y el mobiliario.</span>
+              <span class="comparador__pie-despues">Render con materiales y la luz de la tarde.</span>
+            </figcaption>
+          </figure>
+
+          <div class="problemas__columna">
+            <ul class="problemas__lista">
+              <li class="aparecer">
+                <button type="button" class="problema" data-modo="render" aria-pressed="true" aria-controls="comparador"
+                  data-antes="Plano" data-despues="Render"
+                  data-pie-antes="Plano a línea con la distribución y el mobiliario."
+                  data-pie-despues="Render con materiales y la luz de la tarde.">
+                  <span class="problema__cambio">Del plano al render 3D</span>
+                  <span class="problema__frase">«No logro imaginar cómo quedará»</span>
+                  <span class="problema__respuesta">Te muestro tu espacio en renders 3D realistas antes de comprar o construir nada, y lo ajustamos hasta que te convenza.</span>
+                </button>
+              </li>
+              <li class="aparecer">
+                <button type="button" class="problema" data-modo="planta" aria-pressed="false" aria-controls="comparador"
+                  data-antes="Planta cerrada" data-despues="Planta abierta"
+                  data-pie-antes="Cocina y comedor encerrados, con pasillos y puertas."
+                  data-pie-despues="Sin tabiques: la luz de la ventana llega a todo el espacio."
+                  >
+                  <span class="problema__cambio">De la planta cerrada a la abierta</span>
+                  <span class="problema__frase">«El espacio no me funciona»</span>
+                  <span class="problema__respuesta">Redistribuyo para que la luz, los recorridos y el almacenaje trabajen a tu favor, aunque los metros sean pocos o la planta sea difícil.</span>
+                </button>
+              </li>
+              <li class="aparecer">
+                <button type="button" class="problema" data-modo="obra" aria-pressed="false" aria-controls="comparador"
+                  data-antes="Obra con cotas" data-despues="Terminado"
+                  data-pie-antes="Obra gris con las medidas y el replanteo de cada mueble."
+                  data-pie-despues="El mismo espacio terminado, tal como se planeó.">
+                  <span class="problema__cambio">De los planos a la obra</span>
+                  <span class="problema__frase">«Remodelar me da miedo»</span>
+                  <span class="problema__respuesta">Entrego planos detallados y especificaciones técnicas para que la obra avance sin improvisar y con menos sorpresas.</span>
+                </button>
+              </li>
+            </ul>
+            <p class="problemas__cierre aparecer">Si te reconociste en alguno, <a href="#contacto">cuéntame tu caso</a>.</p>
           </div>
-          <div class="aparecer">
-            <dt>«El espacio no me funciona»</dt>
-            <dd>Redistribuyo para que la luz, los recorridos y el almacenaje trabajen a tu favor, aunque los metros sean pocos o la planta sea difícil.</dd>
-          </div>
-          <div class="aparecer">
-            <dt>«Remodelar me da miedo»</dt>
-            <dd>Entrego planos detallados y especificaciones técnicas para que la obra avance sin improvisar y con menos sorpresas.</dd>
-          </div>
-        </dl>
-        <p class="problemas__cierre aparecer">Si te reconociste en alguno, <a href="#contacto">cuéntame tu caso</a>.</p>
+        </div>
       </div>
     </section>
 
@@ -354,6 +406,7 @@
     </div>
   </footer>
 
-  <script src="/assets/js/main.js?v=20261122" defer></script>
+  <script src="/assets/js/main.js?v=20261123" defer></script>
+  <script type="module" src="/assets/js/comparador/arranque.js?v=20261123e"></script>
 </body>
 </html>
