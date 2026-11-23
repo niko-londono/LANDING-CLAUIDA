@@ -855,3 +855,91 @@
   .lampara__cordon { transition: none; }
   .lampara:hover .lampara__cordon { transform: none; }
 }
+
+/* =========================================================
+   INTRO · la portada dentro de una pantalla (assets/js/intro/)
+   Con .intro-3d en <html> la portada se fija mientras se recorre
+   el tramo extra de .intro; la escena 3D la encaja en la
+   pantalla del escritorio con matrix3d. --alto-portada lo pone JS.
+   ========================================================= */
+.intro { position: relative; }
+.intro__lienzo,
+.intro__medida { display: none; }
+.intro-3d .intro {
+  /* La altura (no un padding) deja sitio al sticky: solo se mueve dentro del contenido */
+  height: calc(var(--alto-portada, 100vh) + 150vh);
+  height: calc(var(--alto-portada, 100svh) + 150svh);
+}
+.intro-3d .intro__escenario {
+  position: sticky;
+  top: min(0px, calc(100svh - var(--alto-portada, 100svh)));
+}
+.intro-3d .intro__lienzo {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: calc(var(--alto-portada, 100svh) - 100svh);
+  width: 100%;
+  height: 100vh;
+  height: 100lvh;
+}
+.intro-3d .intro__medida {
+  display: block;
+  position: absolute;
+  left: 0; top: 0;
+  width: 1px;
+  height: 100vh;
+  height: 100svh;
+  visibility: hidden;
+  pointer-events: none;
+}
+.intro-3d .portada {
+  z-index: 1;
+  background: var(--color-fondo);
+  transform-origin: 0 0;
+}
+@media (max-width: 899px) {
+  .intro-3d .intro {
+    height: calc(var(--alto-portada, 100vh) + 115vh);
+    height: calc(var(--alto-portada, 100svh) + 115svh);
+  }
+}
+
+/* =========================================================
+   OLAS · el borde entre secciones de distinto color
+   main.js pone un .ola antes de cada [data-ola]: una campana del
+   color de la sección que viene, que se aplana con el scroll.
+   ========================================================= */
+.estudio,
+.proceso { background: var(--color-fondo-alt); }
+.proceso .pasos li::before { background: var(--color-fondo-alt); }
+/* La muestra de lino se perdería sobre el fondo de lino */
+.estudio .muestra--lino { box-shadow: 0 18px 40px -24px rgba(30, 27, 24, 0.45), inset 0 0 0 1px var(--color-linea); }
+.manifiesto {
+  position: relative;
+  z-index: 1;
+  background: var(--color-fondo);
+}
+.con-olas .manifiesto { border-top: 0; }
+.ola {
+  position: relative;
+  z-index: 2;
+  height: 0;
+  pointer-events: none;
+}
+.ola svg {
+  position: absolute;
+  left: 0;
+  bottom: -1px; /* tapa la costura con la sección */
+  width: 100%;
+  height: clamp(3rem, 9vw, 8.5rem);
+  overflow: visible;
+}
+.ola__relleno { fill: currentColor; }
+.ola__linea {
+  fill: none;
+  stroke: var(--color-linea);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.ola--oscura .ola__linea { stroke: rgba(242, 236, 227, 0.12); }

@@ -34,12 +34,24 @@
     }
   </script>
   <link rel="stylesheet" href="/assets/css/styles.css?v=20261123">
-  <link rel="stylesheet" href="/assets/css/landing.css?v=20261123b">
+  <link rel="stylesheet" href="/assets/css/landing.css?v=20261124b">
   <!-- Marca que hay JS antes de pintar, para ocultar lo que se revelará con el scroll -->
   <script>
     document.documentElement.classList.add("js");
     // Luz elegida en otra visita (día o tarde), antes de pintar para que no parpadee
     try { if (localStorage.getItem("luz") === "tarde") document.documentElement.dataset.luz = "tarde"; } catch (e) {}
+    // Intro 3D (la portada dentro de una pantalla): solo con WebGL y sin
+    // movimiento reducido. Se decide aquí para reservar su altura desde el inicio.
+    try {
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        var gl = document.createElement("canvas").getContext("webgl2") || document.createElement("canvas").getContext("webgl");
+        if (gl) {
+          document.documentElement.classList.add("intro-3d");
+          var perder = gl.getExtension("WEBGL_lose_context");
+          if (perder) perder.loseContext();
+        }
+      }
+    } catch (e) {}
   </script>
 </head>
 <body class="landing">
@@ -66,6 +78,14 @@
          La escena son capas SVG apiladas. Cada capa se desplaza con el scroll
          (--v: px que recorre durante la primera pantalla; positivo = se queda
          atrás, lejos) y con el ratón (--p: profundidad). -->
+    <!-- ============ INTRO · la portada dentro de una pantalla ============
+         Con WebGL (clase intro-3d en <html>) la portada se queda fija y la
+         cámara se aleja: estaba en la pantalla del escritorio de Claudia
+         (assets/js/intro/). Sin WebGL o con movimiento reducido no cambia nada. -->
+    <div class="intro" id="intro">
+    <div class="intro__escenario">
+    <canvas class="intro__lienzo" aria-hidden="true"></canvas>
+    <span class="intro__medida" aria-hidden="true"></span>
     <section class="portada" id="inicio">
       <div class="contenedor portada__rejilla">
         <div class="portada__texto">
@@ -123,9 +143,11 @@
       </button>
       <a href="#manifiesto" class="desliza"><span class="desliza__linea" aria-hidden="true"></span>Desliza</a>
     </section>
+    </div>
+    </div>
 
     <!-- ============ MANIFIESTO · el plano se dibuja con el scroll ============ -->
-    <section class="manifiesto" id="manifiesto">
+    <section class="manifiesto" id="manifiesto" data-ola="centro" data-ola-color="hueso">
       <div class="contenedor manifiesto__rejilla">
         <!-- Principio de trabajo con nombre propio: la frase se recuerda y
              el párrafo explica qué cambia para el cliente -->
@@ -151,7 +173,7 @@
     <!-- ============ QUIÉN SOY ============
          Presentación de Claudia (datos de su CV) y entrada a su
          recorrido personal /quien-soy, separado del portafolio. -->
-    <section class="seccion estudio" id="quien-soy">
+    <section class="seccion estudio" id="quien-soy" data-ola="izquierda" data-ola-color="lino">
       <div class="contenedor estudio__rejilla">
         <div class="estudio__texto">
           <h2 class="aparecer">Hola, soy Claudia</h2>
@@ -205,7 +227,7 @@
          Cada problema elige qué muestra el comparador 3D (assets/js/comparador/):
          a la izquierda de la barra, la etapa de trabajo; a la derecha, el resultado.
          Los textos de las etiquetas y del pie viven en los data-* de cada botón. -->
-    <section class="seccion problemas" id="problemas">
+    <section class="seccion problemas" id="problemas" data-ola="derecha" data-ola-color="hueso">
       <div class="contenedor">
         <h2 class="aparecer">¿Te suena alguno?</h2>
         <div class="problemas__rejilla">
@@ -267,7 +289,7 @@
     </section>
 
     <!-- ============ SERVICIOS ============ -->
-    <section class="seccion servicios" id="servicios">
+    <section class="seccion servicios" id="servicios" data-ola="izquierda" data-ola-color="lino">
       <div class="contenedor">
         <h2 class="aparecer">Cómo puedo ayudarte</h2>
         <ul class="servicios__lista">
@@ -294,7 +316,7 @@
          Cada proyecto es un <li class="proyecto"> que enlaza a su página
          /proyectos/<nombre>. La portada es un fotograma del propio
          proyecto (assets/proyectos/<nombre>/), con paralaje suave. -->
-    <section class="seccion portafolio" id="portafolio">
+    <section class="seccion portafolio" id="portafolio" data-ola="centro" data-ola-color="hueso">
       <div class="contenedor">
         <div class="portafolio__cabeza">
           <h2 class="aparecer">Portafolio</h2>
@@ -351,7 +373,7 @@
     </section>
 
     <!-- ============ PROCESO ============ -->
-    <section class="seccion proceso" id="proceso">
+    <section class="seccion proceso" id="proceso" data-ola="derecha" data-ola-color="lino">
       <div class="contenedor">
         <h2 class="aparecer">Así trabajamos juntas</h2>
         <div class="proceso__riel" aria-hidden="true"><span class="proceso__relleno"></span></div>
@@ -365,7 +387,7 @@
     </section>
 
     <!-- ============ CONTACTO ============ -->
-    <section class="seccion contacto contacto--landing" id="contacto">
+    <section class="seccion contacto contacto--landing" id="contacto" data-ola="centro" data-ola-color="oliva">
       <svg class="contacto__arco deriva" style="--v: 90" viewBox="0 0 600 720" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2">
         <path d="M40 720V320a260 260 0 0 1 520 0v400"/>
         <path d="M110 720V330a190 190 0 0 1 380 0v390"/>
@@ -406,7 +428,8 @@
     </div>
   </footer>
 
-  <script src="/assets/js/main.js?v=20261123" defer></script>
+  <script src="/assets/js/main.js?v=20261124" defer></script>
+  <script type="module" src="/assets/js/intro/arranque.js?v=20261124e"></script>
   <script type="module" src="/assets/js/comparador/arranque.js?v=20261123e"></script>
 </body>
 </html>

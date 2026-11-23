@@ -210,3 +210,25 @@ Referencia: el comparador antes/después de un proyecto de AI Studio que pasó e
 - Barra: arrastre con puntero en todo el escenario (`touch-action: pan-y` para no bloquear el scroll del móvil) y un `input range` oculto pero enfocable para teclado y lectores de pantalla.
 - Maquetación: escritorio, lista a la izquierda y comparador fijo (sticky) a la derecha; móvil, comparador primero y lista debajo. Sin WebGL la sección queda como lista de texto.
 - Skills: impeccable, animate, animation-performance.
+
+## Intro «dentro de la pantalla» y olas entre secciones (2026-11-24)
+
+Referencia: savvia.studio, de la que el usuario pidió tomar dos ideas. La primera es que al bajar parece que estábamos dentro de un ordenador y la cámara se aleja hasta el escritorio. La segunda es que el cambio de color entre secciones y su línea divisoria se mueven como una ola. Se tomaron solo las mecánicas; la escena, los colores y la vista son de Claudia.
+
+- **Intro** (`assets/js/intro/arranque.js` + `escena.js`, Three.js por el importmap):
+  - La portada HTML real está en la pantalla de un dispositivo, en el escritorio de roble de Claudia frente a un ventanal al Caribe de la tarde. En la vista hay mar, ciudad baja, uvas de playa y palmeras, todo pintado en canvas. En la mesa hay una estantería de libros y muestras, una taza, libros, un abanico de muestras y un jarrón de barro.
+  - Cada fotograma se proyectan las cuatro esquinas de la pantalla 3D y la portada se deforma con `matrix3d` (homografía) para encajar en ellas. Con el scroll en el inicio la transformación es la identidad, así que la portada se ve y funciona igual que antes, y sigue siendo clicable durante todo el recorrido.
+  - La pantalla toma la proporción de la ventana: un monitor en horizontal, y en vertical un teléfono en un soporte de roble.
+  - La portada se fija (sticky) durante 150 svh, o 115 svh en móvil. Si es más alta que la pantalla (móvil), se fija cuando su borde inferior toca el de la pantalla y solo encaja esa última pantalla (`clip-path`).
+  - La cámara se aleja con distancia exponencial y suavizado smoothstep, y se inclina 7°.
+  - El lienzo mide `100lvh` con `setViewOffset` para que no quede franja cuando se esconde la barra del navegador.
+  - La luz sigue al cordón de día y tarde.
+  - Se dibuja bajo demanda y solo mientras la intro está a la vista. La sombra se calcula una vez.
+  - Sin WebGL o con movimiento reducido, el `<head>` no pone `intro-3d` y la portada queda como siempre. Si Three.js no carga, se quita el tramo fijado sin salto de scroll.
+  - Descartado: la silla en primer plano, porque tapaba el centro.
+- **Olas** (main.js §12):
+  - Antes de cada sección con `data-ola` va una campana SVG del color de esa sección, con una línea fina en el borde. Está alta cuando la sección asoma y se aplana (smoothstep) hasta ser la línea divisoria recta al llegar al 15 % superior.
+  - `data-ola` (izquierda, centro o derecha) dice dónde nace la cresta, que se recoge hacia el centro.
+  - Para que haya cambio de color, Quién soy y Proceso pasan a lino. La secuencia queda: hueso, lino, hueso, lino, hueso, lino, oliva.
+  - Solo se recalculan las olas visibles. Con movimiento reducido quedan planas.
+- Skills: animate, animation-performance, mobile-native.

@@ -12,6 +12,7 @@
    9. Luz de día o de tarde (cordón de la lámpara)
    10. Hora y clima de Santo Domingo
    11. Lectura palabra a palabra del manifiesto
+   12. Olas entre secciones de distinto color
    ========================================================= */
 
 (() => {
@@ -496,6 +497,82 @@ ${datos.get("nombre")} · ${datos.get("correo")}`;
       if (entradas[0].isIntersecting) { window.addEventListener("scroll", pedirLectura, { passive: true }); pedirLectura(); }
       else { window.removeEventListener("scroll", pedirLectura); leer(); }
     }).observe(bajada);
+  }
+
+  /* ---------- 12. Olas entre secciones ---------- */
+  // Antes de cada [data-ola] va una campana del color de esa sección, con una
+  // línea fina en su borde. Cuando la sección asoma por abajo la campana está
+  // alta; se aplana mientras sube hasta quedar como línea divisoria recta.
+  // data-ola dice dónde nace la cresta (izquierda, centro o derecha).
+  const seccionesOla = [...document.querySelectorAll("[data-ola]")];
+  if (seccionesOla.length) {
+    document.documentElement.classList.add("con-olas");
+    const nacimiento = { izquierda: 380, centro: 500, derecha: 620 };
+    const svgNS = "http://www.w3.org/2000/svg";
+    const olas = seccionesOla.map((seccion) => {
+      const borde = document.createElement("div");
+      borde.className = "ola";
+      borde.setAttribute("aria-hidden", "true");
+      const color = seccion.dataset.olaColor || "hueso";
+      borde.style.color = `var(--${color})`;
+      if (color === "oliva") borde.classList.add("ola--oscura");
+      const svg = document.createElementNS(svgNS, "svg");
+      svg.setAttribute("viewBox", "0 0 1000 100");
+      svg.setAttribute("preserveAspectRatio", "none");
+      const relleno = document.createElementNS(svgNS, "path");
+      relleno.setAttribute("class", "ola__relleno");
+      const linea = document.createElementNS(svgNS, "path");
+      linea.setAttribute("class", "ola__linea");
+      svg.append(relleno, linea);
+      borde.append(svg);
+      seccion.before(borde);
+      return { borde, relleno, linea, base: nacimiento[seccion.dataset.ola] ?? 500, alto: -1 };
+    });
+
+    const trazar = (o, a) => {
+      // a: 0 plana, 1 cresta completa. La cresta va hacia el centro al aplanarse.
+      const alto = Math.round(a * 1000) / 10;
+      if (alto === o.alto) return;
+      o.alto = alto;
+      const x = o.base + (500 - o.base) * (1 - a);
+      const y = (100 - alto).toFixed(1);
+      const curva = `M0 100C${(x * 0.5).toFixed(1)} 100 ${(x - 160).toFixed(1)} ${y} ${x.toFixed(1)} ${y}C${(x + 160).toFixed(1)} ${y} ${(x + (1000 - x) * 0.5).toFixed(1)} 100 1000 100`;
+      o.linea.setAttribute("d", curva);
+      o.relleno.setAttribute("d", `${curva}V103H0Z`);
+    };
+
+    if (reducirMovimiento || !("IntersectionObserver" in window)) {
+      olas.forEach((o) => trazar(o, 0));
+    } else {
+      const olasVisibles = new Set();
+      let pendienteOla = false;
+      const moverOlas = () => {
+        pendienteOla = false;
+        const alto = window.innerHeight;
+        olasVisibles.forEach((o) => {
+          const t = Math.min(1, Math.max(0, (o.borde.getBoundingClientRect().top / alto - 0.15) / 0.85));
+          trazar(o, t * t * (3 - 2 * t));
+        });
+      };
+      const pedirOlas = () => {
+        if (!pendienteOla) { pendienteOla = true; requestAnimationFrame(moverOlas); }
+      };
+      const vigiaOlas = new IntersectionObserver((entradas) => {
+        entradas.forEach((e) => {
+          const o = olas.find((x) => x.borde === e.target);
+          if (e.isIntersecting) olasVisibles.add(o);
+          else {
+            olasVisibles.delete(o);
+            // Fuera de la vista: plana si ya quedó arriba, alta si está por llegar
+            trazar(o, e.boundingClientRect.top < 0 ? 0 : 1);
+          }
+        });
+        pedirOlas();
+      }, { rootMargin: "20% 0px" });
+      olas.forEach((o) => vigiaOlas.observe(o.borde));
+      window.addEventListener("scroll", pedirOlas, { passive: true });
+      window.addEventListener("resize", pedirOlas);
+    }
   }
 
   /* ---------- Año del pie ---------- */
